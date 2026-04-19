@@ -9,21 +9,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap");
-      body {
-        font-family: "Inter", "Pyidaungsu", sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-      .glass-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-    </style>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
@@ -39,7 +35,7 @@
       </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto space-y-10">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
           useEffect: Component ရဲ့ ဘဝဖြစ်စဉ်ကို ထိန်းချုပ်ခြင်း 🔄
@@ -112,6 +108,81 @@
           useEffect မပါရင် API ခေါ်လို့ မရပါဘူး...
         </div>
       </div>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-blue-400 mb-8 border-b border-blue-900 pb-4"
+        >
+          ၄.၁ - useEffect: Component ၏ ဘဝဖြစ်စဉ်ကို ထိန်းချုပ်ခြင်း
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ Side Effects ဆိုတာ ဘာလဲ?
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            React Component တစ်ခုရဲ့ အဓိက အလုပ်က UI (HTML) ကို ထုတ်ပေးဖို့ပါ။
+            ဒါပေမဲ့ UI ဆွဲတာအပြင် အခြားအလုပ်တွေ (ဥပမာ- API ဆီက ဒေတာသွားယူတာ၊
+            Timer ပေးတာ၊ ခေါင်းစဉ် (Title) ကို ပြောင်းလဲတာ) တွေကို လုပ်ဆောင်ဖို့
+            လိုအပ်လာပါတယ်။ ဒါတွေကို React မှာ <strong>Side Effects</strong> လို့
+            ခေါ်ပါတယ်။
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            <code>useEffect</code> Hook ဟာ ဒီလို Side Effect တွေကို စနစ်တကျ
+            ကိုင်တွယ်ဖို့ ဖန်တီးထားတာပါ။ သူက Component တစ်ခု Browser ပေါ်မှာ
+            ပေါ်လာတဲ့အချိန် (Mount)၊ ပြောင်းလဲသွားတဲ့အချိန် (Update) နဲ့
+            ပျောက်ကွယ်သွားတဲ့အချိန် (Unmount) တွေမှာ ဘာလုပ်ရမလဲဆိုတာကို
+            ခိုင်းစေနိုင်တဲ့ "အာရုံခံကိရိယာ" လိုပါပဲ။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ Dependency Array ၏ လျှို့ဝှက်ချက်
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            useEffect မှာ အရေးကြီးဆုံးက ဒုတိယ Parameter ဖြစ်တဲ့ Array `[]` ပါပဲ။
+            ဒါကို <strong>Dependency Array</strong> လို့ ခေါ်ပါတယ်။
+          </p>
+          <div
+            class="bg-blue-900/20 p-6 rounded-2xl border-l-4 border-blue-500 my-6"
+          >
+            <ul class="text-sm space-y-4 text-gray-300 list-none">
+              <li>
+                <strong class="text-white">useEffect(fn, []) :</strong> Empty
+                Array ထည့်ထားရင် Component စပွင့်တဲ့အချိန်မှာ "တစ်ကြိမ်တည်း" ပဲ
+                အလုပ်လုပ်ပါမယ်။ API ခေါ်ဖို့ အကောင်းဆုံး အချိန်ပါ။
+              </li>
+              <li>
+                <strong class="text-white">useEffect(fn, [count]) :</strong>
+                Array ထဲမှာ state တစ်ခုခု ထည့်ထားရင် အဲ့ဒီ state ပြောင်းတိုင်း
+                effect က ပြန်အလုပ်လုပ်ပါမယ်။
+              </li>
+              <li>
+                <strong class="text-white">useEffect(fn) :</strong> Array မပါရင်
+                component render ဖြစ်တိုင်း အမြဲ အလုပ်လုပ်နေမှာဖြစ်လို့ Infinite
+                Loop ဖြစ်တတ်တဲ့အတွက် သတိထားရပါမယ်။
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၃။ Cleanup Function (သန့်ရှင်းရေးလုပ်ခြင်း)
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            တချို့ Side Effect တွေ (ဥပမာ- <code>setInterval</code> သို့မဟုတ်
+            Event Listener များ) ဟာ Component ပျောက်သွားရင်တောင် Browser
+            နောက်ကွယ်မှာ ဆက်အလုပ်လုပ်နေတတ်ပါတယ်။ ဒါဟာ Memory တွေကို
+            ဝါးမျိုစေပါတယ်။ အဲ့ဒါကို တားဆီးဖို့ useEffect ထဲကနေ
+            <code>return () => { ... }</code> ဆိုပြီး function တစ်ခု
+            ပြန်ပေးရပါတယ်။ ဒါကို <strong>Cleanup Function</strong> လို့ ခေါ်ပြီး
+            Component ပိတ်သွားတာနဲ့ အနောက်က ပစ္စည်းတွေကို
+            အကုန်သိမ်းကျုံးရှင်းလင်းပေးသွားမှာ ဖြစ်ပါတယ်။
+          </p>
+        </section>
+      </article>
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

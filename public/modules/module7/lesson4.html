@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 5.2 - Context Implementation</title>
+    <title>Lesson 6.1 - Firebase Auth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -11,87 +11,74 @@
     />
     <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="p-6 pt-24 bg-[#0f172a] text-white">
-
-    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
-    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
-        <div class="text-center">
-            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
-        </div>
-    </div>
+  <body class="p-6 pt-24">
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
-      <a href="lesson1.html" class="text-indigo-400 font-bold"
-        >← ယခင်သင်ခန်းစာ</a
+      <a
+        href="../../index.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← Dashboard</a
       >
-      <div class="text-sm text-indigo-300">Module 5 • Lesson 5.2</div>
+      <div
+        class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold"
+      >
+        Module 6 • Lesson 6.1
+      </div>
     </nav>
 
-    <main id="lesson-content" class="max-w-4xl mx-auto space-y-12">
+    <main class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
-          အဆင့် (၃) ဆင့်ဖြင့် Context တည်ဆောက်ခြင်း 🛠️
+          Cloud Entry: Firebase ဖြင့် Login စနစ် တည်ဆောက်ခြင်း 🔥
         </h1>
-        <div
-          class="glass-card p-8 rounded-3xl space-y-8 leading-relaxed text-gray-300"
-        >
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၁။ Create (တည်ဆောက်ခြင်း)
-            </h3>
-            <p class="text-sm mb-4">အရင်ဆုံး Context တစ်ခုကို ဖန်တီးရပါမယ်။</p>
-            <code class="block p-4 bg-black rounded-xl text-pink-400 text-xs"
-              >const UserContext = createContext();</code
-            >
-          </div>
 
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၂။ Provide (ဖြန့်ဝေခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              App တစ်ခုလုံးကို ဒီ Context နဲ့ ပတ်ပေးရပါမယ် (Provider လို့
-              ခေါ်ပါတယ်)။
-            </p>
-            <code
-              class="block p-4 bg-black rounded-xl text-emerald-400 text-xs"
-            >
-              &lt;UserContext.Provider value={user}&gt; <br />
-              &nbsp;&nbsp;&lt;App /&gt; <br />
-              &lt;/UserContext.Provider&gt;
-            </code>
-          </div>
+<section class="space-y-10">
+    <h1 class="text-4xl font-extrabold text-red-500 italic">🛠 Module 7: The Architect Challenge</h1>
+    <p class="text-gray-400 italic">"နောက်ဆုံး စိန်ခေါ်မှု အမှား (၅) ခုကို ပြင်နိုင်ရင် သင်ဟာ Professional ပါ။"</p>
 
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၃။ Consume (အသုံးပြုခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              လိုချင်တဲ့ Component ထဲမှာ `useContext` hook ကို သုံးပြီး
-              လှမ်းယူလိုက်ရုံပါပဲ။
-            </p>
-            <code class="block p-4 bg-black rounded-xl text-indigo-400 text-xs"
-              >const user = useContext(UserContext);</code
-            >
-          </div>
+    <!-- Challenge 1: Responsive Bug -->
+    <div class="glass-card p-6 rounded-3xl">
+        <h3 class="text-xl font-bold mb-4">Challenge 1: The Desktop-only UI</h3>
+        <p class="text-xs text-gray-400 mb-4">"ကွန်ပျူတာမှာ ကြည့်ကောင်းပေမယ့် ဖုန်းမှာကြည့်ရင် ဘေးတွေ ထွက်နေပါတယ်။ ဘာမှားနေလဲ?"</p>
+        <div class="bg-black p-4 rounded-xl font-mono text-pink-400 text-xs">
+            &lt;div class="w-[1200px] flex"&gt; ... &lt;/div&gt;
         </div>
-      </section>
+        <details class="mt-4 text-xs text-indigo-400 cursor-pointer">
+            <summary>အဖြေမှန်ကြည့်ရန်</summary>
+            <p class="mt-2 text-gray-300">Width ကို အသေ (Fixed Pixel) မပေးရပါဘူး။ <code>w-full max-w-7xl</code> လိုမျိုး Responsive class တွေကို သုံးရပါမယ်။</p>
+        </details>
+    </div>
 
-      <section
-        class="bg-indigo-600/10 border border-indigo-500/30 p-8 rounded-3xl"
-      >
-        <h4 class="font-bold text-indigo-400 mb-4 italic">
-          🏋️ လက်တွေ့လုပ်ဆောင်ရန်:
-        </h4>
-        <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-          သင့်ရဲ့ App မှာ Theme (Light/Dark) ကို Context နဲ့ သိမ်းပြီး ဘယ် Page
-          ရောက်ရောက် အဲ့ဒီ Setting က လိုက်ပါလာအောင် လုပ်ဆောင်ကြည့်ပါ။ ဒါဟာ
-          Global State Management ရဲ့ အခြေခံပါ။
-        </p>
-      
-      </section>
+    <!-- Challenge 2: Image Optimization -->
+    <div class="glass-card p-6 rounded-3xl">
+        <h3 class="text-xl font-bold mb-4">Challenge 2: The Slow Loader</h3>
+        <p class="text-xs text-gray-400 mb-4">"Website ပွင့်ဖို့ ၅ စက္ကန့်လောက် စောင့်နေရပါတယ်။ Hero ပုံကြီးက 10MB ဖြစ်နေလို့ပါ။ ဘယ်လိုပြင်မလဲ?"</p>
+        <details class="mt-4 text-xs text-indigo-400 cursor-pointer">
+            <summary>အဖြေမှန်ကြည့်ရန်</summary>
+            <p class="mt-2 text-gray-300">ပုံတွေကို TinyPNG လိုမျိုး Tool သုံးပြီး ကျစ်လျစ်အောင်လုပ်ပါ (သို့မဟုတ်) WebP format ကို သုံးပါ။</p>
+        </details>
+    </div>
+
+    <!-- Challenge 3: Environment Security -->
+    <div class="glass-card p-6 rounded-3xl text-red-400">
+        <h3 class="text-xl font-bold mb-4">Challenge 3: The API Leak</h3>
+        <p class="text-xs text-gray-300 mb-4">"Firebase API Key တွေကို GitHub ပေါ် တိုက်ရိုက်တင်လိုက်ရင် ဘာဖြစ်မလဲ?"</p>
+        <details class="mt-4 text-xs text-indigo-400 cursor-pointer">
+            <summary>အဖြေမှန်ကြည့်ရန်</summary>
+            <p class="mt-2 text-gray-300">အခြားသူတွေက သင့်ရဲ့ Database ကို ခိုးသုံးနိုင်ပါတယ်။ အမြဲတမ်း <code>.env</code> ဖိုင်ထဲမှာ သိမ်းပြီး <code>.gitignore</code> လုပ်ထားရပါမယ်။</p>
+        </details>
+    </div>
+
+    <button onclick="addBonusXP(500)" class="w-full bg-indigo-600 py-4 rounded-2xl font-bold text-white shadow-xl">
+        စိန်ခေါ်မှု အောင်မြင်ပြီ! XP 500 ရယူမည် 🚀
+    </button>
+</section>
+
+
+
+
+
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

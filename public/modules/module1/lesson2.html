@@ -105,6 +105,49 @@
         </div>
       </section>
 
+      <article class="prose prose-invert max-w-none">
+        <h1 class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4">၁.၂ - JSX နှင့် Virtual DOM ၏ နက်နဲသော အလုပ်လုပ်ပုံ</h1>
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၁။ JSX ဆိုတာ ဘာလဲ? (တကယ်တော့ သူက JavaScript ပါ)</h2>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                JSX ဆိုတာ JavaScript XML ရဲ့ အတိုကောက်ပါ။ အပေါ်ယံကြည့်ရင် HTML နဲ့ တူပေမယ့် တကယ်တမ်းမှာတော့ သူဟာ အစွမ်းထက်တဲ့ JavaScript object တွေသာ ဖြစ်ပါတယ်။ Browser က JSX ကို တိုက်ရိုက်နားမလည်ပါဘူး။ ကျွန်တော်တို့ ရေးလိုက်တဲ့ <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> ကို React က နောက်ကွယ်မှာ <code>React.createElement('h1', null, 'Hello')</code> ဆိုတဲ့ JavaScript code အဖြစ် ပြောင်းလဲပစ်ပါတယ်။
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 my-8">
+                <div class="bg-gray-900 p-6 rounded-2xl border border-gray-800">
+                    <h4 class="text-pink-400 font-bold mb-3 underline">HTML နှင့် ကွဲပြားချက်များ:</h4>
+                    <ul class="text-sm space-y-2 text-gray-400 list-disc list-inside">
+                        <li>class အစား className သုံးရခြင်း</li>
+                        <li>onclick အစား onClick (camelCase) သုံးရခြင်း</li>
+                        <li>Style တွေကို string အစား Object အနေနဲ့ ပေးရခြင်း</li>
+                        <li>Tag အားလုံးကို အပိတ် (Self-closing) ထည့်ရခြင်း</li>
+                    </ul>
+                </div>
+                <div class="bg-indigo-900/10 p-6 rounded-2xl border border-indigo-500/20">
+                    <h4 class="text-indigo-400 font-bold mb-3 underline">ဘာကြောင့်သုံးတာလဲ?</h4>
+                    <p class="text-sm text-gray-300">Logic (JavaScript) နဲ့ UI (HTML) ကို တစ်နေရာတည်းမှာ ရောရေးနိုင်လို့ Code တွေကို ပိုမို စနစ်တကျ ရှိစေပါတယ်။ တွန့်ကွင်း <code>{ }</code> ကို သုံးပြီး JavaScript variable တွေကို UI ထဲ တိုက်ရိုက် ထည့်သုံးနိုင်ပါတယ်။</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၂။ Virtual DOM ဆိုတာ မှော်အတတ်လား?</h2>
+            <p class="text-gray-300 leading-relaxed">
+                Browser ရဲ့ DOM (Document Object Model) ကို တိုက်ရိုက်ပြင်တာဟာ အရမ်းကို ဝန်ပိစေပါတယ်။ ဥပမာ - Facebook notification တစ်ခုတက်တိုင်း Browser တစ်ခုလုံးကို ပြန်ဆွဲနေရင် အရမ်းနှေးသွားမှာပါ။ React က ဒါကို <strong>Virtual DOM</strong> နဲ့ ဖြေရှင်းပါတယ်။ 
+            </p>
+            <p class="text-gray-300 leading-relaxed mt-4">
+                React က လက်ရှိ UI ရဲ့ "ပုံတူပွား (Copy)" တစ်ခုကို memory ထဲမှာ သိမ်းထားပါတယ်။ တစ်ခုခု ပြောင်းလဲသွားရင် တကယ့် Browser DOM ကို မပြင်ခင်မှာ အဲ့ဒီ Copy (Virtual DOM) ကို အရင်ပြင်ပါတယ်။ ပြီးမှ အဟောင်းနဲ့ အသစ်ကို နှိုင်းယှဉ်ပြီး (Diffing Algorithm) တကယ်ပြောင်းလဲသွားတဲ့ "အစိတ်အပိုင်းလေး" ကိုပဲ Browser DOM မှာ သွားပြင်ပါတယ်။ ဒါကြောင့် React App တွေဟာ အရမ်းမြန်နေရတာ ဖြစ်ပါတယ်။
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၃။ Fragments: မလိုအပ်တဲ့ Div တွေကို ဖယ်ရှားခြင်း</h2>
+            <p class="text-gray-300 leading-relaxed">
+                JSX မှာ return ပြန်တဲ့အခါ Element အားလုံးကို တစ်ခုတည်းသော Parent အောက်မှာပဲ ထားရပါတယ်။ အရင်ကတော့ <code>&lt;div&gt;</code> တွေနဲ့ ပတ်ခဲ့ကြပါတယ်။ ဒါပေမယ့် မလိုအပ်ဘဲ div တွေ များလာတာဟာ UI structure ကို ရှုပ်ထွေးစေပါတယ်။ React က ဒါကို <code>&lt;React.Fragment&gt;</code> သို့မဟုတ် အတိုကောက် <code>&lt;&gt; ... &lt;/&gt;</code> နဲ့ ဖြေရှင်းပေးပါတယ်။ သူက UI မှာ ဘာ tag မှ ထပ်မတိုးစေဘဲ JSX စည်းမျဉ်းကို ပြည့်စုံစေပါတယ်။
+            </p>
+        </section>
+    </article>
+
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <div class="flex justify-between items-center mb-4">

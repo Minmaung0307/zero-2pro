@@ -11,7 +11,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
@@ -21,7 +29,7 @@
       <div class="text-sm text-indigo-300">Module 2 • Lesson 2.2</div>
     </nav>
 
-    <main class="max-w-4xl mx-auto space-y-12">
+    <main id="lesson-content" class="max-w-4xl mx-auto space-y-12">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
           User ရိုက်သမျှကို လက်ခံခြင်း (Inputs) ⌨️
@@ -76,6 +84,59 @@
           ချက်ချင်းပေါ်လာမယ့် UI လေးတစ်ခုကို React မှာ ရေးကြည့်ပါ။
         </p>
       </section>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4"
+        >
+          ၂.၂ - Event Handling နှင့် User ဆီမှ Data လက်ခံခြင်း
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ React တွင် Event ကိုင်တွယ်ပုံ
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            HTML မှာ <code>onclick</code> လို့ သုံးခဲ့ပေမယ့် React မှာတော့ Camel
+            Case ဖြစ်တဲ့ <code>onClick</code> ကို သုံးရပါတယ်။ အဲ့ဒီမှာ String
+            ပေးမယ့်အစား Function တစ်ခုကို လှမ်းပေးရပါတယ်။ React ဟာ
+            <strong>Synthetic Events</strong> လို့ခေါ်တဲ့ စနစ်ကို သုံးထားလို့
+            Browser တိုင်း (Chrome, Safari, Firefox) မှာ အလုပ်လုပ်ပုံ
+            တစ်သမတ်တည်း ဖြစ်နေစေပါတယ်။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ Controlled Components (Form များကို ထိန်းချုပ်ခြင်း)
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Web App တစ်ခုမှာ Input box တွေထဲက စာသားတွေကို ဘယ်လိုယူမလဲ? React ရဲ့
+            အကောင်းဆုံးနည်းလမ်းကတော့ <strong>Controlled Component</strong> ပါ။
+            ဆိုလိုတာက Input ထဲက စာသားဟာ React State ပေါ်မှာ ၁၀၀ ရာခိုင်နှုန်း
+            မူတည်နေတာပါ။
+          </p>
+          <div
+            class="bg-indigo-900/10 p-6 rounded-2xl border-l-4 border-indigo-500 my-6"
+          >
+            <h4 class="font-bold text-indigo-300 mb-2">အဆင့် (၃) ဆင့်:</h4>
+            <ol class="text-sm space-y-2 text-gray-400">
+              <li>စာသားသိမ်းဖို့ State တစ်ခုဆောက်ပါ။</li>
+              <li>Input ရဲ့ <code>value</code> ကို အဲ့ဒီ state နဲ့ ချိတ်ပါ။</li>
+              <li>
+                <code>onChange</code> event ထဲမှာ User ရိုက်လိုက်တဲ့စာကို
+                <code>e.target.value</code> ကနေယူပြီး state ကို update
+                လုပ်ပေးပါ။
+              </li>
+            </ol>
+          </div>
+          <p class="text-gray-300 leading-relaxed">
+            ဒီနည်းလမ်းက အရမ်းအစွမ်းထက်ပါတယ်။ User က စာရိုက်နေတုန်းမှာတင်
+            စာလုံးရေ ဘယ်နှလုံးရှိပြီလဲ စစ်တာ၊ အမှားပါရင် ချက်ချင်း အနီရောင်ပြတာ
+            (Validation) တွေကို လွယ်လွယ်ကူကူ လုပ်နိုင်ပါတယ်။
+          </p>
+        </section>
+      </article>
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

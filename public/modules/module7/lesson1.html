@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 5.2 - Context Implementation</title>
+    <title>Lesson 7.1 - Firebase Auth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -23,75 +23,59 @@
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
-      <a href="lesson1.html" class="text-indigo-400 font-bold"
-        >← ယခင်သင်ခန်းစာ</a
+      <a
+        href="/index.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← Dashboard</a
       >
-      <div class="text-sm text-indigo-300">Module 5 • Lesson 5.2</div>
+      <div
+        class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold"
+      >
+        Module 6 • Lesson 6.1
+      </div>
     </nav>
 
-    <main id="lesson-content" class="max-w-4xl mx-auto space-y-12">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
-          အဆင့် (၃) ဆင့်ဖြင့် Context တည်ဆောက်ခြင်း 🛠️
+          Cloud Entry: Firebase ဖြင့် Login စနစ် တည်ဆောက်ခြင်း 🔥
         </h1>
-        <div
-          class="glass-card p-8 rounded-3xl space-y-8 leading-relaxed text-gray-300"
-        >
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၁။ Create (တည်ဆောက်ခြင်း)
-            </h3>
-            <p class="text-sm mb-4">အရင်ဆုံး Context တစ်ခုကို ဖန်တီးရပါမယ်။</p>
-            <code class="block p-4 bg-black rounded-xl text-pink-400 text-xs"
-              >const UserContext = createContext();</code
-            >
-          </div>
 
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၂။ Provide (ဖြန့်ဝေခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              App တစ်ခုလုံးကို ဒီ Context နဲ့ ပတ်ပေးရပါမယ် (Provider လို့
-              ခေါ်ပါတယ်)။
-            </p>
-            <code
-              class="block p-4 bg-black rounded-xl text-emerald-400 text-xs"
-            >
-              &lt;UserContext.Provider value={user}&gt; <br />
-              &nbsp;&nbsp;&lt;App /&gt; <br />
-              &lt;/UserContext.Provider&gt;
-            </code>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၃။ Consume (အသုံးပြုခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              လိုချင်တဲ့ Component ထဲမှာ `useContext` hook ကို သုံးပြီး
-              လှမ်းယူလိုက်ရုံပါပဲ။
-            </p>
-            <code class="block p-4 bg-black rounded-xl text-indigo-400 text-xs"
-              >const user = useContext(UserContext);</code
-            >
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="bg-indigo-600/10 border border-indigo-500/30 p-8 rounded-3xl"
-      >
-        <h4 class="font-bold text-indigo-400 mb-4 italic">
-          🏋️ လက်တွေ့လုပ်ဆောင်ရန်:
-        </h4>
-        <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-          သင့်ရဲ့ App မှာ Theme (Light/Dark) ကို Context နဲ့ သိမ်းပြီး ဘယ် Page
-          ရောက်ရောက် အဲ့ဒီ Setting က လိုက်ပါလာအောင် လုပ်ဆောင်ကြည့်ပါ။ ဒါဟာ
-          Global State Management ရဲ့ အခြေခံပါ။
+<article class="prose prose-invert max-w-none">
+    <h1 class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4">၇.၁ - Professional Styling & Design Systems</h1>
+    
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">၁။ Website တစ်ခုကို ဘာက Professional ဆန်စေတာလဲ?</h2>
+        <p class="text-gray-300 leading-relaxed mb-4 text-justify">
+            Developer အများစုဟာ Function တွေ အလုပ်လုပ်ဖို့ပဲ အာရုံစိုက်တတ်ကြပေမယ့် တကယ့် Professional တစ်ယောက်ကတော့ User Experience (UX) ကို အဓိကထားပါတယ်။ အမြင်လှရုံတင်မကဘဲ စာလုံးအရွယ်အစား (Typography)၊ အရောင်အသွေး (Color Palette) နဲ့ အကွာအဝေး (Spacing) တွေဟာ တစ်သမတ်တည်း ရှိနေဖို့ လိုပါတယ်။ ဒါကို Design System လို့ ခေါ်ပါတယ်။
         </p>
-      
-      </section>
+        <p class="text-gray-300 leading-relaxed text-justify">
+            Tailwind CSS ကို သုံးတဲ့အခါ <code>px-4</code> လို့ တစ်နေရာမှာ သုံးရင် အလားတူ နေရာမျိုးတွေမှာလည်း <code>px-4</code> ပဲ ဖြစ်နေရပါမယ်။ Professional ဆန်တဲ့ App တစ်ခုမှာ အရောင် ၃ မျိုးထက် ပိုမသုံးသင့်ပါဘူး။ (Primary, Secondary, and Accent colors)။ အခု ကျွန်တော်တို့ Portal မှာ သုံးထားတဲ့ Indigo နဲ့ Space Blue တို့ဟာ User ရဲ့ မျက်စိကို သက်သာစေသလို ခေတ်မီတဲ့ ခံစားချက်ကိုလည်း ပေးစွမ်းပါတယ်။
+        </p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">၂။ Dark Mode နှင့် User Preference</h2>
+        <p class="text-gray-300 leading-relaxed text-justify">
+            အခုခေတ်မှာ Dark Mode ဆိုတာ Option တစ်ခု မဟုတ်တော့ဘဲ Standard တစ်ခု ဖြစ်လာပါပြီ။ Tailwind ရဲ့ <code>dark:</code> variant ကို သုံးပြီး User ရဲ့ System setting အပေါ် မူတည်ပြီး အရောင်တွေ အလိုအလျောက် ပြောင်းလဲသွားအောင် လုပ်ဆောင်နိုင်ပါတယ်။ ဒါဟာ Developer တစ်ယောက်ရဲ့ အသေးစိတ် ဂရုစိုက်မှုကို ပြသရာ ရောက်ပါတယ်။
+        </p>
+    </section>
+
+    <section class="bg-indigo-900/20 p-8 rounded-3xl border border-indigo-500/30 my-10">
+        <h3 class="text-xl font-bold text-indigo-300 mb-4 italic">🏋️ လက်တွေ့လေ့ကျင့်ခန်း:</h3>
+        <p class="text-sm text-gray-300 mb-4">သင့်ရဲ့ Student Portal ထဲမှာ အောက်ပါ Design ပြင်ဆင်မှုတွေကို လုပ်ဆောင်ပါ -</p>
+        <ul class="text-xs space-y-3 text-gray-400 list-disc list-inside">
+            <li>ခလုတ်အားလုံး (Buttons) ကို <code>transition</code> နှင့် <code>hover:scale-105</code> ထည့်ပြီး အသက်သွင်းပါ။</li>
+            <li>Card များအားလုံးကို <code>backdrop-blur</code> အာနိသင်ထည့်ပြီး Glassmorphism ပုံစံ ပြောင်းပါ။</li>
+            <li>စာသားများအတွက် Line-height (leading-relaxed) ကို သုံးပြီး ဖတ်ရလွယ်အောင် ပြင်ပါ။</li>
+        </ul>
+    </section>
+</article>
+
+
+
+
+
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

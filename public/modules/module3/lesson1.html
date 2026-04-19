@@ -9,21 +9,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap");
-      body {
-        font-family: "Inter", "Pyidaungsu", sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-      .glass-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-    </style>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
@@ -39,7 +35,7 @@
       </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto space-y-10">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
           Multi-Verse: စာမျက်နှာများစွာ တည်ဆောက်ခြင်း 🌌
@@ -113,6 +109,54 @@
           Routing က Website ရဲ့ လမ်းညွှန်ဆိုင်းဘုတ်ပါပဲ...
         </div>
       </div>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-pink-400 mb-8 border-b border-pink-900 pb-4"
+        >
+          ၃.၁ - SPA နှင့် React Router အခြေခံ
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ အဟောင်းနှင့် အသစ် ကွဲပြားချက်
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            အရင်တုန်းက Website တွေမှာ Link တစ်ခုကို နှိပ်လိုက်ရင် Browser က
+            အစကနေ ပြန်လည် (Reload) ဖြစ်သွားပါတယ်။ ဒါက အချိန်ကုန်စေသလို User
+            Experience ကိုလည်း ထိခိုက်စေပါတယ်။
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            React ဟာ <strong>SPA (Single Page Application)</strong> ဖြစ်ပါတယ်။
+            ဆိုလိုတာက Page အစစ်က တစ်ခုတည်းရှိပြီး အတွင်းက အစိတ်အပိုင်း
+            (Components) တွေကိုပဲ လဲလှယ်ပေးသွားတာပါ။ ဒါကြောင့် User က
+            စာမျက်နှာတွေ ကူးပြောင်းနေပေမယ့် Browser က Reload မဖြစ်တော့ဘဲ
+            Application တစ်ခု သုံးနေရသလို အရမ်းကို ချောမွေ့နေမှာပါ။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ React Router DOM ၏ အရေးကြီး အစိတ်အပိုင်းများ
+          </h2>
+          <ul class="space-y-4 text-gray-400">
+            <li>
+              <strong class="text-pink-300">BrowserRouter:</strong>
+              တစ်အိမ်လုံးကို Routing စနစ်အောက် သွင်းလိုက်တာပါ။ App ရဲ့
+              အပေါ်ဆုံးမှာ တစ်ခါပဲ ပတ်ရပါတယ်။
+            </li>
+            <li>
+              <strong class="text-pink-300">Routes & Route:</strong> "ဘယ် URL
+              လမ်းကြောင်းမှာ ဘယ် Component ကို ပြပါ" ဆိုပြီး သတ်မှတ်ပေးတာပါ။
+            </li>
+            <li>
+              <strong class="text-pink-300">Link:</strong>
+              <code>&lt;a&gt;</code> tag အစား သုံးရပါတယ်။ သူက Page reload
+              မဖြစ်အောင် တားပေးတဲ့ အထူးခလုတ်ပါ။
+            </li>
+          </ul>
+        </section>
+      </article>
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

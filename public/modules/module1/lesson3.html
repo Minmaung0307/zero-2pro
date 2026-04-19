@@ -90,6 +90,43 @@
         </button>
       </section>
 
+      <article class="prose prose-invert max-w-none">
+        <h1 class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4">၁.၃ - Components နှင့် Props: Thinking in React</h1>
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၁။ UI ကို အပိုင်းအစများအဖြစ် ခွဲခြားမြင်တတ်ခြင်း</h2>
+            <p class="text-gray-300 leading-relaxed">
+                React ရဲ့ အဓိက အတွေးအခေါ်ကတော့ <strong>"Composition"</strong> ပါ။ Website တစ်ခုကို စာမျက်နှာအလိုက် မစဉ်းစားတော့ဘဲ Component လေးတွေ ပေါင်းစပ်ထားတဲ့ ပဟေဠိ (Puzzle) တစ်ခုလို စဉ်းစားရမှာပါ။ Component ဆိုတာ UI အစိတ်အပိုင်းလေးတွေကို JavaScript Function တစ်ခုအနေနဲ့ သီးသန့်ခွဲရေးထားတာ ဖြစ်ပါတယ်။ 
+            </p>
+            <p class="text-gray-300 leading-relaxed mt-4">
+                ဥပမာ - Navbar, Sidebar, Card, Button တို့ဟာ Component တစ်ခုစီပါ။ ဒီလိုခွဲရေးခြင်းအားဖြင့် Button တစ်ခုကို ပြင်ချင်ရင် တစ်နေရာတည်းမှာပဲ ပြင်လိုက်ရုံနဲ့ App တစ်ခုလုံးမှာ လိုက်ပြောင်းသွားမှာ ဖြစ်ပါတယ်။ ဒါကို <strong>Reusability</strong> (ပြန်လည်အသုံးပြုနိုင်မှု) လို့ ခေါ်ပါတယ်။
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၂။ Props: အချက်အလက်များ လက်ဆင့်ကမ်းပေးခြင်း</h2>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Component တစ်ခုတည်းကိုပဲ မတူညီတဲ့ အခြေအနေတွေမှာ ပြန်သုံးချင်တဲ့အခါ Props ကို သုံးရပါတယ်။ <strong>Props</strong> ဆိုတာ Properties ရဲ့ အတိုကောက်ဖြစ်ပြီး Function တစ်ခုဆီကို ပေးပို့လိုက်တဲ့ "arguments" တွေနဲ့ တူပါတယ်။ 
+            </p>
+            <p class="text-gray-300 leading-relaxed">
+                ဥပမာ - <code>StudentCard</code> ဆိုတဲ့ component ရှိတယ် ဆိုပါစို့။ ကျောင်းသား မောင်မောင်အတွက်ဆိုရင် <code>name="Mg Mg"</code> လို့ ပို့မယ်၊ မမောင်အတွက်ဆိုရင် <code>name="Ma Ma"</code> လို့ ပို့မယ်။ Component က တစ်ခုတည်းပေမယ့် Props တွေပေါ် မူတည်ပြီး UI က မတူညီတဲ့ အချက်အလက်တွေကို ပြသပေးသွားမှာ ဖြစ်ပါတယ်။
+            </p>
+            <div class="bg-gray-900/50 p-6 rounded-2xl border border-indigo-500/20 my-6 italic text-gray-400">
+                "Props are Read-Only." ဆိုတာကို အမြဲမှတ်ထားပါ။ Child Component ဟာ သူ့ဆီရောက်လာတဲ့ Props ကို ပြင်ဆင်ပိုင်ခွင့် မရှိပါဘူး။ ဒါဟာ React ရဲ့ One-way Data Flow စည်းမျဉ်းဖြစ်ပြီး App တွေကို Predictable (မှန်းဆရလွယ်ကူ) စေပါတယ်။
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၃။ Functional Components နှင့် Destructuring</h2>
+            <p class="text-gray-300 leading-relaxed">
+                ခေတ်သစ် React မှာ JavaScript Function တွေကိုပဲ အဓိက သုံးပါတယ်။ ကုဒ်တွေကို ပိုပြီး ရှင်းလင်းသွားအောင် JavaScript ရဲ့ <strong>Destructuring</strong> နည်းလမ်းကို သုံးပြီး Props တွေကို လက်ခံလေ့ရှိပါတယ်။ 
+            </p>
+            <p class="text-gray-300 leading-relaxed mt-4">
+                <code>function Student({ name, age }) { ... }</code> လို့ ရေးခြင်းက <code>props.name</code> လို့ တစ်ချိန်လုံး လိုက်ရေးနေစရာ မလိုတော့ဘဲ ကုဒ်ကို ပိုမိုဖတ်ရလွယ်ကူစေပါတယ်။ 
+            </p>
+        </section>
+    </article>
+
       <footer class="py-10 text-center text-gray-500 text-xs italic">
         "Foundation strong ဖြစ်ရင် ဘယ်လို Project မျိုးမဆို ဆောက်လို့ရပြီ။"
       </footer>
@@ -139,7 +176,7 @@
         getDoc,
       } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-      const LESSON_ID = "m1_l2"; // ဒီသင်ခန်းစာရဲ့ ID
+      const LESSON_ID = "m1_l3"; // ဒီသင်ခန်းစာရဲ့ ID
 
       onAuthStateChanged(auth, async (user) => {
         const isReg = localStorage.getItem("isRegistered") === "true";

@@ -9,20 +9,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-      .glass-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-    </style>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
@@ -32,7 +29,7 @@
       <div class="text-sm text-indigo-300">Module 4 • Lesson 4.2</div>
     </nav>
 
-    <main class="max-w-4xl mx-auto space-y-12">
+    <main id="lesson-content" class="max-w-4xl mx-auto space-y-12">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
           Fetching Data: ပြင်ပကမ္ဘာနှင့် စကားပြောခြင်း 🌐
@@ -84,6 +81,44 @@
           သင်ခန်းစာတွေကို Database ကနေ ဆွဲထုတ်ပြမယ့် ပုံစံအတိုင်းပါပဲ။
         </p>
       </section>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-blue-400 mb-8 border-b border-blue-900 pb-4"
+        >
+          ၄.၂ - API Fetching: ပြင်ပကမ္ဘာနှင့် စကားပြောခြင်း
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ Client နှင့် Server ဆက်သွယ်ပုံ
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            တကယ့် Web App တွေမှာ ဒေတာတွေ (ဥပမာ- သင်ခန်းစာစာရင်း၊
+            ကျောင်းသားအမှတ်များ) ဟာ ကိုယ့်စက်ထဲမှာ ရှိမနေပါဘူး။ အဝေးက Server
+            ကြီးတစ်ခုပေါ်မှာ ရှိနေတာပါ။ အဲ့ဒီ Server နဲ့ ဆက်သွယ်ဖို့
+            <strong>API (Application Programming Interface)</strong> ကို
+            သုံးရပါတယ်။ အလွယ်ပြောရရင် API ဟာ စားသောက်ဆိုင်က စားပွဲထိုးနဲ့
+            တူပါတယ်။ သင် (User) မှာချင်တဲ့ ဟင်း (Data) ကို မီးဖိုချောင် (Server)
+            ထဲ သွားယူပေးတာ ဖြစ်ပါတယ်။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ async နှင့် await (စောင့်ဆိုင်းခြင်း အတတ်ပညာ)
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            အင်တာနက်ကနေ ဒေတာယူတာဟာ ချက်ချင်းမပြီးပါဘူး။ Network နှေးတာ၊
+            ဒေတာများတာတွေကြောင့် စက္ကန့်ပိုင်းလောက် စောင့်ရပါတယ်။ အဲ့ဒီလို
+            စောင့်ရတဲ့ အလုပ်တွေကို JavaScript မှာ
+            <strong>Asynchronous</strong> လို့ ခေါ်ပါတယ်။ <code>async</code> နဲ့
+            <code>await</code> keyword တွေကို သုံးခြင်းအားဖြင့် ရှုပ်ထွေးလှတဲ့
+            code တွေကို ဖတ်ရလွယ်ကူစေပြီး ဒေတာရလာမှ နောက်တစ်ဆင့်ကို သွားဖို့
+            စနစ်တကျ ခိုင်းစေနိုင်ပါတယ်။
+          </p>
+        </section>
+      </article>
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

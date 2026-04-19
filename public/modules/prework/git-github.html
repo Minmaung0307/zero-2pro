@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Mastery | Learning Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">Version Control စနစ်ကို လေ့လာနေသည်...</p>
+        </div>
+    </div>
+
+    <nav class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10 border-b border-gray-800">
+        <a href="/index.html" class="text-indigo-400 font-bold hover:text-white transition">← Dashboard</a>
+        <div class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold">Pre-work • Version Control</div>
+    </nav>
+
+    <main id="lesson-content" style="display: none;" class="max-w-7xl mx-auto px-4">
+        <div class="grid lg:grid-cols-12 gap-8 mb-12">
+            <div class="lg:col-span-8 space-y-8">
+                <section>
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 gradient-text italic">Git & GitHub: ကုဒ်များကို စနစ်တကျ ထိန်းသိမ်းခြင်း 🛠️</h1>
+                    
+                    <!-- 📖 Concept Introduction -->
+                    <article class="prose prose-invert max-w-none bg-gray-900/30 p-8 rounded-3xl border border-gray-800 leading-loose">
+                        <h2 class="text-2xl font-bold text-white mb-4 underline decoration-indigo-500">၁။ Git နှင့် GitHub ဆိုတာ ဘာလဲ?</h2>
+                        <p class="text-gray-300 text-justify">
+                            Developer အများစုဟာ ကုဒ်တွေရေးရင်း မှားသွားတဲ့အခါ အရင်က အလုပ်လုပ်တဲ့ အခြေအနေကို ပြန်သွားချင်ကြပါတယ်။ <strong>Git</strong> ဆိုတာ သင့်ကွန်ပျူတာထဲမှာရှိတဲ့ ကုဒ်တွေကို အချိန်နဲ့အမျှ "ဓာတ်ပုံရိုက်ပြီး သိမ်းပေးထားတဲ့ အချိန်စက် (Time Machine)" လိုပါပဲ။ <br><br>
+                            <strong>GitHub</strong> ကတော့ အဲ့ဒီ သိမ်းဆည်းထားတဲ့ ကုဒ်တွေကို အင်တာနက် (Cloud) ပေါ်မှာ တခြားသူတွေနဲ့ မျှဝေလို့ရအောင်၊ အဖွဲ့လိုက် အလုပ်လုပ်လို့ရအောင် လုပ်ပေးတဲ့ "Social Media for Code" လို နေရာမျိုး ဖြစ်ပါတယ်။
+                        </p>
+
+                        <div class="bg-indigo-900/20 p-6 rounded-2xl border-l-4 border-indigo-500 my-8">
+                            <h4 class="font-bold text-indigo-300 mb-2">အဓိက ကွဲပြားချက်:</h4>
+                            <ul class="text-sm space-y-2 text-gray-400">
+                                <li><strong>Git:</strong> Tool တစ်ခုဖြစ်သည် (သင့်စက်ထဲတွင်ရှိသည်)။</li>
+                                <li><strong>GitHub:</strong> Website တစ်ခုဖြစ်သည် (အွန်လိုင်းပေါ်တွင်ရှိသည်)။</li>
+                            </ul>
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-white mt-10 mb-4 underline decoration-indigo-500">၂။ မဖြစ်မနေ သိထားရမည့် Git Commands များ</h2>
+                        <p class="text-gray-300 mb-6">ကုဒ်တွေကို သိမ်းဆည်းဖို့အတွက် Terminal မှာ ဒီအဆင့်တွေကို အစဉ်လိုက် လုပ်ရပါတယ်။</p>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-black/80 p-5 rounded-xl border border-gray-700">
+                                <code class="text-emerald-400 font-bold italic">git init</code>
+                                <p class="text-xs text-gray-400 mt-1">ပရောဂျက်အသစ်တစ်ခုမှာ Git ကို စတင်အသုံးပြုရန် (အုတ်မြစ်ချခြင်း)။</p>
+                            </div>
+                            <div class="bg-black/80 p-5 rounded-xl border border-gray-700">
+                                <code class="text-emerald-400 font-bold italic">git add .</code>
+                                <p class="text-xs text-gray-400 mt-1">ပြင်ဆင်ထားသမျှ ကုဒ်အားလုံးကို သိမ်းဆည်းရန် အသင့်ပြင်ခြင်း (ပစ္စည်းစုခြင်း)။</p>
+                            </div>
+                            <div class="bg-black/80 p-5 rounded-xl border border-gray-700">
+                                <code class="text-emerald-400 font-bold italic">git commit -m "first commit"</code>
+                                <p class="text-xs text-gray-400 mt-1">လက်ရှိအခြေအနေကို မှတ်တမ်းအဖြစ် အတည်ပြုသိမ်းဆည်းခြင်း (ဓာတ်ပုံရိုက်လိုက်ခြင်း)။</p>
+                            </div>
+                            <div class="bg-black/80 p-5 rounded-xl border border-gray-700">
+                                <code class="text-emerald-400 font-bold italic">git push origin main</code>
+                                <p class="text-xs text-gray-400 mt-1">သင့်စက်ထဲက ကုဒ်တွေကို GitHub ပေါ်သို့ တင်ပို့လိုက်ခြင်း (Upload လုပ်ခြင်း)။</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="prose prose-invert max-w-none bg-gray-900/30 p-8 rounded-3xl border border-gray-800 mt-8">
+                        <h2 class="text-2xl font-bold text-white mb-4 italic border-l-4 border-indigo-500 pl-4">၃။ ဘာကြောင့် .gitignore လိုအပ်သလဲ?</h2>
+                        <p class="text-gray-300 text-justify">
+                            React ပရောဂျက်တွေမှာ <code>node_modules</code> လိုမျိုး အရမ်းလေးလံတဲ့ folder တွေ ပါဝင်ပါတယ်။ ဒါတွေကို GitHub ပေါ်တင်ဖို့ မလိုအပ်ပါဘူး (တင်ရင်လည်း အရမ်းကြာပါလိမ့်မယ်)။ <strong>.gitignore</strong> ဆိုတဲ့ ဖိုင်လေးထဲမှာ အဲ့ဒီ folder နာမည်ကို ထည့်ထားလိုက်ရင် Git က အဲ့ဒါကို လျစ်လျူရှုသွားမှာ ဖြစ်ပါတယ်။ ဒါဟာ Professional Developer တိုင်း သိထားရမယ့် အချက်ဖြစ်ပါတယ်။
+                        </p>
+                    </article>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="lg:col-span-4 space-y-6">
+                <div class="glass p-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/5">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-download text-emerald-500"></i> အကြံပြုချက်</h3>
+                    <p class="text-xs text-gray-400 mb-4 text-justify">Git ကို မသုံးခင် သင့်စက်ထဲမှာ Git ရှိမရှိ <code>git --version</code> နဲ့ အရင်စစ်ပါ။ မရှိရင် git-scm.com မှာ install အရင်လုပ်ပါ။</p>
+                </div>
+
+                <div class="glass p-6 rounded-3xl border border-indigo-500/20">
+                    <h4 class="font-bold mb-4 flex items-center gap-2 text-indigo-400"><i class="fas fa-sticky-note"></i> Git မှတ်စု</h4>
+                    <textarea id="lessonNote" class="w-full h-48 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white" placeholder="ဥပမာ- commit လုပ်ပုံအဆင့်ဆင့်..."></textarea>
+                    <button onclick="saveLessonNote()" class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 py-3 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+                </div>
+            </aside>
+        </div>
+
+        <section class="bg-indigo-600/10 p-10 rounded-3xl border border-indigo-500/30 text-center mb-20">
+            <h2 class="text-2xl font-bold text-white mb-4 italic">🏋️ လက်တွေ့လေ့ကျင့်ခန်း: Your First Repo</h2>
+            <p class="text-sm text-gray-400 mb-8 max-w-2xl mx-auto">
+                GitHub မှာ အကောင့်တစ်ခုဖွင့်ပါ။ ပြီးရင် "my-first-repo" ဆိုပြီး Repository တစ်ခုဆောက်ပါ။ 
+                အပေါ်က commands တွေကို သုံးပြီး သင့်စက်ထဲက ဖိုင်တစ်ခုကို အဲ့ဒီ repo ဆီ ရောက်အောင် ပို့ကြည့်ပါ။
+            </p>
+            <a href="/index.html" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold transition">
+                Pre-work ပြီးဆုံးကြောင်း အတည်ပြုမည်
+            </a>
+        </section>
+      
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "pw_l1"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+            window.setupDynamicNav();
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+</body>
+</html>

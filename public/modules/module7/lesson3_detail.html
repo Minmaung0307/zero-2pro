@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Dive: Final Deployment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="p-6 md:p-12 bg-[#0f172a] text-white">
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm">ကမ္ဘာသို့ လွှင့်တင်ရန် ပြင်ဆင်နေသည်...</p>
+        </div>
+    </div>
+
+    <main id="lesson-content" style="display: none;">
+        <div class="max-w-4xl mx-auto">
+            <article class="prose prose-invert max-w-none">
+                <h1 class="text-4xl font-extrabold mb-8 text-orange-400 italic">The Launch: စက်ရုံမှ ကမ္ဘာသို့ 🚀</h1>
+                
+                <section class="glass-card p-8 rounded-3xl mb-12 border border-orange-500/20">
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-4">🏠 သာဓက: ကုန်ပစ္စည်းကို ပါကင်ထုပ်ခြင်း</h3>
+                    <p class="leading-relaxed text-gray-300 text-justify">
+                        သင်ဟာ အရမ်းကောင်းတဲ့ ပရိဘောဂတစ်ခုကို လုပ်ပြီးသွားပြီ ဆိုပါစို့။ အဲ့ဒါကို ဝယ်သူဆီ ပို့တော့မယ်ဆိုရင် လုပ်ငန်းခွင်က အမှိုက်တွေ၊ အစအနတွေကို အရင်ရှင်းရပါမယ်။ ပြီးရင် အကောင်းဆုံး ပါကင်ထုပ်ရပါမယ်။ <br><br>
+                        <strong>Build Process</strong> ဆိုတာ အဲ့ဒါပါပဲ။ <code>npm run build</code> လို့ ရိုက်လိုက်တာနဲ့ Vite က သင့်ရဲ့ ကုဒ်တွေထဲက မလိုတဲ့ စာကြောင်းတွေ၊ Space တွေကို အကုန်ဖြုတ်ချပစ်လိုက်ပြီး အသေးဆုံးနဲ့ အမြန်ဆုံး အခြေအနေ ရအောင် လုပ်ပေးပါတယ်။ <strong>Deployment</strong> ဆိုတာကတော့ အဲ့ဒီ ပါကင်ထုပ်ပြီးသား ပစ္စည်းကို သင်္ဘောတင်ပြီး ကမ္ဘာ့ဈေးကွက် (Internet) ထဲကို ပို့လိုက်တာ ဖြစ်ပါတယ်။
+                    </p>
+                </section>
+
+                <section class="space-y-6">
+                    <h3 class="text-2xl font-bold text-white border-l-4 border-orange-500 pl-4">Custom Domains & Professionalism</h3>
+                    <p class="text-gray-400 leading-loose text-justify">
+                        တကယ့် Professional Developer တစ်ယောက်ဟာ သူများဆီက ငှားထားတဲ့ link (ဥပမာ- firebaseapp.com) ထက် ကိုယ်ပိုင် link (ဥပမာ- yourname.com) ကို ပိုသုံးကြပါတယ်။ ဒါဟာ သင့်ရဲ့ Brand ကို ခိုင်မာစေသလို User တွေအတွက်လည်း ယုံကြည်မှု တိုးစေပါတယ်။ ပြီးတော့ HTTPS (SSL) လုံခြုံရေး ပါဝင်ဖို့ကလည်း မဖြစ်မနေ လိုအပ်ပါတယ်။ Firebase Hosting ဟာ ဒီအလုပ်တွေကို အကုန်လုံး အခမဲ့ လုပ်ပေးထားတဲ့အတွက် ကျွန်တော်တို့အတွက် အကောင်းဆုံး Launching Pad ဖြစ်လာတာပါ။
+                    </p>
+                </section>
+
+                <!-- Note Box -->
+                <section class="glass-card p-8 rounded-3xl border border-orange-500/20 mt-12 mb-12">
+                    <h3 class="text-xl font-bold text-orange-400 mb-4 flex items-center gap-2"><i class="fas fa-rocket"></i> Launch Note</h3>
+                    <textarea id="lessonNote" class="w-full h-40 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white"></textarea>
+                    <button onclick="saveLessonNote()" class="mt-4 bg-orange-600 hover:bg-orange-700 px-6 py-2 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+                </section>
+
+                <div id="dynamic-nav"></div>
+            </article>
+        </div>
+    </main>
+
+    <script type="module">
+        import { auth, db } from "/script.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const LESSON_ID = "m7_l3_d";
+        onAuthStateChanged(auth, async (user) => {
+            const isReg = localStorage.getItem("isRegistered") === "true";
+            if (user || isReg) {
+                document.getElementById("lesson-loader").style.display = "none";
+                document.getElementById("lesson-content").style.display = "block";
+                document.getElementById("lessonNote").value = localStorage.getItem("note_" + LESSON_ID) || "";
+                window.setupDynamicNav();
+            } else { window.location.href = "/index.html"; }
+        });
+
+        window.saveLessonNote = async () => {
+            const noteText = document.getElementById("lessonNote").value;
+            localStorage.setItem("note_" + LESSON_ID, noteText);
+            const user = auth.currentUser;
+            if (user) { await setDoc(doc(db, "notes", `${user.uid}_${LESSON_ID}`), { userId: user.uid, text: noteText, updatedAt: new Date() }, { merge: true }); alert("Launch Successful!"); }
+            else { alert("Saved Locally!"); }
+        };
+    </script>
+</body>
+</html>

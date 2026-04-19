@@ -9,25 +9,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap");
-      body {
-        font-family: "Inter", "Pyidaungsu", sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-      .glass-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .highlight-red {
-        color: #f87171;
-        font-weight: bold;
-      }
-    </style>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
@@ -43,7 +35,7 @@
       </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto space-y-10">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
           The Brain: App တစ်ခုလုံးရဲ့ မှတ်ဉာဏ် 🧠
@@ -107,6 +99,47 @@
           ဦးနှောက်မရှိရင် App က အလုပ်မလုပ်နိုင်ပါဘူး...
         </div>
       </div>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-emerald-400 mb-8 border-b border-emerald-900 pb-4"
+        >
+          ၅.၁ - Context API: Global မှတ်ဉာဏ် တည်ဆောက်ခြင်း
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ Prop Drilling ပြဿနာ
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            React မှာ ဒေတာတွေကို Parent ကနေ Child ဆီ ပို့ရပါတယ်။ ဒါပေမဲ့
+            Component တွေက အထပ်ထပ် ဖြစ်လာတဲ့အခါ (ဥပမာ- App -> Page -> Sidebar ->
+            UserCard) အပေါ်ဆုံးက User data ကို အောက်ဆုံးဆီ ပို့ဖို့ ကြားထဲက
+            Component တွေက အလကားသက်သက် လက်ဆင့်ကမ်းပေးနေရပါတယ်။ ဒါကို
+            <strong>Prop Drilling</strong> လို့ ခေါ်ပါတယ်။ ဒါဟာ ကုဒ်တွေကို
+            ရှုပ်ထွေးစေပြီး ထိန်းသိမ်းရ ခက်စေပါတယ်။
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            <strong>Context API</strong> ဟာ ဒီပြဿနာကို ရှင်းပေးတဲ့ "Cloud
+            Storage" လိုပါပဲ။ ဒေတာတွေကို တစ်နေရာတည်းမှာ သိမ်းထားပြီး လိုချင်တဲ့
+            Component က ဘယ်နေရာကနေမဆို လှမ်းယူသုံးနိုင်အောင် လုပ်ပေးပါတယ်။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ Provider နှင့် Consumer သဘောတရား
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            Context မှာ အဓိက အစိတ်အပိုင်း (၂) ခု ရှိပါတယ်။
+            <strong>Provider</strong> ဆိုတာကတော့ ဒေတာတွေကို ဖြန့်ဝေပေးတဲ့ Router
+            စက်ကြီးလိုပါပဲ။ သူ့ရဲ့ အောက်မှာရှိသမျှ Component အားလုံးဟာ
+            ဒေတာတွေကို ရရှိနိုင်ပါတယ်။ <strong>useContext</strong> Hook ကတော့
+            Wi-Fi ဖမ်းတဲ့ ဖုန်းလိုပါပဲ။ Provider ဆီက ဒေတာတွေကို လှမ်းဖမ်းယူပြီး
+            အသုံးပြုခွင့် ပေးပါတယ်။
+          </p>
+        </section>
+      </article>
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

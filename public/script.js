@@ -155,48 +155,65 @@ function syncUI(user) {
   }
 }
 
-// --- သင်ရိုးညွှန်းတမ်း မြေပုံ (Module တစ်ခုစီမှာ သင်ခန်းစာ ဘယ်နှခန်းရှိလဲ သတ်မှတ်ရန်) ---
+// ၁။ သင်ရိုးညွှန်းတမ်း မြေပုံ (Module 7 အထိ တိုးထားပေးပါသည်)
 const curriculumMap = {
-  1: 4, // Module 1 မှာ Lesson 1.1 ကနေ 1.4 အထိ ရှိတယ်
-  2: 4, // Module 2 မှာ Lesson 2.1 ကနေ 2.4 အထိ ရှိတယ်
+  1: 4, 
+  2: 4, 
   3: 4,
   4: 4,
   5: 4,
   6: 4,
+  7: 4,
 };
 
 window.setupDynamicNav = () => {
   const path = window.location.pathname;
-  // URL ထဲက module, lesson နဲ့ detail ပါမပါကို ရှာခြင်း
-  const match = path.match(/module(\d+)\/lesson(\d+)(_detail)?/);
   const navContainer = document.getElementById("dynamic-nav");
 
-  if (!match || !navContainer) return;
-
-  let m = parseInt(match[1]); // Module နံပါတ်
-  let l = parseInt(match[2]); // Lesson နံပါတ်
-  let isDetail = !!match[3]; // _detail ပါနေသလား (true/false)
+  if (!navContainer) return;
 
   let nextPath = "";
   let nextText = "";
 
+  // ၂။ ✨ Pre-work Folder အတွက် Logic အသစ် (Regex မတိုင်ခင် စစ်မည်)
+  if (path.includes("prework")) {
+    if (path.includes("git-github.html")) {
+      nextPath = "/modules/prework/git-setup.html";
+      nextText = "နောက်သင်ခန်းစာ (Git Setup) သို့";
+    } else if (path.includes("git-setup.html")) {
+      nextPath = "/modules/module1/lesson1.html";
+      nextText = "Module 1 ကို စတင်မည်";
+    }
+
+    // Pre-work အတွက် UI ထုတ်ပေးပြီး function ကို ဒီမှာတင် ရပ်လိုက်မည်
+    if (nextPath) {
+      renderNav(navContainer, nextPath, nextText);
+    }
+    return; 
+  }
+
+  // ၃။ လက်ရှိ Standard Modules များအတွက် Regex Logic (နဂိုအတိုင်း)
+  const match = path.match(/module(\d+)\/lesson(\d+)(_detail)?/);
+  if (!match) return;
+
+  let m = parseInt(match[1]); 
+  let l = parseInt(match[2]); 
+  let isDetail = !!match[3]; 
+
   if (!isDetail) {
-    // ၁။ လက်ရှိက ရိုးရိုး Lesson ဖြစ်နေရင် -> Next က Detail (Deep Dive) ဖြစ်ရမယ်
     nextPath = `/modules/module${m}/lesson${l}_detail.html`;
-    nextText = `နက်နက်နဲနဲ လေ့လာရန် (Deep Dive ${m}.${l})`;
+    nextText = `နက်နဲသောအချက်များ (Deep Dive ${m}.${l})`;
   } else {
-    // ၂။ လက်ရှိက Detail ဖြစ်နေရင် -> Next က နောက်ထပ် Lesson ဖြစ်ရမယ်
     let nextL = l + 1;
     let nextM = m;
 
-    // လက်ရှိ Module က သင်ခန်းစာအရေအတွက်ထက် ကျော်သွားရင် နောက် Module ကို ကူးမယ်
     if (nextL > curriculumMap[m]) {
       nextM = m + 1;
       nextL = 1;
     }
 
-    // သင်ရိုးပြီးဆုံးမှု စစ်ဆေးခြင်း
-    if (nextM > 6) {
+    // သင်ရိုးပြီးဆုံးမှု စစ်ဆေးခြင်း (Module 7 ထိ ပြင်ထားပါသည်)
+    if (nextM > 7) {
       navContainer.innerHTML = `
                 <a href="/index.html" class="text-gray-400 hover:text-white transition text-sm italic underline">Dashboard သို့ ပြန်သွားရန်</a>
                 <div class="bg-emerald-600/20 border border-emerald-500 text-emerald-400 px-8 py-4 rounded-2xl font-bold">သင်ရိုးအားလုံး ပြီးဆုံးပါပြီ 🎓</div>`;
@@ -207,18 +224,23 @@ window.setupDynamicNav = () => {
     nextText = `နောက်သင်ခန်းစာ (${nextM}.${nextL}) သို့သွားမည်`;
   }
 
-  // UI မှာ ခလုတ်ကို ထည့်သွင်းခြင်း
-  navContainer.innerHTML = `
+  // standard render ကို ခေါ်ယူခြင်း
+  renderNav(navContainer, nextPath, nextText);
+};
+
+// ၄။ UI ထုတ်ပေးသည့် Function (ကုဒ်များ ထပ်မနေစေရန် သီးသန့်ခွဲထုတ်ထားပါသည်)
+function renderNav(container, path, text) {
+  container.innerHTML = `
         <a href="/index.html" class="text-gray-400 hover:text-white transition text-sm italic underline">
             <i class="fas fa-arrow-left mr-2"></i> Dashboard
         </a>
-        <a href="${nextPath}" 
-           class="group bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl flex items-center gap-3 transition-all transform hover:scale-105">
-            ${nextText} 
+        <a href="${path}" 
+           class="group bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl flex items-center gap-3 transition-all transform hover:scale-105 text-center">
+            ${text} 
             <i class="fas fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
         </a>
     `;
-};
+}
 
 // Auth Listener
 onAuthStateChanged(auth, async (user) => {

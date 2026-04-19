@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Setup | Learning Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm">ပတ်ဝန်းကျင်ကို ပြင်ဆင်နေသည်...</p>
+        </div>
+    </div>
+
+    <nav class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10 border-b border-gray-800">
+        <a href="/index.html" class="text-indigo-400 font-bold hover:text-white transition">← Dashboard</a>
+        <div class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold font-pyidaungsu">အကြိုသင်ခန်းစာ • Git Setup</div>
+    </nav>
+
+    <main id="lesson-content" style="display: none;" class="max-w-5xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-10 gradient-text italic">Git & GitHub အခြေခံမှ အချောသတ်အထိ 🛠️</h1>
+
+        <!-- Step 1: Installation -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">၁။ Git ကို စက်ထဲထည့်သွင်းခြင်း (Installation)</h2>
+            <div class="glass-card p-8 rounded-3xl space-y-6">
+                <p class="text-gray-300 leading-relaxed text-justify">
+                    Git ဆိုတာ software တစ်ခုပါ။ သင့်ကွန်ပျူတာမှာ အရင်ဆုံး ရှိနေဖို့ လိုပါတယ်။
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900/50 p-6 rounded-2xl border border-gray-700">
+                        <h4 class="text-blue-400 font-bold mb-3"><i class="fab fa-windows mr-2"></i> Windows အတွက်</h4>
+                        <p class="text-xs text-gray-400 mb-4">Official Website ကနေ Download ဆွဲပြီး Install လုပ်ပါ။</p>
+                        <a href="https://git-scm.com/download/win" target="_blank" class="text-xs bg-blue-600 px-4 py-2 rounded-lg font-bold">Download Git</a>
+                    </div>
+                    <div class="bg-gray-900/50 p-6 rounded-2xl border border-gray-700">
+                        <h4 class="text-gray-300 font-bold mb-3"><i class="fab fa-apple mr-2"></i> Mac အတွက်</h4>
+                        <p class="text-xs text-gray-400 mb-4">Terminal တွင် အောက်ပါကုဒ်ကို ရိုက်ထည့်ပါ။</p>
+                        <code class="text-[10px] text-emerald-400 bg-black p-2 rounded block">brew install git</code>
+                    </div>
+                </div>
+                <div class="bg-yellow-900/20 p-4 rounded-xl border border-yellow-600/30">
+                    <p class="text-xs text-yellow-200 font-bold"><i class="fas fa-check-double mr-2"></i> အောင်မြင်ကြောင်း စစ်ဆေးရန်:</p>
+                    <p class="text-xs text-gray-400 mt-1">Terminal တွင် <code>git --version</code> ဟု ရိုက်ပါ။ ဗားရှင်းနံပါတ် ပေါ်လာလျှင် အိုကေပါသည်။</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Configuration -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">၂။ Git ကို ကိုယ်ရေးမှတ်တမ်း ပေးခြင်း (Configuration)</h2>
+            <div class="glass-card p-8 rounded-3xl">
+                <p class="text-gray-300 mb-6 text-justify">
+                    Git ဟာ ဓာတ်ပုံရိုက်ပေးတဲ့ ကင်မရာနဲ့ တူပါတယ်။ အဲ့ဒီဓာတ်ပုံကို ဘယ်သူရိုက်တာလဲဆိုတာ သိဖို့ သင့်နာမည်နဲ့ Email ကို Git ထဲမှာ တစ်ကြိမ်တည်း သတ်မှတ်ပေးရပါမယ်။ (ဒါကို Git Account ဆောက်တယ်လို့လည်း ခေါ်ကြပါတယ်။)
+                </p>
+                <div class="bg-black/80 p-6 rounded-2xl border border-gray-700 space-y-4 font-mono text-sm text-pink-400">
+                    <p>git config --global user.name "သင့်နာမည်"</p>
+                    <p>git config --global user.email "သင့်အီးမေးလ်"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3: GitHub Account -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">၃။ GitHub Account တည်ဆောက်ခြင်း</h2>
+            <div class="glass-card p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                <div class="flex-1">
+                    <p class="text-gray-300 leading-relaxed text-justify mb-4">
+                        <a href="https://github.com" target="_blank" class="text-indigo-400 font-bold underline">GitHub.com</a> ကို သွားပါ။ <strong>Sign up</strong> ကို နှိပ်ပြီး သင့်ရဲ့ Gmail နဲ့ အကောင့်ဖွင့်ပါ။ <br><br>
+                        GitHub ဆိုတာ သင့်ရဲ့ ကုဒ်တွေကို သိမ်းမယ့် "အွန်လိုင်းသိုလှောင်ရုံ" ပါ။ အကောင့်ဖွင့်ပြီးရင် <strong>New Repository</strong> ကို နှိပ်ပြီး ပရောဂျက် နာမည်ပေးကာ "သိုလှောင်ရုံ" တစ်ခု စတင်ဆောက်လုပ်ပါ။
+                    </p>
+                </div>
+                <div class="w-full md:w-64 bg-white/5 p-4 rounded-2xl border border-white/10 text-center">
+                    <i class="fab fa-github text-6xl mb-4"></i>
+                    <p class="text-[10px] text-gray-500 italic">"GitHub is where the world builds software."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4: Connecting Local to GitHub -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">၄။ Local နှင့် GitHub ချိတ်ဆက်ပုံ (The Handshake)</h2>
+            <div class="glass-card p-8 rounded-3xl space-y-6">
+                <p class="text-gray-300 text-justify">
+                    သင့်စက်ထဲက ကုဒ်တွေ GitHub ဆီ ရောက်ဖို့ လမ်းကြောင်း ချိတ်ပေးရပါမယ်။ GitHub မှာ Repository ဆောက်ပြီးတာနဲ့ ရလာတဲ့ Link ကို ယူပြီး Terminal မှာ အောက်ပါအတိုင်း ရိုက်ပါ။
+                </p>
+                <div class="bg-black/80 p-6 rounded-2xl border border-gray-700 font-mono text-sm text-emerald-400">
+                    <p class="text-gray-500"># ၁။ Git ကို စတင်အသက်သွင်းမယ်</p>
+                    <p class="mb-4">git init</p>
+                    <p class="text-gray-500"># ၂။ GitHub Link နဲ့ ချိတ်ဆက်မယ်</p>
+                    <p class="mb-4">git remote add origin https://github.com/username/repo-name.git</p>
+                    <p class="text-gray-500"># ၃။ ကုဒ်တွေကို ပို့လိုက်မယ်</p>
+                    <p>git push -u origin main</p>
+                </div>
+                <div class="bg-indigo-900/20 p-6 rounded-2xl border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-300 text-sm mb-2">Authentication (Login) ပြဿနာ:</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed text-justify">
+                        ပထမဆုံးအကြိမ် Push လုပ်တဲ့အခါ GitHub က Password တောင်းပါလိမ့်မယ်။ အခုနောက်ပိုင်း GitHub က Password အစစ်ကို လက်မခံတော့ဘဲ <strong>Personal Access Token (PAT)</strong> ကိုပဲ သုံးခိုင်းပါတယ်။ <br>
+                        (Settings > Developer Settings > Personal Access Tokens မှာ သွားထုတ်ရပါမယ်။)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5: Common Errors & Fixes -->
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold text-red-500 mb-6 border-l-4 border-red-500 pl-4">၅။ Bug Hunter: အဖြစ်များသော အမှားများနှင့် ပြုပြင်ပုံ 🛠️</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Error 1 -->
+                <div class="glass-card p-6 rounded-2xl border-red-500/20">
+                    <h4 class="text-red-400 font-bold mb-2 text-sm italic">"fatal: not a git repository"</h4>
+                    <p class="text-xs text-gray-400 mb-4">အကြောင်းရင်း: <code>git init</code> မလုပ်ရသေးဘဲ တခြား command တွေ ရိုက်မိလို့ပါ။</p>
+                    <p class="text-xs text-green-400">✅ ဖြေရှင်းနည်း: <code>git init</code> အရင်ရိုက်ပါ။</p>
+                </div>
+                <!-- Error 2 -->
+                <div class="glass-card p-6 rounded-2xl border-red-500/20">
+                    <h4 class="text-red-400 font-bold mb-2 text-sm italic">"remote origin already exists"</h4>
+                    <p class="text-xs text-gray-400 mb-4">အကြောင်းရင်း: Link အဟောင်းကြီး တစ်ခု ရှိနေလို့ပါ။</p>
+                    <p class="text-xs text-green-400">✅ ဖြေရှင်းနည်း: <code>git remote remove origin</code> အရင်ရိုက်ပါ။</p>
+                </div>
+                <!-- Error 3 -->
+                <div class="glass-card p-6 rounded-2xl border-red-500/20">
+                    <h4 class="text-red-400 font-bold mb-2 text-sm italic">"Permission denied (publickey)"</h4>
+                    <p class="text-xs text-gray-400 mb-4">အကြောင်းရင်း: SSH Key မရှိတာ ဒါမှမဟုတ် မချိတ်ရသေးတာပါ။</p>
+                    <p class="text-xs text-green-400">✅ ဖြေရှင်းနည်း: HTTPS link ကိုပဲ သုံးပါ (သို့မဟုတ်) SSH Key အသစ်ထုတ်ပါ။</p>
+                </div>
+                <!-- Error 4 -->
+                <div class="glass-card p-6 rounded-2xl border-red-500/20">
+                    <h4 class="text-red-400 font-bold mb-2 text-sm italic">"failed to push some refs"</h4>
+                    <p class="text-xs text-gray-400 mb-4">အကြောင်းရင်း: GitHub ပေါ်မှာ သင့်ဆီမှာ မရှိတဲ့ဖိုင်တွေ ရှိနေလို့ပါ။</p>
+                    <p class="text-xs text-green-400">✅ ဖြေရှင်းနည်း: <code>git pull origin main</code> အရင်လုပ်ပါ။</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sticky Note -->
+        <!-- <section class="glass-card p-8 rounded-3xl border border-indigo-500/20 mb-20">
+            <h3 class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2"><i class="fas fa-sticky-note"></i> Git မှတ်စု</h3>
+            <textarea id="lessonNote" class="w-full h-40 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white" placeholder="မှတ်ထားစရာများကို ဒီမှာ ရေးပါ..."></textarea>
+            <button onclick="saveLessonNote()" class="mt-4 bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+        </section> -->
+
+      <!-- Note Taking Section -->
+      <section
+        class="mt-12 glass-card p-8 rounded-3xl border border-indigo-500/20"
+      >
+        <h3
+          class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2"
+        >
+          <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+        </h3>
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none transition mb-4 text-white"
+          placeholder="မှတ်သားစရာများကို ဒီမှာ ရေးပါ..."
+        ></textarea>
+        <button
+          onclick="saveLessonNote()"
+          class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition text-white"
+        >
+          မှတ်စုသိမ်းမည်
+        </button>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+  import { auth, db } from "/script.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import {
+    doc,
+    setDoc,
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const LESSON_ID = "pw_l2"; // Pre-work Lesson 2 (Git Setup)
+
+  onAuthStateChanged(auth, async (user) => {
+    const isReg = localStorage.getItem("isRegistered") === "true";
+    if (user || isReg) {
+      // ၁။ Loading ပိတ်ပြီး Content ကို အတင်းပြခြင်း
+      const loader = document.getElementById("lesson-loader");
+      const content = document.getElementById("lesson-content");
+
+      if (loader) loader.style.display = "none";
+      if (content) content.style.display = "block";
+
+      // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ပြခြင်း
+      const savedNote = localStorage.getItem("note_" + LESSON_ID);
+      if (savedNote) {
+        document.getElementById("lessonNote").value = savedNote;
+      }
+
+      // ✨ ၃။ Navigation ခလုတ်ကို ခေါ်ယူခြင်း (if အပြင်ဘက်ကို ထုတ်လိုက်ပါပြီ)
+      if (typeof window.setupDynamicNav === "function") {
+        window.setupDynamicNav();
+      }
+    } else {
+      window.location.href = "/index.html";
+    }
+  });
+
+  // မှတ်စုသိမ်းသည့် Function
+  window.saveLessonNote = async () => {
+    const noteBox = document.getElementById("lessonNote");
+    const noteText = noteBox.value;
+    const user = auth.currentUser;
+
+    localStorage.setItem("note_" + LESSON_ID, noteText);
+
+    if (user) {
+      try {
+        await setDoc(
+          doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+          {
+            userId: user.uid,
+            lessonId: LESSON_ID,
+            text: noteText,
+            updatedAt: new Date(),
+          },
+          { merge: true },
+        );
+        alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+      } catch (e) {
+        console.error(e);
+        alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+      }
+    } else {
+      alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+    }
+  };
+</script>
+</body>
+</html>

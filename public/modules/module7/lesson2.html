@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 5.2 - Context Implementation</title>
+    <title>Lesson 7.2 - Firebase Auth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -23,75 +23,52 @@
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
-      <a href="lesson1.html" class="text-indigo-400 font-bold"
-        >← ယခင်သင်ခန်းစာ</a
+      <a
+        href="/index.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← Dashboard</a
       >
-      <div class="text-sm text-indigo-300">Module 5 • Lesson 5.2</div>
+      <div
+        class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold"
+      >
+        Module 6 • Lesson 6.1
+      </div>
     </nav>
 
-    <main id="lesson-content" class="max-w-4xl mx-auto space-y-12">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
-          အဆင့် (၃) ဆင့်ဖြင့် Context တည်ဆောက်ခြင်း 🛠️
+          Cloud Entry: Firebase ဖြင့် Login စနစ် တည်ဆောက်ခြင်း 🔥
         </h1>
-        <div
-          class="glass-card p-8 rounded-3xl space-y-8 leading-relaxed text-gray-300"
-        >
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၁။ Create (တည်ဆောက်ခြင်း)
-            </h3>
-            <p class="text-sm mb-4">အရင်ဆုံး Context တစ်ခုကို ဖန်တီးရပါမယ်။</p>
-            <code class="block p-4 bg-black rounded-xl text-pink-400 text-xs"
-              >const UserContext = createContext();</code
-            >
-          </div>
 
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၂။ Provide (ဖြန့်ဝေခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              App တစ်ခုလုံးကို ဒီ Context နဲ့ ပတ်ပေးရပါမယ် (Provider လို့
-              ခေါ်ပါတယ်)။
-            </p>
-            <code
-              class="block p-4 bg-black rounded-xl text-emerald-400 text-xs"
-            >
-              &lt;UserContext.Provider value={user}&gt; <br />
-              &nbsp;&nbsp;&lt;App /&gt; <br />
-              &lt;/UserContext.Provider&gt;
-            </code>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၃။ Consume (အသုံးပြုခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              လိုချင်တဲ့ Component ထဲမှာ `useContext` hook ကို သုံးပြီး
-              လှမ်းယူလိုက်ရုံပါပဲ။
-            </p>
-            <code class="block p-4 bg-black rounded-xl text-indigo-400 text-xs"
-              >const user = useContext(UserContext);</code
-            >
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="bg-indigo-600/10 border border-indigo-500/30 p-8 rounded-3xl"
-      >
-        <h4 class="font-bold text-indigo-400 mb-4 italic">
-          🏋️ လက်တွေ့လုပ်ဆောင်ရန်:
-        </h4>
-        <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-          သင့်ရဲ့ App မှာ Theme (Light/Dark) ကို Context နဲ့ သိမ်းပြီး ဘယ် Page
-          ရောက်ရောက် အဲ့ဒီ Setting က လိုက်ပါလာအောင် လုပ်ဆောင်ကြည့်ပါ။ ဒါဟာ
-          Global State Management ရဲ့ အခြေခံပါ။
+<article class="prose prose-invert max-w-none">
+    <h1 class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4">၇.၂ - Performance Optimization: မြန်ဆန်သော App ဖြစ်လာစေရန်</h1>
+    
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">၁။ Web Vitals ဆိုတာ ဘာလဲ?</h2>
+        <p class="text-gray-300 leading-relaxed mb-4 text-justify">
+            Google က Website တစ်ခုရဲ့ အရည်အသွေးကို တိုင်းတာဖို့ Web Vitals လို့ခေါ်တဲ့ စနစ်ကို သုံးပါတယ်။ အဓိကအားဖြင့် Website က ဘယ်လောက်မြန်မြန် ပွင့်သလဲ၊ ခလုတ်နှိပ်ရင် ဘယ်လောက်မြန်မြန် တုံ့ပြန်သလဲဆိုတာတွေပဲ ဖြစ်ပါတယ်။ React App တွေမှာ Component တွေ အရမ်းများလာရင် App က လေးလာတတ်ပါတယ်။
         </p>
-      
-      </section>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">၂။ React တွင် အကောင်းဆုံးဖြစ်အောင် ပြုပြင်ခြင်း</h2>
+        <p class="text-gray-300 leading-relaxed text-justify mb-6">
+            Professional တွေဟာ မလိုအပ်ဘဲ UI ပြန်ဆွဲတာ (Unnecessary Re-renders) ကို ရှောင်ကြဉ်ကြပါတယ်။ <code>memo</code>, <code>useMemo</code>, <code>useCallback</code> စတဲ့ Hooks တွေကို သုံးပြီး ကုဒ်တွေကို ပိုမိုမြန်ဆန်အောင် လုပ်ဆောင်ကြပါတယ်။ ပြီးတော့ ပုံတွေ (Images) ကို သုံးတဲ့အခါမှာလည်း အရွယ်အစား အကြီးကြီးတွေ မသုံးဘဲ WebP format လိုမျိုး ပေါ့ပါးတဲ့ ပုံစံတွေကို သုံးရပါမယ်။
+        </p>
+        <div class="bg-black/50 p-6 rounded-2xl border-l-4 border-emerald-500">
+            <h4 class="text-emerald-400 font-bold mb-2 italic">Pro Tip:</h4>
+            <p class="text-xs text-gray-400 leading-relaxed">Browser ရဲ့ Inspect Element ထဲက <strong>Lighthouse</strong> tab ကို သုံးပြီး သင့် Website ရဲ့ Performance Score ကို တိုင်းတာကြည့်ပါ။ ရမှတ် ၉၀ ကျော်ရင် Professional အဆင့်လို့ သတ်မှတ်နိုင်ပါတယ်။</p>
+        </div>
+    </section>
+</article>
+
+
+
+
+
+
+
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

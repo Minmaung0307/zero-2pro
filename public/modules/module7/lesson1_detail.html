@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Dive: Design Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="p-6 md:p-12 bg-[#0f172a] text-white">
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm">Design Thinking ကို လေ့လာနေသည်...</p>
+        </div>
+    </div>
+
+    <main id="lesson-content" style="display: none;">
+        <div class="max-w-4xl mx-auto">
+            <a href="/index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2 mb-10">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+
+            <article class="prose prose-invert max-w-none">
+                <h1 class="text-4xl font-extrabold mb-8 text-indigo-400 italic">Design Systems: Website တစ်ခု၏ ဝိညာဉ် 🎨</h1>
+                
+                <section class="glass-card p-8 rounded-3xl mb-12 border border-indigo-500/20">
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-4">🏠 သာဓက: မြို့ပြစီမံကိန်း (City Planning)</h3>
+                    <p class="leading-relaxed text-gray-300 text-justify">
+                        မြို့တစ်မြို့ကို စနစ်တကျ တည်ဆောက်တဲ့အခါ လမ်းတွေရဲ့ အကျယ်၊ အိမ်တွေရဲ့ အရောင်၊ လမ်းဘေးက ဆိုင်းဘုတ်တွေရဲ့ ပုံစံဟာ တစ်သမတ်တည်း ရှိနေရပါမယ်။ ဒါမှသာ ကြည့်ရတာ သပ်ရပ်ပြီး နေချင်စဖွယ် ဖြစ်မှာပါ။ အိမ်တစ်အိမ်က ရဲတိုက်ပုံ၊ တစ်အိမ်က တဲပုံ ဆိုရင်တော့ အဲ့ဒီမြို့ဟာ ရှုပ်ထွေးနေပါလိမ့်မယ်။ <br><br>
+                        Website တစ်ခုမှာလည်း <strong>Design System</strong> ဆိုတာ အဲ့ဒီမြို့ပြစီမံကိန်းပါပဲ။ ခလုတ်တွေရဲ့ ထောင့်ချိုး (Border Radius)၊ စာသားတွေရဲ့ အကွာအဝေး (Spacing)၊ သုံးထားတဲ့ Font အရွယ်အစားတွေဟာ စာမျက်နှာတိုင်းမှာ အတူတူပဲ ဖြစ်နေရပါမယ်။ Tailwind CSS ရဲ့ Utility classes တွေဟာ ဒီ Design System ကို လွယ်လွယ်ကူကူ အကောင်အထည်ဖော်နိုင်အောင် ကူညီပေးတာ ဖြစ်ပါတယ်။
+                    </p>
+                </section>
+
+                <section class="space-y-6">
+                    <h3 class="text-2xl font-bold text-white border-l-4 border-indigo-500 pl-4">ဘာကြောင့် Consistency (တစ်သမတ်တည်းဖြစ်မှု) က အရေးကြီးတာလဲ?</h3>
+                    <p class="text-gray-400 leading-loose text-justify">
+                        User တစ်ယောက်ဟာ သင့် Website ကို သုံးတဲ့အခါ "အလေ့အထ" တစ်ခု ဖြစ်သွားပါတယ်။ ဥပမာ- "ခလုတ်အပြာရောင်က အတည်ပြုတာ" လို့ သူက မှတ်သားထားရင်၊ နောက်တစ်မျက်နှာမှာ အတည်ပြုတဲ့ခလုတ်ကို အနီရောင် သွားလုပ်ထားလို့ မရပါဘူး။ ဒီလို တစ်သမတ်တည်း မဖြစ်တာဟာ User ကို မျက်စိလည်စေပြီး သင့် App ကို အသုံးမဝင်ဘူးလို့ ခံစားရစေပါတယ်။ <br><br>
+                        Professional Developer တွေဟာ ကုဒ်မရေးခင် <strong>Global Styles</strong> တွေကို အရင်သတ်မှတ်ပါတယ်။ Spacing အတွက် <code>gap-4</code> ကို သုံးရင် နေရာတိုင်းမှာ 4 ကိုပဲ သုံးဖို့ ကြိုးစားပါတယ်။ ဒါမှသာ ကုဒ်တွေဟာ ပိုပြီး "Scalable" (ကြီးထွားနိုင်စွမ်းရှိ) လာမှာ ဖြစ်ပါတယ်။
+                    </p>
+                </section>
+
+                <!-- Note Box -->
+                <section class="glass-card p-8 rounded-3xl border border-indigo-500/20 mt-12 mb-12">
+                    <h3 class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2"><i class="fas fa-sticky-note"></i> Design Note</h3>
+                    <textarea id="lessonNote" class="w-full h-40 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white"></textarea>
+                    <button onclick="saveLessonNote()" class="mt-4 bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+                </section>
+
+                <div id="dynamic-nav"></div>
+            </article>
+        </div>
+    </main>
+
+    <script type="module">
+        import { auth, db } from "/script.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const LESSON_ID = "m7_l1_d";
+        onAuthStateChanged(auth, async (user) => {
+            const isReg = localStorage.getItem("isRegistered") === "true";
+            if (user || isReg) {
+                document.getElementById("lesson-loader").style.display = "none";
+                document.getElementById("lesson-content").style.display = "block";
+                document.getElementById("lessonNote").value = localStorage.getItem("note_" + LESSON_ID) || "";
+                window.setupDynamicNav();
+            } else { window.location.href = "/index.html"; }
+        });
+
+        window.saveLessonNote = async () => {
+            const noteText = document.getElementById("lessonNote").value;
+            localStorage.setItem("note_" + LESSON_ID, noteText);
+            const user = auth.currentUser;
+            if (user) { await setDoc(doc(db, "notes", `${user.uid}_${LESSON_ID}`), { userId: user.uid, text: noteText, updatedAt: new Date() }, { merge: true }); alert("Saved to Cloud!"); }
+            else { alert("Saved Locally!"); }
+        };
+    </script>
+</body>
+</html>

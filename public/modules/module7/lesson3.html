@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 5.2 - Context Implementation</title>
+    <title>Lesson 7.3 - Firebase Auth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -23,75 +23,60 @@
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
-      <a href="lesson1.html" class="text-indigo-400 font-bold"
-        >← ယခင်သင်ခန်းစာ</a
+      <a
+        href="/index.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← Dashboard</a
       >
-      <div class="text-sm text-indigo-300">Module 5 • Lesson 5.2</div>
+      <div
+        class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold"
+      >
+        Module 6 • Lesson 6.1
+      </div>
     </nav>
 
-    <main id="lesson-content" class="max-w-4xl mx-auto space-y-12">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
-          အဆင့် (၃) ဆင့်ဖြင့် Context တည်ဆောက်ခြင်း 🛠️
+          Cloud Entry: Firebase ဖြင့် Login စနစ် တည်ဆောက်ခြင်း 🔥
         </h1>
-        <div
-          class="glass-card p-8 rounded-3xl space-y-8 leading-relaxed text-gray-300"
-        >
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၁။ Create (တည်ဆောက်ခြင်း)
-            </h3>
-            <p class="text-sm mb-4">အရင်ဆုံး Context တစ်ခုကို ဖန်တီးရပါမယ်။</p>
-            <code class="block p-4 bg-black rounded-xl text-pink-400 text-xs"
-              >const UserContext = createContext();</code
-            >
-          </div>
 
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၂။ Provide (ဖြန့်ဝေခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              App တစ်ခုလုံးကို ဒီ Context နဲ့ ပတ်ပေးရပါမယ် (Provider လို့
-              ခေါ်ပါတယ်)။
-            </p>
-            <code
-              class="block p-4 bg-black rounded-xl text-emerald-400 text-xs"
-            >
-              &lt;UserContext.Provider value={user}&gt; <br />
-              &nbsp;&nbsp;&lt;App /&gt; <br />
-              &lt;/UserContext.Provider&gt;
-            </code>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 italic">
-              ၃။ Consume (အသုံးပြုခြင်း)
-            </h3>
-            <p class="text-sm mb-4">
-              လိုချင်တဲ့ Component ထဲမှာ `useContext` hook ကို သုံးပြီး
-              လှမ်းယူလိုက်ရုံပါပဲ။
-            </p>
-            <code class="block p-4 bg-black rounded-xl text-indigo-400 text-xs"
-              >const user = useContext(UserContext);</code
-            >
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="bg-indigo-600/10 border border-indigo-500/30 p-8 rounded-3xl"
-      >
-        <h4 class="font-bold text-indigo-400 mb-4 italic">
-          🏋️ လက်တွေ့လုပ်ဆောင်ရန်:
-        </h4>
-        <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-          သင့်ရဲ့ App မှာ Theme (Light/Dark) ကို Context နဲ့ သိမ်းပြီး ဘယ် Page
-          ရောက်ရောက် အဲ့ဒီ Setting က လိုက်ပါလာအောင် လုပ်ဆောင်ကြည့်ပါ။ ဒါဟာ
-          Global State Management ရဲ့ အခြေခံပါ။
+<article class="prose prose-invert max-w-none">
+    <h1 class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4">၇.၃ - Production Build နှင့် ကမ္ဘာသို့ လွှင့်တင်ခြင်း</h1>
+    
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">၁။ Development vs Production</h2>
+        <p class="text-gray-300 leading-relaxed text-justify mb-4">
+            ကျွန်တော်တို့ ကုဒ်ရေးနေတဲ့အချိန် (npm run dev) မှာ ရရှိတဲ့ ကုဒ်တွေဟာ ဖိုင်ဆိုဒ် အကြီးကြီးတွေ ဖြစ်ပါတယ်။ သူတို့ထဲမှာ Debug လုပ်ဖို့အတွက် လိုအပ်တဲ့ အပိုအချက်အလက်တွေ အများကြီး ပါနေလို့ပါ။ ဒါပေမယ့် တကယ့် User တွေ သုံးဖို့အတွက် လွှင့်တင်တော့မယ်ဆိုရင် အဲ့ဒီအပိုတွေကို အကုန်ဖြုတ်ပစ်ရပါမယ်။
         </p>
-      
-      </section>
+        <p class="text-gray-300 leading-relaxed text-justify">
+            <code>npm run build</code> လို့ ရိုက်လိုက်တဲ့အခါ Vite က သင့်ရဲ့ React ကုဒ်တွေကို အစွမ်းကုန် ကျစ်လျစ်အောင် လုပ်ပေးပါတယ်။ ဒီအခါ <strong>dist</strong> folder ဆိုတာ ထွက်လာပါလိမ့်မယ်။ အဲ့ဒီ folder ထဲက ကုဒ်တွေဟာ ကမ္ဘာပေါ်မှာ အမြန်ဆုံး အလုပ်လုပ်နိုင်တဲ့ ကုဒ်တွေပဲ ဖြစ်ပါတယ်။
+        </p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">၂။ Custom Domain နှင့် SSL</h2>
+        <p class="text-gray-300 leading-relaxed text-justify">
+            သင့်ရဲ့ Website address က <code>.web.app</code> နဲ့ ဆုံးနေတာထက် <code>yourname.com</code> လိုမျိုး ကိုယ်ပိုင် domain နဲ့ ဖြစ်နေတာက ပိုပြီး ယုံကြည်မှု (Credibility) တိုးစေပါတယ်။ Firebase Hosting မှာ သင့်ရဲ့ ကိုယ်ပိုင် Domain ကို အလွယ်တကူ ချိတ်ဆက်နိုင်သလို SSL (HTTPS) လုံခြုံရေးကိုလည်း အခမဲ့ ပေးထားပါတယ်။
+        </p>
+    </section>
+
+    <div class="bg-emerald-600/10 p-10 rounded-3xl border border-emerald-500/30 text-center">
+        <h2 class="text-3xl font-bold text-white mb-6">🎓 သင်တန်းဆင်းခြင်း အထိမ်းအမှတ်</h2>
+        <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+            Module ၁ ကနေ ၇ အထိ အောင်မြင်စွာ တက်လှမ်းနိုင်ခဲ့တဲ့အတွက် ဂုဏ်ယူပါတယ်။ အခုဆိုရင် သင်ဟာ အခြေခံကနေ လက်တွေ့အလုပ်ခွင်ဝင်နိုင်တဲ့အထိ အရည်အချင်းရှိတဲ့ <strong>React Developer</strong> တစ်ယောက် ဖြစ်သွားပါပြီ။
+        </p>
+        <button onclick="graduate()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-4 rounded-2xl font-extrabold text-xl shadow-2xl transition-all transform hover:scale-110">
+            Final XP +1000 ရယူမည် 🏆
+        </button>
+    </div>
+</article>
+
+
+
+
+
+
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

@@ -116,6 +116,52 @@
         </div>
       </section>
 
+      <article class="prose prose-invert max-w-none">
+        <h1 class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4">၁.၁ - Modern Web Development နှင့် React Setup</h1>
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၁။ Web Development ရဲ့ ပြောင်းလဲလာပုံ (Evolution)</h2>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                လွန်ခဲ့တဲ့ ၁၀ နှစ်ကျော်က Website တွေဟာ Static ဖြစ်ပြီး ရိုးရှင်းတဲ့ HTML, CSS နဲ့ JavaScript တို့ကိုပဲ သုံးခဲ့ကြပါတယ်။ ဒါပေမယ့် ခေတ်မီလာတာနဲ့အမျှ Facebook, YouTube လိုမျိုး ရှုပ်ထွေးတဲ့ Web Applications တွေ ပေါ်ပေါက်လာပါတယ်။ ရိုးရိုး JavaScript နဲ့တင် ဒီလို App ကြီးတွေကို ထိန်းသိမ်းဖို့ဆိုတာ မဖြစ်နိုင်တော့ပါဘူး။ 
+            </p>
+            <p class="text-gray-300 leading-relaxed">
+                အဲ့ဒီမှာ React ပေါ်လာပါတယ်။ React ဟာ UI (User Interface) ကို အပိုင်းပိုင်းခွဲပြီး စနစ်တကျ တည်ဆောက်နိုင်အောင် ကူညီပေးတဲ့ Library တစ်ခုပါ။ သူက <strong>Declarative Programming</strong> ပုံစံကို သုံးပါတယ်။ ဆိုလိုတာက Browser ထဲက Element တွေကို တစ်ခုချင်းစီ လိုက်ပြင်နေစရာမလိုဘဲ "ငါ့ရဲ့ UI က ဘယ်လိုပုံစံ ဖြစ်ချင်တာလဲ" ဆိုတာကိုပဲ React ကို ပြောပြလိုက်ရုံပါပဲ။ ကျန်တာကို React က နောက်ကွယ်မှာ အလိုအလျောက် စီမံပေးသွားမှာပါ။
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၂။ Node.js နှင့် NPM ဆိုတာ ဘာလဲ?</h2>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                React Project တစ်ခုကို စတင်ဖို့အတွက် Node.js ဆိုတာကို မသိလို့ မရပါဘူး။ JavaScript ဟာ မူလက Browser ထဲမှာပဲ အလုပ်လုပ်တာပါ။ ဒါပေမယ့် Node.js ကြောင့် JavaScript ကို ကျွန်တော်တို့ရဲ့ ကွန်ပျူတာ (Operating System) ပေါ်မှာ တိုက်ရိုက် run လို့ ရသွားပါတယ်။ 
+            </p>
+            <div class="bg-indigo-900/20 p-6 rounded-2xl border-l-4 border-indigo-500 my-6">
+                <h3 class="text-lg font-bold text-indigo-300 mb-2 underline">သတိပြုရန်:</h3>
+                <p class="text-sm text-gray-400">Node.js ဟာ React ရဲ့ အစိတ်အပိုင်း မဟုတ်ပါဘူး။ React ကုဒ်တွေကို build လုပ်ဖို့၊ libraries တွေကို စီမံဖို့အတွက် လိုအပ်တဲ့ ပတ်ဝန်းကျင် (Environment) တစ်ခုသာ ဖြစ်ပါတယ်။</p>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+                <strong>NPM (Node Package Manager)</strong> ကတော့ ကမ္ဘာတစ်ဝှမ်းက Developer တွေ ရေးထားတဲ့ code အတုံးအခဲ (Packages) တွေကို လှမ်းယူသုံးလို့ရအောင် လုပ်ပေးတဲ့ စနစ်ပါ။ React ကိုယ်တိုင်ဟာလည်း NPM ထဲက package တစ်ခုပါပဲ။
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-4">၃။ Vite: နောက်မျိုးဆက် Build Tool</h2>
+            <p class="text-gray-300 leading-relaxed">
+                အရင်က Create React App (CRA) ကို သုံးခဲ့ကြပေမယ့် အခုခေတ်မှာတော့ <strong>Vite</strong> ဟာ အမြန်ဆုံးနဲ့ အကောင်းဆုံး Tool ဖြစ်လာပါတယ်။ Vite ဟာ ကုဒ်တွေကို Browser မှာ ပြသဖို့အတွက် ပြင်ဆင်တဲ့နေရာမှာ ES Modules တွေကို သုံးတဲ့အတွက် CRA ထက် ၁၀ ဆကနေ အဆ ၁၀၀ ထိ ပိုမြန်ပါတယ်။ Developer တစ်ယောက်အတွက် ကုဒ်ပြင်လိုက်တာနဲ့ Browser မှာ ချက်ချင်းပေါ်လာဖို့ (Hot Module Replacement) ဆိုတာ Vite ရဲ့ အဓိက အားသာချက်ပါ။
+            </p>
+        </section>
+
+        <section class="mb-12 bg-black/40 p-8 rounded-3xl border border-gray-800">
+            <h2 class="text-2xl font-bold text-green-400 mb-6 italic">Step-by-Step Setup Guide</h2>
+            <ol class="list-decimal list-inside space-y-4 text-gray-300">
+                <li><strong>Node.js ကို စစ်ဆေးပါ:</strong> Terminal တွင် <code>node -v</code> ရိုက်ကြည့်ပါ။ မရှိသေးပါက <a href="https://nodejs.org" class="text-indigo-400 underline">nodejs.org</a> တွင် install လုပ်ပါ။</li>
+                <li><strong>Project အသစ်ဆောက်ပါ:</strong> <code>npm create vite@latest my-react-app -- --template react</code> လို့ ရိုက်ပါ။</li>
+                <li><strong>Folder ထဲဝင်ပါ:</strong> <code>cd my-react-app</code></li>
+                <li><strong>Dependencies သွင်းပါ:</strong> <code>npm install</code> (ဒါက node_modules ကို ဆောက်ပေးမှာပါ)</li>
+                <li><strong>App ကို စတင်ပါ:</strong> <code>npm run dev</code> လို့ ရိုက်ပြီး ပေးထားတဲ့ link ကို Browser မှာ ဖွင့်ပါ။</li>
+            </ol>
+        </section>
+    </article>
+
       <!-- Note Taking Section -->
       <section
         class="mt-12 glass-card p-8 rounded-3xl border border-indigo-500/20"

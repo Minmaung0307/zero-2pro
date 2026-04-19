@@ -9,26 +9,22 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap");
-      body {
-        font-family: "Inter", "Pyidaungsu", sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-      .glass-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-    </style>
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
       <a
-        href="../../index.html"
+        href="/index.html"
         class="text-indigo-400 font-bold hover:text-white transition"
         >← Dashboard</a
       >
@@ -39,7 +35,7 @@
       </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto space-y-10">
+    <main id="lesson-content" class="max-w-5xl mx-auto space-y-10">
       <section>
         <h1 class="text-4xl font-extrabold mb-6">
           Cloud Entry: Firebase ဖြင့် Login စနစ် တည်ဆောက်ခြင်း 🔥
@@ -115,6 +111,41 @@
           Login စနစ်မပါရင် တကယ့် Web App တစ်ခု မဖြစ်နိုင်ပါဘူး...
         </div>
       </div>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-orange-400 mb-8 border-b border-orange-900 pb-4"
+        >
+          ၆.၁ - Firebase Authentication: လုံခြုံသော Login စနစ်
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ Backend as a Service (BaaS)
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            Frontend Developer တစ်ယောက်အတွက် ကိုယ်ပိုင် Server ရေးဖို့၊ Database
+            တွေ စီမံဖို့ဆိုတာ အချိန်အများကြီး ပေးရပါတယ်။ Google ရဲ့
+            <strong>Firebase</strong> ကတော့ အဲ့ဒီအလုပ်တွေကို အကုန်လုပ်ပေးပါတယ်။
+            ကျွန်တော်တို့က ကုဒ်အနည်းငယ်နဲ့တင် အဆင့်မြင့် Login စနစ်တွေ၊ Database
+            တွေကို အသုံးပြုနိုင်ပါတယ်။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ Social Login ၏ အားသာချက်
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            Gmail နဲ့ Login ဝင်တဲ့စနစ် (Google Auth) ဟာ User တွေအတွက်ရော
+            Developer တွေအတွက်ပါ အကျိုးရှိပါတယ်။ User တွေက Password တွေ
+            အလွတ်မှတ်နေစရာ မလိုတော့သလို၊ Developer တွေအနေနဲ့လည်း Password တွေကို
+            လုံခြုံအောင် သိမ်းဆည်းရမယ့် တာဝန်ကြီးကနေ လွတ်ကင်းသွားပါတယ်။ Firebase
+            ဟာ ဒီလုပ်ငန်းစဉ် တစ်ခုလုံးကို လုံခြုံစိတ်ချရတဲ့ နည်းပညာတွေနဲ့
+            စီမံပေးထားပါတယ်။
+          </p>
+        </section>
+      </article>
       <!-- Note Taking Section -->
       <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
         <h3

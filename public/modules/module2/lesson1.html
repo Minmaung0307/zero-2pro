@@ -4,14 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 2.1 - useState Hook</title>
-    <link rel="stylesheet" href="/style.css" />
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="/style.css" />
   </head>
-  <body class="p-6 pt-24">
+  <body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ရန် (ဒါမပါရင် style error တက်ပါမည်) -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...</p>
+        </div>
+    </div>
     <nav
       class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
     >
@@ -27,7 +36,7 @@
       </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8">
+    <main id="lesson-content" class="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8">
       <div class="lg:col-span-8 space-y-10">
         <section>
           <h1 class="text-4xl font-extrabold mb-6 gradient-text">
@@ -122,6 +131,80 @@
           >
         </section>
       </div>
+
+      <article class="prose prose-invert max-w-none">
+        <h1
+          class="text-4xl font-extrabold text-indigo-400 mb-8 border-b border-indigo-900 pb-4"
+        >
+          ၂.၁ - useState: Component ၏ မှတ်ဉာဏ်ကို နားလည်ခြင်း
+        </h1>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၁။ Variable နှင့် State ၏ ကွဲပြားခြားနားချက်
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            JavaScript မှာ ကျွန်တော်တို့ variable တွေ သုံးဖူးကြပါတယ်။ ဒါပေမယ့်
+            React မှာ ရိုးရိုး variable တစ်ခုရဲ့ တန်ဖိုးကို ပြောင်းလိုက်ရုံနဲ့
+            UI (User Interface) က လိုက်မပြောင်းပါဘူး။ ဘာကြောင့်လဲဆိုတော့ React က
+            အဲ့ဒီ variable ပြောင်းသွားတာကို မသိလို့ပါ။
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            <strong>State</strong> ဆိုတာကတော့ React က အမြဲတမ်း စောင့်ကြည့်နေတဲ့
+            "အထူးမှတ်ဉာဏ်" တစ်ခုပါ။ State တန်ဖိုးတစ်ခု ပြောင်းလဲသွားတာနဲ့ React
+            က "ဪ... UI ကို ပြန်ဆွဲဖို့ လိုပြီ" ဆိုပြီး ချက်ချင်းသိပါတယ်။ ဒါကို
+            <strong>Re-render</strong> ဖြစ်တယ်လို့ ခေါ်ပါတယ်။ ဒါကြောင့် React
+            မှာ အပြန်အလှန် သက်ရောက်မှုရှိတဲ့ (Interactive) App တွေလုပ်ဖို့ State
+            ဟာ အခြေခံအကျဆုံး ဖြစ်ပါတယ်။
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၂။ useState Hook ၏ တည်ဆောက်ပုံ (Syntax)
+          </h2>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            <code>useState</code> ဟာ React က ပေးထားတဲ့ function တစ်ခုဖြစ်ပြီး
+            array တစ်ခုကို return ပြန်ပေးပါတယ်။ အဲ့ဒီ array ထဲမှာ အစိတ်အပိုင်း
+            (၂) ခု ပါဝင်ပါတယ်-
+          </p>
+          <div
+            class="bg-black/50 p-6 rounded-2xl border border-gray-800 font-mono text-sm leading-8"
+          >
+            <span class="text-purple-400">const</span> [state, setState] =
+            <span class="text-yellow-400">useState</span>(initialValue);
+          </div>
+          <ul class="mt-6 space-y-4 text-gray-400">
+            <li>
+              <strong class="text-indigo-300">state:</strong> လက်ရှိ
+              သိမ်းဆည်းထားတဲ့ တန်ဖိုး (ဥပမာ- ရမှတ် ၀)
+            </li>
+            <li>
+              <strong class="text-indigo-300">setState:</strong> အဲ့ဒီတန်ဖိုးကို
+              အသစ်ပြင်ဖို့ သုံးရမယ့် function (ဥပမာ- ရမှတ်ကို ၁၀ ဖြစ်အောင်
+              ပြင်တာ)
+            </li>
+            <li>
+              <strong class="text-indigo-300">initialValue:</strong> App
+              စပွင့်ချင်းမှာ ရှိစေချင်တဲ့ အစောဆုံး တန်ဖိုး။
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-white mb-4">
+            ၃။ အရေးကြီးသော စည်းမျဉ်း- Immutable State
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            React မှာ State ကို တိုက်ရိုက်သွားပြင်လို့ မရပါဘူး (ဥပမာ-
+            <code>count = 5</code> လို့ မရေးရပါ)။ ဘာလို့လဲဆိုတော့ အဲ့ဒီလို
+            ပြင်လိုက်ရင် React က အပြောင်းအလဲကို မသိလိုက်ဘဲ UI ကို update
+            မလုပ်ပေးလို့ပါ။ အမြဲတမ်း <code>setCount(5)</code> ဆိုတဲ့ setter
+            function ကိုပဲ သုံးရပါမယ်။ ဒါကို <strong>Immutability</strong> လို့
+            ခေါ်ပြီး ကုဒ်တွေကို ပိုပြီး စိတ်ချရစေပါတယ်။
+          </p>
+        </section>
+      </article>
 
       <!-- Sidebar -->
       <aside class="lg:col-span-4 space-y-6">
