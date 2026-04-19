@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 2 Challenge - Logic Detective</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap');
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', 'Pyidaungsu', sans-serif; }
+        .code-box { background: #000; border: 1px solid #334155; padding: 20px; border-radius: 12px; font-family: monospace; position: relative; margin-bottom: 20px; }
+        .bug-label { position: absolute; top: -10px; right: 10px; background: #ef4444; color: white; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        summary { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="p-8 pt-20">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-10">
+            <a href="../../index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+            <h1 class="text-4xl font-extrabold mt-6 text-red-400 italic">🛠 Module 2: Logic Detective Arena</h1>
+            <p class="text-gray-400 mt-2 italic">"State နဲ့ Logic အမှားတွေကို ရှာဖွေပြီး React ရဲ့ အလုပ်လုပ်ပုံကို ပိုမိုနက်နဲစွာ နားလည်အောင် လုပ်ဆောင်ပါ။"</p>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 1: State Mutation</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက ခလုတ်နှိပ်ရင် အမှတ်တိုးအောင် လုပ်ထားပေမယ့် Screen ပေါ်မှာ အမှတ်တွေက လုံးဝတိုးမလာပါဘူး။ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    const [points, setPoints] = useState(0); <br><br>
+                    const handleAddPoint = () => { <br>
+                    &nbsp;&nbsp;points = points + 10; // ❌ <br>
+                    };
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React မှာ State ကို တိုက်ရိုက် (direct assignment) ပြင်လို့မရပါဘူး။ အဲ့ဒီလိုပြင်ရင် UI က Re-render မဖြစ်ပါဘူး။ <strong>setPoints</strong> ဆိုတဲ့ function ကို သုံးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: setPoints(points + 10);</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 2: Immediate Execution</h3>
+            <p class="text-gray-400 text-sm mb-4">"App ပွင့်လာတာနဲ့ ခလုတ်မနှိပ်ရသေးဘဲ Alert ကြီးက တန်းတန်းပေါ်လာနေပါတယ်။ ဘာမှားနေလဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;button onClick={alert('Hi!')}&gt;Click Me&lt;/button&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>onClick={alert(...)}</code> လို့ရေးရင် function ကို ချက်ချင်း run လိုက်တာပါ။ ကျနော်တို့က ခလုတ်နှိပ်မှ run စေချင်တာဖြစ်လို့ <strong>Function Reference</strong> သို့မဟုတ် <strong>Arrow Function</strong> ကို ပေးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: onClick={() => alert('Hi!')}</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 3: Missing List Keys</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားစာရင်းကို loop ပတ်ပြထားပေမယ့် Console မှာ Warning Error နီနီကြီး တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    {users.map(u => ( <br>
+                    &nbsp;&nbsp;&lt;li&gt;{u.name}&lt;/li&gt; <br>
+                    ))}
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React က List ထဲမှာ ဘယ်အရာက ပြောင်းလဲသွားလဲဆိုတာ သိဖို့ အရာတိုင်းမှာ unique ဖြစ်တဲ့ <strong>key</strong> prop လိုအပ်ပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;li key={u.id}&gt;{u.name}&lt;/li&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 4: State Update Logging</h3>
+            <p class="text-gray-400 text-sm mb-4">"Count ကို တစ်တိုးလိုက်ပေမယ့် console မှာ ကြည့်ရင် တန်ဖိုးအဟောင်းကြီးပဲ ပေါ်နေပါတယ်။ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    setCount(count + 1); <br>
+                    console.log(count); // ပေါ်လာတာက ၁ မဟုတ်ဘဲ ၀ ဖြစ်နေသည်
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React State updates တွေဟာ <strong>Asynchronous</strong> ဖြစ်ပါတယ်။ <code>setCount</code> ကို ခေါ်လိုက်ပေမယ့် ချက်ချင်း update မဖြစ်သေးပါဘူး။ နောက်တစ်ကြိမ် Re-render ဖြစ်မှသာ တန်ဖိုးအသစ်ကို ရမှာပါ။ <br>
+                    <span class="text-gray-400 italic">မှတ်ချက်: တန်ဖိုးအသစ်ကို ချက်ချင်းသုံးချင်ရင် useEffect ထဲမှာ စောင့်ကြည့်ရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 5: Input Value Binding</h3>
+            <p class="text-gray-400 text-sm mb-4">"Input ထဲမှာ စာရိုက်ပေမယ့် ဘာစာမှ ပေါ်မလာသလို State ထဲကိုလည်း ဒေတာမရောက်ပါဘူး။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;input type="text" onChange={setName} /&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Input change event မှာ event object (e) ပါလာပါတယ်။ အဲ့ဒီထဲကမှ <strong>e.target.value</strong> ကို ယူပြီး သိမ်းရမှာပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: onChange={(e) => setName(e.target.value)}</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- အမှတ်ပေးစနစ် -->
+        <div class="mt-20 p-10 glass-card border-2 border-dashed border-red-500 rounded-3xl text-center">
+            <h2 class="text-2xl font-bold mb-4">Logic Error (၅) ခုလုံးကို ရှာဖွေနိုင်ပြီလား?</h2>
+            <p class="text-gray-400 mb-6 italic">"State ကို ပိုင်နိုင်သွားပြီဆိုရင် မင်းဟာ React Developer တစ်ဝက် ဖြစ်နေပါပြီ။"</p>
+            <button onclick="addBonusXP(100)" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold shadow-xl shadow-indigo-500/20 transition transform hover:scale-105">
+                Logic ပြင်ပြီးပြီ! XP 100 ရယူမည်
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function addBonusXP(amt) {
+            let xp = parseInt(localStorage.getItem('user_xp')) || 0;
+            localStorage.setItem('user_xp', xp + amt);
+            alert("ဂုဏ်ယူပါတယ်! Logic Detective Skill +100 XP! 🧠⚡");
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

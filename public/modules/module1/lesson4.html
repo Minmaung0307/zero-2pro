@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 1 Challenge - Bug Hunter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap');
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', 'Pyidaungsu', sans-serif; }
+        .code-box { background: #000; border: 1px solid #334155; padding: 20px; border-radius: 12px; font-family: monospace; position: relative; margin-bottom: 20px; }
+        .bug-label { position: absolute; top: -10px; right: 10px; background: #ef4444; color: white; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        summary { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="p-8 pt-20">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-10">
+            <a href="/index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+            <h1 class="text-4xl font-extrabold mt-6 text-red-400 italic">🛠 Module 1: Bug Hunter Arena</h1>
+            <p class="text-gray-400 mt-2 italic">"ကုဒ်ထဲက အမှားတွေကို ရှာဖွေပြီး React Pro တစ်ယောက်ဖြစ်အောင် လေ့ကျင့်ပါ။"</p>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 1: Component Naming</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက ဒီ Component ကို ရေးလိုက်ပေမယ့် Browser မှာ Error တက်နေပါတယ်။ ဘာမှားနေလဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    function welcomeCard() { <br>
+                    &nbsp;&nbsp;return &lt;h1&gt;Hello React&lt;/h1&gt;; <br>
+                    }
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300">
+                    React မှာ Component နာမည်ဟာ အမြဲတမ်း <strong>အက္ခရာအကြီး (Capital Letter)</strong> နဲ့ စရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: function WelcomeCard() { ... }</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 2: Multiple Elements</h3>
+            <p class="text-gray-400 text-sm mb-4">"ဒီ Component မှာ စာသား နှစ်ကြောင်း ပြချင်တာပါ။ ဒါပေမယ့် Error တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    return ( <br>
+                    &nbsp;&nbsp;&lt;h1&gt;Name: Mg Mg&lt;/h1&gt; <br>
+                    &nbsp;&nbsp;&lt;p&gt;Age: 20&lt;/p&gt; <br>
+                    );
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    JSX မှာ return ပြန်တဲ့အခါ Element တစ်ခုတည်း (Single Parent) အောက်မှာပဲ ရှိရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;div&gt; သို့မဟုတ် Fragments &lt;&gt; &lt;/&gt; နဲ့ ပတ်ပေးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 3: Attribute Name</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက UI ကို လှအောင် class ပေးထားပေမယ့် Console မှာ Warning တွေ တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;div class="active-profile"&gt; <br>
+                    &nbsp;&nbsp;Student Information <br>
+                    &lt;/div&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300">
+                    JSX ဟာ JavaScript ပေါ် အခြေခံထားတာဖြစ်လို့ JavaScript ရဲ့ reserved word ဖြစ်တဲ့ <strong>class</strong> အစား <strong>className</strong> ကို သုံးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;div className="active-profile"&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 4: Props Data Type</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက Component ထဲကို ကိန်းဂဏန်း (Number) ပို့ချင်တာပါ။ ဒါပေမယ့် Error တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;StudentCard age=20 /&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300">
+                    JSX မှာ String မဟုတ်တဲ့ အခြား Data Type တွေ (Numbers, Booleans, Objects) ကို ပို့ချင်ရင် <strong>တွန့်ကွင်း { }</strong> ထဲမှာ ထည့်ပေးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;StudentCard age={20} /&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 5: Self-closing Tags</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက HTML အတိုင်း Image ထည့်လိုက်ပေမယ့် React က Error ပြနေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;img src="profile.jpg"&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300">
+                    JSX မှာ Tag အားလုံးဟာ အမြဲတမ်း ပိတ်ရပါမယ်။ Image လိုမျိုး အပိတ် tag မရှိတဲ့ အရာတွေကို <strong>Self-closing</strong> လုပ်ပေးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;img src="profile.jpg" /&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- အမှတ်ပေးစနစ် -->
+        <div class="mt-20 p-10 glass-card border-2 border-dashed border-indigo-500 rounded-3xl text-center">
+            <h2 class="text-2xl font-bold mb-4">အမှား (၅) ခုလုံးကို ရှာတွေ့ပြီလား?</h2>
+            <p class="text-gray-400 mb-6 italic">"အမှားတွေကို နားလည်သွားပြီဆိုရင် မင်းရဲ့ React Skill က တစ်ဆင့်တက်သွားပါပြီ။"</p>
+            <button onclick="addBonusXP(100)" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold shadow-xl shadow-indigo-500/20 transition transform hover:scale-105">
+                အကုန်ပြင်နိုင်ပြီ! XP 100 ရယူမည်
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function addBonusXP(amt) {
+            let xp = parseInt(localStorage.getItem('user_xp')) || 0;
+            localStorage.setItem('user_xp', xp + amt);
+            alert("ဂုဏ်ယူပါတယ်! Debugging Skills +100 XP! 🚀\nDashboard မှာ မင်းရဲ့ XP ကို သွားစစ်ကြည့်လိုက်ပါ။");
+            window.location.href = "../../index.html";
+        }
+        
+        // XP sync display
+        let currentXP = localStorage.getItem('user_xp') || 0;
+        console.log("Current Student XP: ", currentXP);
+    </script>
+</body>
+</html>

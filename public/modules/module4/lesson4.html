@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 4 Challenge - Data Doctor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap');
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', 'Pyidaungsu', sans-serif; }
+        .code-box { background: #000; border: 1px solid #334155; padding: 20px; border-radius: 12px; font-family: monospace; position: relative; margin-bottom: 20px; }
+        .bug-label { position: absolute; top: -10px; right: 10px; background: #ef4444; color: white; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        summary { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="p-8 pt-20">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-10">
+            <a href="../../index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+            <h1 class="text-4xl font-extrabold mt-6 text-blue-400 italic">🛠 Module 4: Data Doctor Arena</h1>
+            <p class="text-gray-400 mt-2 italic">"useEffect Lifecycle နဲ့ API Fetching အမှားတွေကို ရှာဖွေပြီး ဒေတာတွေကို စနစ်တကျ ကိုင်တွယ်တတ်အောင် လေ့ကျင့်ပါ။"</p>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 1: The Infinite Loop ♾️</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက data ယူပြီး state update လုပ်လိုက်တာနဲ့ Browser က ဟန်း (Hang) သွားပါတယ်။ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    useEffect(() => { <br>
+                    &nbsp;&nbsp;fetchData(); // This updates state inside <br>
+                    }); // ❌ Missing dependency array
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>useEffect</code> မှာ dependency array (ဒုတိယ parameter) မပါရင် component render ဖြစ်တိုင်း အလုပ်လုပ်ပါတယ်။ State update ဖြစ်ရင် render ပြန်ဖြစ်တဲ့အတွက် render -> useEffect -> state update -> render ဆိုပြီး <strong>Infinite Loop</strong> ပတ်သွားတာပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: useEffect(() => { ... }, []); // Empty array ထည့်ရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 2: Async useEffect ⏳</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက fetch လုပ်ချင်လို့ async/await သုံးလိုက်ပေမယ့် React က Warning Error တွေ ပြနေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    useEffect(async () => { // ❌ <br>
+                    &nbsp;&nbsp;const data = await getData(); <br>
+                    }, []);
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>useEffect</code> ရဲ့ callback function ကို <strong>async</strong> တိုက်ရိုက်ပေးလို့ မရပါဘူး။ ဘာလို့လဲဆိုတော့ useEffect ဟာ Promise တစ်ခုကို return မပြန်ရဘဲ cleanup function (သို့မဟုတ်) ဘာမှမပြန်ရလို့ပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: useEffect ထဲမှာ async function တစ်ခု သီးသန့်ဆောက်ပြီး ပြန်ခေါ်ရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 3: The Timer Leak 🛑</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက စာမျက်နှာကို ပိတ်လိုက်ပေမယ့် နောက်ကွယ်မှာ Timer က ဆက်ပတ်နေပါတယ်။ Memory Leak ဖြစ်နေတာ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    useEffect(() => { <br>
+                    &nbsp;&nbsp;const timer = setInterval(() => console.log('Hi'), 1000); <br>
+                    &nbsp;&nbsp;// ❌ Missing something here? <br>
+                    }, []);
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Component တစ်ခုကို ဖျက်လိုက်တဲ့အခါ (Unmount) နောက်ကွယ်က timer တွေ၊ subscription တွေကို ပြန်ပိတ်ပေးဖို့ <strong>Cleanup Function</strong> လိုအပ်ပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: return () => clearInterval(timer); လို့ return ပြန်ပေးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 4: The JSON Promise Error 📦</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက data ကို ယူလိုက်ပေမယ့် Screen ပေါ်မှာ [object Promise] လို့ပဲ ပေါ်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    const response = fetch(url); <br>
+                    const data = response.json(); // ❌ <br>
+                    setData(data);
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>fetch</code> ရော <code>response.json()</code> ရောဟာ အချိန်ယူရတဲ့ အလုပ်တွေဖြစ်လို့ Promise ကို return ပြန်ပါတယ်။ ဒါကြောင့် <strong>await</strong> သုံးဖို့ မေ့ခဲ့တာပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: const data = await response.json(); လို့ ရေးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 5: Stale Dependency 🔄</h3>
+            <p class="text-gray-400 text-sm mb-4">"Search term ပြောင်းသွားပေမယ့် API က data အသစ်ကို သွားမယူပါဘူး။ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    useEffect(() => { <br>
+                    &nbsp;&nbsp;fetchData(searchQuery); <br>
+                    }, []); // ❌ Something is missing in the array
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>useEffect</code> ထဲမှာ အပြင်က state တစ်ခုခု (searchQuery) ကို သုံးထားရင် အဲ့ဒီ state ပြောင်းတိုင်း effect ပြန်ပတ်အောင် <strong>Dependency Array</strong> ထဲမှာ ထည့်ပေးရပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: useEffect(() => { ... }, [searchQuery]);</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- အမှတ်ပေးစနစ် -->
+        <div class="mt-20 p-10 glass-card border-2 border-dashed border-blue-500 rounded-3xl text-center">
+            <h2 class="text-2xl font-bold mb-4">Data Error (၅) ခုလုံးကို ပြင်နိုင်ပြီလား?</h2>
+            <p class="text-gray-400 mb-6 italic">"API ချိတ်ဆက်မှုကို ကျွမ်းကျင်သွားပြီဆိုရင် မင်းရဲ့ App က တစ်ကမ္ဘာလုံးနဲ့ ချိတ်ဆက်နိုင်ပါပြီ။"</p>
+            <button onclick="addBonusXP(100)" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold shadow-xl shadow-indigo-500/20 transition transform hover:scale-105">
+                အကုန်ပြင်ပြီးပြီ! XP 100 ရယူမည်
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function addBonusXP(amt) {
+            let xp = parseInt(localStorage.getItem('user_xp')) || 0;
+            localStorage.setItem('user_xp', xp + amt);
+            alert("ဂုဏ်ယူပါတယ်! Data Doctor Skill +100 XP! 🌐💉");
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 3 Challenge - Navigation Fixer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap');
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', 'Pyidaungsu', sans-serif; }
+        .code-box { background: #000; border: 1px solid #334155; padding: 20px; border-radius: 12px; font-family: monospace; position: relative; margin-bottom: 20px; }
+        .bug-label { position: absolute; top: -10px; right: 10px; background: #ef4444; color: white; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        summary { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="p-8 pt-20">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-10">
+            <a href="../../index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+            <h1 class="text-4xl font-extrabold mt-6 text-pink-400 italic">🛠 Module 3: Navigation Fixer Arena</h1>
+            <p class="text-gray-400 mt-2 italic">"React Router ရဲ့ လမ်းကြောင်းအမှားတွေကို ရှာဖွေပြီး Single Page Application (SPA) တစ်ခုကို ကျွမ်းကျင်စွာ တည်ဆောက်ပါ။"</p>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 1: The Page Reload Bug</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက About Page ကို သွားဖို့ Link ချိတ်ထားပေမယ့် နှိပ်လိုက်တိုင်း Browser က Refresh ဖြစ်နေပါတယ်။ ဘာမှားနေလဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    function Navbar() { <br>
+                    &nbsp;&nbsp;return ( <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt; <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="/about"&gt;About Page&lt;/a&gt; // ❌ <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt; <br>
+                    &nbsp;&nbsp;); <br>
+                    }
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React Router မှာ <code>&lt;a href="..."&gt;</code> ကို သုံးရင် Browser က Server ဆီကနေ Page အသစ်ကို တောင်းဆိုတဲ့အတွက် Refresh ဖြစ်သွားပါတယ်။ SPA ပုံစံ Refresh မဖြစ်ချင်ရင် <strong>Link</strong> component ကို သုံးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;Link to="/about"&gt;About Page&lt;/Link&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 2: Relative vs Absolute Path</h3>
+            <p class="text-gray-400 text-sm mb-4">"ဒီ Route က အလုပ်မလုပ်ဘဲ Page အလွတ်ကြီးပဲ ပေါ်နေပါတယ်။ URL လမ်းကြောင်းမှာ ဘာလိုနေလဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;Route path="dashboard" element={&lt;Dashboard /&gt;} /&gt; // ❌
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Main Route တွေ သတ်မှတ်တဲ့အခါ လမ်းကြောင်းရဲ့ ရှေ့မှာ <strong>Forward Slash (/)</strong> ထည့်ပေးဖို့ လိုအပ်ပါတယ်။ ဒါမှသာ root ကနေ စတင်တဲ့ လမ်းကြောင်းအဖြစ် React က သိမှာပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: path="/dashboard"</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 3: useParams Usage</h3>
+            <p class="text-gray-400 text-sm mb-4">"URL ထဲက id ကို ယူသုံးချင်တာပါ။ ဒါပေမယ့် Screen ပေါ်မှာ [object Object] လို့ပဲ ပေါ်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    const id = useParams(); // ❌ <br>
+                    return &lt;h1&gt;Lesson ID: {id}&lt;/h1&gt;;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>useParams()</code> hook ဟာ Object တစ်ခုကို Return ပြန်ပေးတာပါ။ အဲ့ဒီထဲကမှ ကျနော်တို့ လိုချင်တဲ့ variable နာမည်ကို <strong>Destructuring</strong> လုပ်ပြီး ယူရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: const { id } = useParams();</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 4: The Router Wrapper</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက Routes တွေကို ရေးလိုက်ပေမယ့် Browser မှာ 'useRoutes() may be used only in the context of a Router component' ဆိုတဲ့ Error ကြီး တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    // App.js <br>
+                    &lt;Routes&gt; <br>
+                    &nbsp;&nbsp;&lt;Route path="/" element={&lt;Home /&gt;} /&gt; <br>
+                    &lt;/Routes&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React Router ရဲ့ Component တွေ (Routes, Route, Link) အားလုံးဟာ <strong>BrowserRouter</strong> ရဲ့ အောက်မှာ (Inside) ရှိနေရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: App တစ်ခုလုံးကို &lt;BrowserRouter&gt; နဲ့ ပတ်ပေးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 5: Dynamic Route Definition</h3>
+            <p class="text-gray-400 text-sm mb-4">"သင်ခန်းစာ ID အလိုက် Page တွေကို ပြချင်တာပါ။ ဒါပေမယ့် ဘယ် ID ရိုက်ရိုက် Page မပေါ်လာပါဘူး။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;Route path="/lesson/id" element={&lt;Details /&gt;} /&gt; // ❌
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Dynamic Parameter သတ်မှတ်ချင်ရင် ရှေ့မှာ <strong>Colon (:)</strong> ထည့်ပေးရပါတယ်။ အဲ့ဒါမှသာ React က ဒါဟာ variable တစ်ခုဖြစ်မှန်း သိမှာပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: path="/lesson/:id"</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- အမှတ်ပေးစနစ် -->
+        <div class="mt-20 p-10 glass-card border-2 border-dashed border-pink-500 rounded-3xl text-center">
+            <h2 class="text-2xl font-bold mb-4">Navigation Error (၅) ခုလုံးကို ပြင်နိုင်ပြီလား?</h2>
+            <p class="text-gray-400 mb-6 italic">"Routing ကို နားလည်သွားပြီဆိုရင် မင်းရဲ့ App က စာမျက်နှာတစ်ခုတည်း မဟုတ်တော့ပါဘူး။"</p>
+            <button onclick="addBonusXP(100)" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold shadow-xl shadow-indigo-500/20 transition transform hover:scale-105">
+                အကုန်ပြင်ပြီးပြီ! XP 100 ရယူမည်
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function addBonusXP(amt) {
+            let xp = parseInt(localStorage.getItem('user_xp')) || 0;
+            localStorage.setItem('user_xp', xp + amt);
+            alert("ဂုဏ်ယူပါတယ်! Navigation Fixer Skill +100 XP! 🚀📍");
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 4.1 - useEffect Hook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap");
+      body {
+        font-family: "Inter", "Pyidaungsu", sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      .glass-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body class="p-6 pt-24">
+    <nav
+      class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
+    >
+      <a
+        href="../../index.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← Dashboard</a
+      >
+      <div
+        class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold"
+      >
+        Module 4 • Lesson 4.1
+      </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto space-y-10">
+      <section>
+        <h1 class="text-4xl font-extrabold mb-6">
+          useEffect: Component ရဲ့ ဘဝဖြစ်စဉ်ကို ထိန်းချုပ်ခြင်း 🔄
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="glass-card p-6 rounded-2xl border-indigo-500/30">
+            <h4 class="text-indigo-400 font-bold mb-2">🎯 ရည်ရွယ်ချက်</h4>
+            <p class="text-xs text-gray-300">
+              App စတက်လာတဲ့အချိန် (သို့မဟုတ်) Data
+              တစ်ခုခုပြောင်းသွားတဲ့အချိန်မှာ အလုပ်တစ်ခုခုကို အလိုအလျောက်
+              ခိုင်းစေတတ်ရန်။
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl border-emerald-500/30">
+            <h4 class="text-emerald-400 font-bold mb-2">✅ ရရှိမည့်အကျိုး</h4>
+            <p class="text-xs text-gray-300">
+              API ခေါ်ယူခြင်း၊ Timer ပေးခြင်းနှင့် အခြား ပြင်ပချိတ်ဆက်မှု (Side
+              Effects) များကို စနစ်တကျ ကိုင်တွယ်တတ်လာမည်။
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl space-y-6">
+          <h2 class="text-2xl font-bold text-white italic underline">
+            ၁။ useEffect ဆိုတာ ဘာလဲ?
+          </h2>
+          <p>
+            React မှာ UI ဆွဲတာအပြင် အခြားအလုပ်တွေ (ဥပမာ- Data သွားယူတာ၊
+            ခေါင်းစဉ်ပြောင်းတာ) ကို
+            <span class="text-indigo-400 font-bold">Side Effects</span> လို့
+            ခေါ်ပါတယ်။ `useEffect` က အဲ့ဒီအလုပ်တွေကို ဘယ်အချိန်မှာ လုပ်ရမလဲဆိုတာ
+            ဆုံးဖြတ်ပေးပါတယ်။
+          </p>
+
+          <h2 class="text-2xl font-bold text-white mt-10">
+            ၂။ Dependency Array (အရေးကြီးဆုံး အစိတ်အပိုင်း)
+          </h2>
+          <p>
+            useEffect ရဲ့ ဒုတိယ parameter မှာပါတဲ့ `[]` ကို Dependency Array
+            လို့ ခေါ်ပါတယ်။
+          </p>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li class="p-4 bg-gray-900 rounded-xl border border-gray-800">
+              <span class="text-white font-bold">useEffect(fn, []):</span>
+              Component စတက်လာတဲ့ (Mount) အချိန်မှာ
+              <span class="text-indigo-400 underline">တစ်ကြိမ်တည်း</span> ပဲ
+              အလုပ်လုပ်မယ်။ (API ခေါ်ဖို့ အကောင်းဆုံးပဲ)။
+            </li>
+            <li class="p-4 bg-gray-900 rounded-xl border border-gray-800">
+              <span class="text-white font-bold">useEffect(fn, [count]):</span>
+              `count` ဆိုတဲ့ state ပြောင်းတိုင်း ပြန်ပြန်ပြီး အလုပ်လုပ်မယ်။
+            </li>
+          </ul>
+
+          <div
+            class="bg-black p-6 rounded-2xl border border-gray-800 font-mono text-sm text-pink-400"
+          >
+            useEffect(() => { <br />
+            &nbsp;&nbsp;console.log("App စတင် ပွင့်လာပါပြီ"); <br />
+            }, []);
+          </div>
+        </div>
+      </section>
+
+      <div
+        class="flex justify-between items-center pt-10 border-t border-gray-800"
+      >
+        <div class="text-sm text-gray-500 italic italic">
+          useEffect မပါရင် API ခေါ်လို့ မရပါဘူး...
+        </div>
+      </div>
+      <!-- Note Taking Section -->
+      <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
+        <h3
+          class="text-xl font-bold mb-4 text-indigo-400 flex items-center gap-2"
+        >
+          <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+        </h3>
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-indigo-500 outline-none transition mb-4"
+          placeholder="သင်ခန်းစာထဲက အရေးကြီးတာတွေကို ဒီမှာ မှတ်ထားပါ..."
+        ></textarea>
+
+        <div class="flex justify-between items-center">
+          <p class="text-xs text-gray-500 italic">
+            မှတ်စုရေးဖို့ မမေ့နဲ့ဦးနော်...
+          </p>
+          <button
+            onclick="saveLessonNote()"
+            class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition"
+          >
+            မှတ်စုသိမ်းမည်
+          </button>
+        </div>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l1"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+            window.setupDynamicNav();
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

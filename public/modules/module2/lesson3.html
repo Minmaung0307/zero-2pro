@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2.3 - Rendering Lists</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="p-6 pt-24">
+    <nav
+      class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
+    >
+      <a href="lesson2.html" class="text-indigo-400 font-bold"
+        >← ယခင်သင်ခန်းစာ</a
+      >
+      <div class="text-sm text-indigo-300">Module 2 • Lesson 2.3</div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto space-y-12">
+      <section>
+        <h1 class="text-4xl font-extrabold mb-6">
+          ဒေတာများကို ပတ်ပြသခြင်း (Lists & Keys) 📜
+        </h1>
+        <div class="glass-card p-8 rounded-3xl leading-relaxed space-y-6">
+          <p>
+            သင့်ရဲ့ App မှာ သင်ခန်းစာစာရင်း (Lesson List) တွေ၊
+            ကျောင်းသားစာရင်းတွေကို တစ်ခုချင်းစီ HTML မှာ ထိုင်ရေးမနေပါနဲ့။
+            JavaScript ရဲ့
+            <span class="text-indigo-400 font-bold">.map()</span> ကို သုံးပြီး
+            အလိုအလျောက် ပတ်ထုတ်လို့ ရပါတယ်။
+          </p>
+
+          <h3 class="text-xl font-bold text-white italic">Mapping ဥပမာ:</h3>
+          <div
+            class="bg-gray-900 p-6 rounded-2xl font-mono text-sm leading-8 border border-gray-700"
+          >
+            const lessons = ["Setup", "JSX", "State"];<br /><br />
+            {lessons.map((lesson) => (<br />
+            &nbsp;&nbsp;&lt;li key={lesson}&gt;{lesson}&lt;/li&gt;<br />
+            ))}
+          </div>
+
+          <div class="bg-red-500/10 border border-red-500/20 p-6 rounded-2xl">
+            <h4 class="font-bold text-red-500 mb-2">ဘာလို့ Key လိုတာလဲ? 🔑</h4>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              React က ဘယ်အရာက အသစ်တိုးလာလဲ၊ ဘယ်အရာက ဖျက်လိုက်တာလဲဆိုတာကို သိဖို့
+              တစ်ခုချင်းစီမှာ
+              <span class="text-white">Unique Key</span> လိုအပ်ပါတယ်။ ဒါမှ
+              Website က အလုပ်လုပ်တာ ပိုမြန်မှာပါ။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-indigo-600/10 border border-indigo-500/30 p-10 rounded-3xl text-center"
+      >
+        <h2 class="text-3xl font-bold mb-6 italic underline">
+          🚀 Module 2 Capstone Project
+        </h2>
+        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+          အခု သင်ယူခဲ့သမျှ (State, Input, Mapping) ကို စုစည်းပြီး
+          <span class="text-white font-bold">"Student To-Do List"</span>
+          တစ်ခုကို တည်ဆောက်ပါ။ သင်ယူရမယ့် သင်ခန်းစာတွေကို ရိုက်ထည့်မယ်၊
+          ပြီးသွားရင် ဖျက်မယ် (သို့မဟုတ်) အမှတ်တိုးမယ်။ ဒါဟာ တကယ့် Web App
+          တစ်ခုရဲ့ အခြေခံပါပဲ။
+        </p>
+        <button
+          onclick="finishModule2()"
+          class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-indigo-500/20 transition-all"
+        >
+          Module 2 ပြီးဆုံးပြီ (XP +150)
+        </button>
+      </section>
+      <!-- Note Taking Section -->
+      <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
+        <h3
+          class="text-xl font-bold mb-4 text-indigo-400 flex items-center gap-2"
+        >
+          <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+        </h3>
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-indigo-500 outline-none transition mb-4"
+          placeholder="သင်ခန်းစာထဲက အရေးကြီးတာတွေကို ဒီမှာ မှတ်ထားပါ..."
+        ></textarea>
+
+        <div class="flex justify-between items-center">
+          <p class="text-xs text-gray-500 italic">
+            မှတ်စုရေးဖို့ မမေ့နဲ့ဦးနော်...
+          </p>
+          <button
+            onclick="saveLessonNote()"
+            class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition"
+          >
+            မှတ်စုသိမ်းမည်
+          </button>
+        </div>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l1"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+            window.setupDynamicNav();
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

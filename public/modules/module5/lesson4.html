@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 5 Challenge - Mind Reader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap');
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', 'Pyidaungsu', sans-serif; }
+        .code-box { background: #000; border: 1px solid #334155; padding: 20px; border-radius: 12px; font-family: monospace; position: relative; margin-bottom: 20px; }
+        .bug-label { position: absolute; top: -10px; right: 10px; background: #ef4444; color: white; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        summary { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="p-8 pt-20">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-10">
+            <a href="../../index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+            <h1 class="text-4xl font-extrabold mt-6 text-emerald-400 italic">🛠 Module 5: Mind Reader Arena</h1>
+            <p class="text-gray-400 mt-2 italic">"Context API နဲ့ Global State Management ရဲ့ ရှုပ်ထွေးတဲ့ အမှားတွေကို ရှာဖွေပြီး App ရဲ့ ဦးနှောက်ကို စနစ်တကျ ထိန်းချုပ်ပါ။"</p>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 1: The Missing Provider Component</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက Context ကို သုံးချင်လို့ Component တွေကို ပတ်ပေးထားပေမယ့် Data တွေက Dashboard ဆီ မရောက်ပါဘူး။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    // App.jsx <br>
+                    &lt;UserContext&gt; // ❌ <br>
+                    &nbsp;&nbsp;&lt;Dashboard /&gt; <br>
+                    &lt;/UserContext&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Context Object ကို တိုက်ရိုက် component အဖြစ် သုံးလို့မရပါဘူး။ Data ဖြန့်ဝေပေးမယ့် <strong>.Provider</strong> component ကို သုံးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;UserContext.Provider&gt; ... &lt;/UserContext.Provider&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 2: The Value Prop Error</h3>
+            <p class="text-gray-400 text-sm mb-4">"Provider ကို သုံးထားပေမယ့် Child component ထဲမှာ useContext နဲ့ ခေါ်လိုက်ရင် undefined ပဲ ထွက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;ThemeContext.Provider&gt; // ❌ <br>
+                    &nbsp;&nbsp;&lt;App /&gt; <br>
+                    &lt;/ThemeContext.Provider&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Provider မှာ ဘယ် data တွေကို ဖြန့်ဝေပေးမလဲဆိုတဲ့ <strong>value</strong> prop မပါလို့ပါ။ အဲ့ဒီ value ထဲမှာမှ state တွေ သို့မဟုတ် data တွေကို ထည့်ပေးရပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: &lt;ThemeContext.Provider value={theme}&gt;</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 3: Violating Hook Rules</h3>
+            <p class="text-gray-400 text-sm mb-4">"User ရှိမှ data ကို ယူချင်တာပါ။ ဒါပေမယ့် React က 'Hooks can only be called at the top level' ဆိုတဲ့ Error ပြနေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    if (user) { <br>
+                    &nbsp;&nbsp;const data = useContext(UserContext); // ❌ <br>
+                    }
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React Hooks (useContext အပါအဝင်) တွေကို if-statement တွေ၊ loop တွေ၊ function ငယ်တွေထဲမှာ ရေးလို့မရပါဘူး။ Component ရဲ့ အပေါ်ဆုံး (Top level) မှာပဲ ရေးရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: useContext ကို အပေါ်ဆုံးမှာ ခေါ်ပြီးမှ ရလာတဲ့ data ကို if ထဲမှာ သုံးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 4: Import Mismatch</h3>
+            <p class="text-gray-400 text-sm mb-4">"Context ကို တခြားဖိုင်ကနေ လှမ်းယူပေမယ့် 'UserContext is not defined' လို့ Error တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    // ContextFile.js: export const UserContext = createContext(); <br><br>
+                    // Navbar.js: <br>
+                    import UserContext from './UserContext'; // ❌
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Context ကို **Named Export** (export const ...) အနေနဲ့ ထုတ်ထားရင် import လုပ်တဲ့အခါ <strong>တွန့်ကွင်း { }</strong> နဲ့ ယူရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: import { UserContext } from './UserContext';</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="glass-card p-6 rounded-3xl mb-8">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 5: Out of Context Range</h3>
+            <p class="text-gray-400 text-sm mb-4">"Header ထဲမှာ Context data ကို သုံးထားပါတယ်။ ဒါပေမယ့် Header ဟာ Provider ရဲ့ အပြင်ဘက်မှာ ရှိနေရင် ဘာဖြစ်မလဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    &lt;Header /&gt; // ❌ Context used here <br>
+                    &lt;UserContext.Provider value={data}&gt; <br>
+                    &nbsp;&nbsp;&lt;Dashboard /&gt; <br>
+                    &lt;/UserContext.Provider&gt;
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-indigo-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>useContext</code> ကို သုံးမယ့် component ဟာ သက်ဆိုင်ရာ <strong>Provider ရဲ့ အထဲမှာ (as a child)</strong> ရှိနေရပါမယ်။ အပြင်ဘက်ကနေ လှမ်းသုံးရင် context data တွေကို ရမှာမဟုတ်ပါဘူး။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: Header ကို Provider ရဲ့ အထဲကို ရွှေ့ပေးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- အမှတ်ပေးစနစ် -->
+        <div class="mt-20 p-10 glass-card border-2 border-dashed border-emerald-500 rounded-3xl text-center">
+            <h2 class="text-2xl font-bold mb-4">Brain Error (၅) ခုလုံးကို ပြင်နိုင်ပြီလား?</h2>
+            <p class="text-gray-400 mb-6 italic">"Global State ကို ပိုင်နိုင်သွားပြီဆိုရင် မင်းဟာ အဆင့်မြင့် App တွေကို တည်ဆောက်ဖို့ အဆင်သင့်ဖြစ်ပါပြီ။"</p>
+            <button onclick="addBonusXP(100)" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold shadow-xl shadow-indigo-500/20 transition transform hover:scale-105">
+                ဦးနှောက် ပြင်ပြီးပြီ! XP 100 ရယူမည်
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function addBonusXP(amt) {
+            let xp = parseInt(localStorage.getItem('user_xp')) || 0;
+            localStorage.setItem('user_xp', xp + amt);
+            alert("ဂုဏ်ယူပါတယ်! Mind Reader Skill +100 XP! 🧠✨");
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

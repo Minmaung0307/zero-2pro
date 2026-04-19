@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Dive into Tools | Learning Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="p-6 md:p-12 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ပါ -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm">စစ်ဆေးနေပါသည်...</p>
+        </div>
+    </div>
+
+    <!-- ✅ ၂။ Content တစ်ခုလုံးကို id="lesson-content" ဖြင့် ပတ်ပါ -->
+    <main id="lesson-content" style="display: none;">
+        <div class="max-w-4xl mx-auto">
+      <a
+        href="/index.html"
+        class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2 mb-10"
+      >
+        <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+      </a>
+
+      <h1 class="text-4xl font-extrabold mb-8 gradient-text">
+        Lesson 1: Detail - နက်နဲသော အခြေခံများကို နားလည်ခြင်း 🧠
+      </h1>
+
+      <!-- 🏠 ဥပမာပေးရှင်းလင်းချက် -->
+      <section class="glass-card p-8 rounded-3xl mb-12">
+        <h2
+          class="text-2xl font-bold mb-6 flex items-center gap-3 text-yellow-400"
+        >
+          <i class="fas fa-home"></i> သာဓက- အိမ်တစ်လုံး ဆောက်ကြစို့
+        </h2>
+        <p class="mb-8 leading-relaxed text-gray-300">
+          React Web App တစ်ခု တည်ဆောက်တာဟာ အဆင့်မြင့် အိမ်တစ်လုံး ဆောက်တာနဲ့
+          တူပါတယ်။ ဘာကြောင့် ဒီ Tool တွေကို အရင်လိုတာလဲဆိုရင်-
+        </p>
+
+        <div class="space-y-6">
+          <div class="concept-card p-6 rounded-r-2xl">
+            <h3 class="font-bold text-indigo-400 text-lg mb-2">
+              ၁။ Node.js (မြေနေရာနှင့် လျှပ်စစ်မီး)
+            </h3>
+            <p class="text-sm text-gray-400">
+              Node.js ဟာ အိမ်ဆောက်မယ့် "မြေနေရာ" နဲ့ "လျှပ်စစ်မီး" လိုမျိုး
+              အခြေခံ စနစ်ကြီးပါ။ သူ မရှိရင် ကျန်တဲ့ စက်ပစ္စည်းတွေ (Tools တွေ)
+              ဘာမှ ခိုင်းလို့ မရပါဘူး။
+            </p>
+          </div>
+
+          <div class="concept-card p-6 rounded-r-2xl">
+            <h3 class="font-bold text-emerald-400 text-lg mb-2">
+              ၂။ NPM (ပစ္စည်းပို့ဆောင်ရေး ဝန်ဆောင်မှု)
+            </h3>
+            <p class="text-sm text-gray-400">
+              NPM ဆိုတာ "အုတ်၊ သဲ၊ ကျောက်" လိုအပ်တဲ့ ပစ္စည်းတွေကို ဆိုင်ကနေ
+              မှာယူပေးမယ့် ပစ္စည်းပို့သမားပါ။ <strong>npm install</strong> ဆိုတာ
+              ဈေးဝယ်စာရင်းအတိုင်း ပစ္စည်းတွေ အိမ်ထဲ ရောက်အောင် မှာယူလိုက်တာ
+              ဖြစ်ပါတယ်။
+            </p>
+          </div>
+
+          <div class="concept-card p-6 rounded-r-2xl">
+            <h3 class="font-bold text-pink-400 text-lg mb-2">
+              ၃။ Vite (အမြန်ဆုံး အိမ်ဆောက်စက်ယန္တရား)
+            </h3>
+            <p class="text-sm text-gray-400">
+              အိမ်တစ်လုံးကို လက်နဲ့ တစ်တုံးချင်း စီမနေတော့ဘဲ ခေတ်မီစက်ကြီးတွေနဲ့
+              အမြန်ဆောက်တာကို <strong>Vite</strong> လို့ ခေါ်ပါတယ်။ သူက အိမ်ရဲ့
+              "ပုံစံခွက်" ကို ချက်ချင်း ထုတ်ပေးပါတယ်။
+            </p>
+          </div>
+
+          <div class="concept-card p-6 rounded-r-2xl">
+            <h3 class="font-bold text-blue-400 text-lg mb-2">
+              ၄။ React (အတွင်းပိုင်း ဒီဇိုင်းနှင့် အလှဆင်ခြင်း)
+            </h3>
+            <p class="text-sm text-gray-400">
+              အိမ်ကြီး ဖြစ်သွားပြီဆိုရင် အထဲမှာ မီးဖိုချောင်၊ ဧည့်ခန်း ဆိုပြီး
+              "အစိတ်အပိုင်း (Components)" လေးတွေနဲ့ အလှဆင်တာက
+              <strong>React</strong> ရဲ့ အလုပ်ပါ။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 💻 Command များ၏ အဓိပ္ပာယ် -->
+      <section class="space-y-10 mb-12">
+        <h2 class="text-3xl font-bold italic underline">
+          Command များ၏ အသေးစိတ် ရှင်းလင်းချက်
+        </h2>
+
+        <div class="space-y-6">
+          <!-- create vite -->
+          <div>
+            <h4 class="text-indigo-400 font-bold mb-2">
+              Q1: "create vite@latest" ဆိုတာ Vite ကို ထည့်သွင်းတာလား?
+            </h4>
+            <div
+              class="bg-black p-5 rounded-2xl border border-gray-800 text-sm leading-relaxed"
+            >
+              <p class="mb-2 italic text-gray-500">// မဟုတ်ပါဘူး။</p>
+              <p>
+                ဒါဟာ Vite ဆိုတဲ့ "အိမ်ပုံစံထုတ်တဲ့ စက်" ကို ခဏငှားသုံးပြီး
+                <strong>Project ပုံစံခွက် (Folder Structure)</strong> ကို
+                ဆောက်ခိုင်းလိုက်တာပါ။ သင့်စက်ထဲမှာ Vite ကို အပြီးအပိုင် Install
+                လုပ်လိုက်တာ မဟုတ်ဘဲ၊ လိုအပ်တဲ့ ဖိုင်တွဲတွေကို
+                ဖန်တီးခိုင်းလိုက်တာ ဖြစ်ပါတယ်။
+              </p>
+            </div>
+          </div>
+
+          <!-- template react -->
+          <div>
+            <h4 class="text-indigo-400 font-bold mb-2">
+              Q2: "--template react" ဆိုတာ React ကို ထည့်သွင်းတာလား?
+            </h4>
+            <div
+              class="bg-black p-5 rounded-2xl border border-gray-800 text-sm leading-relaxed"
+            >
+              <p class="mb-2 italic text-gray-500">
+                // ဒါက ရွေးချယ်မှု (Choice) တစ်ခုပါ။
+              </p>
+              <p>
+                Vite ဟာ Vue, Svelte စတဲ့ တခြားပုံစံတွေလည်း ဆောက်ပေးနိုင်ပါတယ်။
+                "--template react" လို့ ပြောလိုက်တာဟာ
+                <strong
+                  >"ငါဆောက်မယ့် အိမ်ပုံစံကို React နည်းပညာနဲ့ပဲ
+                  ဆောက်ပေးပါ"</strong
+                >
+                လို့ လမ်းညွှန်ချက် ပေးလိုက်တာပါ။
+              </p>
+            </div>
+          </div>
+
+          <!-- npm install -->
+          <div>
+            <h4 class="text-indigo-400 font-bold mb-2">
+              Q3: "npm install" ဆိုတာ Node ကို ထည့်သွင်းလိုက်တာလား?
+            </h4>
+            <div
+              class="bg-black p-5 rounded-2xl border border-gray-800 text-sm leading-relaxed text-red-300"
+            >
+              <p class="mb-2 italic text-gray-500">
+                // လုံးဝ မဟုတ်ပါဘူး။ အရေးကြီးပါတယ်။
+              </p>
+              <p class="text-white">
+                "npm install" ကို ရိုက်ဖို့အတွက် သင့်စက်ထဲမှာ
+                <strong>Node.js ရှိနှင့်ပြီးသား ဖြစ်ရပါမယ်။</strong>
+              </p>
+              <p class="mt-2 text-gray-400">
+                သူ့ရဲ့ အလုပ်က `package.json` (ဈေးဝယ်စာရင်း) ထဲမှာ ပါတဲ့ React
+                Library ဖိုင်တွေကို အင်တာနက်ပေါ်ကနေ ဆွဲချပြီး သင့်ရဲ့
+                `node_modules` folder ထဲကို ထည့်ပေးလိုက်တာ ဖြစ်ပါတယ်။
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🚀 အကျဉ်းချုပ် -->
+      <section
+        class="p-8 bg-indigo-600/20 border border-indigo-500/30 rounded-3xl text-center"
+      >
+        <h2 class="text-2xl font-bold mb-4">
+          ဘာ့ကြောင့် အရင်ဆုံး ထည့်သွင်းရတာလဲ?
+        </h2>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          အုတ်၊ သဲ၊ ကျောက် မရှိဘဲ အိမ်ဆောက်လို့ မရသလိုပဲ၊
+          <strong>Node, Vite နဲ့ React</strong> မရှိဘဲနဲ့ ခေတ်မီ Web App
+          တစ်ခုကို မတည်ဆောက်နိုင်လို့ပါ။ ဒါတွေဟာ Developer တစ်ယောက်အတွက်
+          "လက်နက်ကိရိယာတွေ" ပါပဲ။ ဒါတွေ အဆင်သင့်ဖြစ်ပြီဆိုမှ ကျွန်တော်တို့
+          ကုဒ်စရေးလို့ ရမှာ ဖြစ်ပါတယ်။
+        </p>
+      </section>
+    </div>
+
+    <!-- ✅ ၃။ မှတ်စုရေးသည့် နေရာ (TextArea) ထည့်ပါ -->
+          <section class="glass-card p-8 rounded-3xl border border-indigo-500/20 mb-12">
+              <h3 class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2">
+                  <i class="fas fa-sticky-note"></i> Deep Dive Note
+              </h3>
+              <textarea id="lessonNote" class="w-full h-40 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white" placeholder="မှတ်သားစရာများကို ဒီမှာ ရေးပါ..."></textarea>
+              <button onclick="saveLessonNote()" class="mt-4 bg-indigo-600 px-6 py-2 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+          </section>
+
+          <!-- Navigation -->
+          <div id="dynamic-nav" class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10">
+              <!-- JS က ဖြည့်ပေးမည် -->
+          </div>
+        </div>
+    </main>
+
+    <!-- FIREBASE LOGIC -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l1_d"; // ✨ Detail Page ဖြစ်လို့ ID ခွဲပေးထားပါသည်
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          
+          // အရေးကြီး - Element ရှိမှ Error မတက်အောင် စစ်ဆေးပြီး ပွင့်စေခြင်း
+          const loader = document.getElementById("lesson-loader");
+          const content = document.getElementById("lesson-content");
+          const noteBox = document.getElementById("lessonNote");
+
+          if (loader) loader.style.display = "none";
+          if (content) content.style.display = "block";
+
+          // မှတ်စု ပြန်ဖတ်ခြင်း
+          if (noteBox) {
+              noteBox.value = localStorage.getItem("note_" + LESSON_ID) || "";
+          }
+          
+          // ✨ Navigation ခလုတ် ဖော်ပြခြင်း
+          if (typeof window.setupDynamicNav === 'function') {
+              window.setupDynamicNav();
+          }
+
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global)
+      window.saveLessonNote = async () => {
+        const noteBox = document.getElementById("lessonNote");
+        if(!noteBox) return;
+
+        const noteText = noteBox.value;
+        const user = auth.currentUser;
+
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        if (user) {
+          try {
+            await setDoc(doc(db, "notes", `${user.uid}_${LESSON_ID}`), {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              }, { merge: true });
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

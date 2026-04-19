@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1.1 - The Foundation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="p-6 pt-24 bg-[#0f172a]">
+    <!-- ၁။ Loading Screen -->
+    <div
+      id="lesson-loader"
+      class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center"
+    >
+      <div class="text-center">
+        <div
+          class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"
+        ></div>
+        <p class="text-gray-400 text-sm italic font-pyidaungsu">
+          စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...
+        </p>
+      </div>
+    </div>
+
+    <nav
+      class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
+    >
+      <!-- absolute path /index.html ကို သုံးပါ -->
+      <a
+        href="/index.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← Dashboard</a
+      >
+      <div
+        class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs"
+      >
+        Module 1 • Lesson 1.1
+      </div>
+    </nav>
+
+    <!-- ၂။ သင်ခန်းစာ Content (စစချင်း ဖျောက်ထားရန် style="display: none;" ထည့်ပါ) -->
+    <main
+      id="lesson-content"
+      style="display: none"
+      class="max-w-4xl mx-auto space-y-12"
+    >
+      <section>
+        <h1 class="text-4xl font-extrabold mb-6">
+          ဘာကြောင့် React ကို သင်ရမှာလဲ? 💡
+        </h1>
+        <div class="glass-card p-8 rounded-3xl leading-relaxed space-y-6">
+          <p>
+            အရင်က Website တွေရေးရင် HTML ဖိုင်ကြီးတစ်ခုထဲမှာ အရှည်ကြီးရေးရပါတယ်။
+            တစ်ခုခုပြင်ချင်ရင် လိုက်ရှာရတာ ခက်ပါတယ်။
+            <span class="highlight">React</span> ကတော့ Website တစ်ခုကို Lego
+            တုံးလေးတွေလို အပိုင်းပိုင်းခွဲပစ်လိုက်ပါတယ်။
+          </p>
+
+          <h3 class="text-xl font-bold text-indigo-400">
+            React ရဲ့ ထူးခြားချက် (၃) ချက်:
+          </h3>
+          <ul class="list-disc list-inside space-y-3 text-gray-400">
+            <li>
+              <span class="text-white font-bold">Components:</span> Website ကို
+              Header, Footer, Sidebar ဆိုပြီး ခွဲရေးလို့ရတယ်။
+            </li>
+            <li>
+              <span class="text-white font-bold">Speed:</span> Virtual DOM
+              ကြောင့် အရမ်းမြန်သွားတယ်။
+            </li>
+            <li>
+              <span class="text-white font-bold">Job Market:</span> ကမ္ဘာပေါ်မှာ
+              အသုံးအများဆုံး Framework ဖြစ်တယ်။
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Tools များ ပြင်ဆင်ခြင်း</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="glass-card p-6 rounded-2xl">
+            <h4 class="font-bold text-indigo-400 mb-2">Node.js ဆိုတာဘာလဲ?</h4>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              JavaScript ကို Browser အပြင်ဘက်မှာ အလုပ်လုပ်ခိုင်းတဲ့ စနစ်ပါ။
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <h4 class="font-bold text-indigo-400 mb-2">Vite ဆိုတာဘာလဲ?</h4>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Project တစ်ခုကို အမြန်ဆုံး Setup လုပ်ပေးတဲ့ Tool ပါ။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-black p-8 rounded-3xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-4 text-green-400 italic">
+          လက်တွေ့ လုပ်ဆောင်ချက် (Exercise)
+        </h3>
+        <p class="mb-6 text-gray-300">
+          Terminal ကို ဖွင့်ပြီး အောက်ပါ စာသားများကို တစ်ကြောင်းချင်းစီ
+          ရိုက်ထည့်ကြည့်ပါ။
+        </p>
+        <div class="space-y-4 font-mono text-sm">
+          <div
+            class="p-4 bg-gray-900 rounded-xl border border-gray-700 text-white"
+          >
+            npm create vite@latest my-react-app -- --template react
+          </div>
+        </div>
+      </section>
+
+      <!-- Note Taking Section -->
+      <section
+        class="mt-12 glass-card p-8 rounded-3xl border border-indigo-500/20"
+      >
+        <h3
+          class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2"
+        >
+          <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+        </h3>
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none transition mb-4 text-white"
+          placeholder="မှတ်သားစရာများကို ဒီမှာ ရေးပါ..."
+        ></textarea>
+        <button
+          onclick="saveLessonNote()"
+          class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition text-white"
+        >
+          မှတ်စုသိမ်းမည်
+        </button>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l1"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+            window.setupDynamicNav();
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

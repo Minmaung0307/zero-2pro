@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1.2 - JSX & Components</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="p-6 pt-24 bg-[#0f172a]">
+    <!-- ၁။ Loading Screen -->
+    <div
+      id="lesson-loader"
+      class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center"
+    >
+      <div class="text-center">
+        <div
+          class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"
+        ></div>
+        <p class="text-gray-400 text-sm italic font-pyidaungsu">
+          စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...
+        </p>
+      </div>
+    </div>
+    <nav
+      class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
+    >
+      <a
+        href="/lesson1.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← ယခင်သင်ခန်းစာ</a
+      >
+      <div class="text-sm text-indigo-300">Module 1 • Lesson 1.2</div>
+    </nav>
+
+    <main
+      id="lesson-content"
+      style="display: none"
+      class="max-w-4xl mx-auto space-y-12"
+    >
+      <section>
+        <h1 class="text-4xl font-extrabold mb-6 italic">
+          Components: Website ရဲ့ အစိတ်အပိုင်းများ
+        </h1>
+        <div class="glass-card p-8 rounded-3xl leading-relaxed space-y-6">
+          <p>
+            React မှာ Website တစ်ခုလုံးကို
+            <span class="text-indigo-400 font-bold underline"
+              >Function လေးတွေ</span
+            >
+            နဲ့ တည်ဆောက်ပါတယ်။ ဥပမာ - Facebook မှာဆိုရင် "Post" တစ်ခုဟာ
+            Component တစ်ခုပါ။ "Comment Box" ဟာ နောက်ထပ် Component တစ်ခုပါ။
+          </p>
+
+          <h3 class="text-xl font-bold text-white mt-8">
+            Component တစ်ခုရဲ့ ပုံစံ:
+          </h3>
+          <div class="code-block">
+            function Welcome() { <br />
+            &nbsp;&nbsp;return &lt;h1&gt;မင်္ဂလာပါ React ကမ္ဘာမှ
+            ကြိုဆိုပါတယ်။&lt;/h1&gt;; <br />
+            }
+          </div>
+          <p class="text-sm text-gray-400 italic">
+            မှတ်ချက်: Component နာမည်ကို အမြဲတမ်း
+            <span class="text-white">အက္ခရာအကြီး (Capital Letter)</span> နဲ့
+            စရပါမယ်။
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">JSX ဆိုတာ ဘာလဲ?</h2>
+        <div class="glass-card p-8 rounded-3xl space-y-4">
+          <p>
+            JSX ဆိုတာ JavaScript ထဲမှာ HTML ရေးတဲ့ ပုံစံပါ။ HTML နဲ့
+            အရမ်းတူပေမယ့် အချို့အချက်တွေ ကွဲပြားပါတယ်။
+          </p>
+          <div
+            class="bg-indigo-900/20 p-6 rounded-2xl border border-indigo-500/20"
+          >
+            <h4 class="font-bold text-indigo-400 mb-4 italic">
+              JSX ရဲ့ စည်းမျဉ်းများ:
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li class="flex items-start">
+                <i class="fas fa-arrow-right mt-1 mr-3 text-indigo-500"></i>
+                `class` လို့ မသုံးရဘဲ `className` လို့ သုံးရပါတယ်။
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-arrow-right mt-1 mr-3 text-indigo-500"></i> Tag
+                အားလုံးဟာ အပိတ်ပါရပါမယ် (ဥပမာ- `<img />`)။
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-arrow-right mt-1 mr-3 text-indigo-500"></i>
+                Return ပြန်တဲ့အခါ Element တစ်ခုတည်း (Parent တစ်ခုတည်း) ထဲမှာပဲ
+                အကုန်ထည့်ရပါတယ်။
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Note Taking Section -->
+      <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-indigo-400 flex items-center gap-2">
+            <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+          </h3>
+          <!-- အမှတ်ပြရန်နေရာ ထည့်ပေးလိုက်ပါသည် -->
+          <div
+            class="text-xs bg-purple-900/30 px-3 py-1 rounded-full border border-purple-500/50"
+          >
+            Your XP:
+            <span id="xp-display" class="font-bold text-purple-400">0</span>
+          </div>
+        </div>
+
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-indigo-500 outline-none transition mb-4 text-white"
+          placeholder="သင်ခန်းစာထဲက အရေးကြီးတာတွေကို ဒီမှာ မှတ်ထားပါ..."
+        ></textarea>
+
+        <div class="flex justify-between items-center">
+          <p class="text-xs text-gray-500 italic">
+            မှတ်စုရေးဖို့ မမေ့နဲ့ဦးနော်...
+          </p>
+          <!-- onclick ကို saveLessonNote() လို့ပဲ ထားပါ -->
+          <button
+            onclick="saveLessonNote()"
+            class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition text-white"
+          >
+            မှတ်စုသိမ်းမည်
+          </button>
+        </div>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l2"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

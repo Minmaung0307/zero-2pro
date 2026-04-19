@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 6 Challenge - Cloud Repair Arena</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu&family=Inter:wght@400;600;700&display=swap');
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', 'Pyidaungsu', sans-serif; }
+        .code-box { background: #000; border: 1px solid #334155; padding: 20px; border-radius: 12px; font-family: monospace; position: relative; margin-bottom: 20px; }
+        .bug-label { position: absolute; top: -10px; right: 10px; background: #f97316; color: white; padding: 2px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        summary { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="p-8 pt-20">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-10">
+            <a href="../../index.html" class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+            </a>
+            <h1 class="text-4xl font-extrabold mt-6 text-orange-500 italic">🛠 Module 6: Cloud Repair Arena</h1>
+            <p class="text-gray-400 mt-2 italic">"Firebase Database နှင့် Deployment ဆိုင်ရာ အဆင့်မြင့်အမှားများကို ရှာဖွေပြီး သင်ယူခဲ့သမျှကို အဆုံးသတ်ပါ။"</p>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="glass-card p-6 rounded-3xl mb-8 border-orange-500/20">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 1: The Async Promise Trap</h3>
+            <p class="text-gray-400 text-sm mb-4">"ကျောင်းသားက data သိမ်းလိုက်ပေမယ့် console မှာ ရလာတဲ့ result က undefined ဖြစ်နေပြီး data က database ထဲ မရောက်သေးခင် log ထွက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    const saveData = () => { <br>
+                    &nbsp;&nbsp;const result = db.collection('users').add(userData); // ❌ <br>
+                    &nbsp;&nbsp;console.log("Saved!", result); <br>
+                    };
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-orange-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Database အလုပ်တွေဟာ အချိန်ယူရတဲ့ (Asynchronous) အလုပ်တွေ ဖြစ်ပါတယ်။ ဒါကြောင့် <strong>await</strong> မသုံးရင် အလုပ်မပြီးခင် နောက်တစ်ကြောင်းကို ကျော်သွားတတ်ပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: const saveData = async () => { const result = await db.collection... }</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 2 -->
+        <div class="glass-card p-6 rounded-3xl mb-8 border-orange-500/20">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 2: Security Leak (API Keys)</h3>
+            <p class="text-gray-400 text-sm mb-4">"Firebase Config ထဲမှာ API Key တွေကို ဒီအတိုင်း ရေးထားတာဟာ ဘာကြောင့် အန္တရာယ်ရှိတာလဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    apiKey: "AIzaSyB-Your-Very-Secret-Key-123" // ❌ Hardcoded
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-orange-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    API Key တွေကို ကုဒ်ထဲမှာ တိုက်ရိုက်ရေးပြီး GitHub တင်လိုက်ရင် လူတိုင်း မြင်သွားနိုင်ပါတယ်။ ဒါကြောင့် <strong>Environment Variables (.env)</strong> ဖိုင်ထဲမှာ သိမ်းရပါမယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: apiKey: import.meta.env.VITE_FIREBASE_API_KEY</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 3 -->
+        <div class="glass-card p-6 rounded-3xl mb-8 border-orange-500/20">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 3: Auth Initialization Error</h3>
+            <p class="text-gray-400 text-sm mb-4">"Auth စနစ်ကို သုံးချင်လို့ ခေါ်လိုက်ပေမယ့် 'firebaseApp' မရှိဘူးဆိုပြီး Error တက်နေပါတယ်။"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    const auth = getAuth(); // ❌
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-orange-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    <code>getAuth()</code> ကို သုံးဖို့အတွက် အရင်ဆုံး initialize လုပ်ထားတဲ့ <strong>app</strong> instance ကို ပေးပို့ဖို့ လိုအပ်ပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: const auth = getAuth(app);</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 4 -->
+        <div class="glass-card p-6 rounded-3xl mb-8 border-orange-500/20">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 4: Race Condition (The Ghost Data)</h3>
+            <p class="text-gray-400 text-sm mb-4">"Data သိမ်းလိုက်ပေမယ့် ချက်ချင်း Page Refresh လုပ်ရင် Data အသစ်က မပေါ်လာပါဘူး။ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    db.collection('users').add(user); <br>
+                    window.location.reload(); // ❌
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-orange-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    Database ထဲမှာ Data သိမ်းတဲ့အလုပ် မပြီးခင်မှာပဲ Refresh အရင် ဖြစ်သွားလို့ပါ။ ဒါကို <strong>Race Condition</strong> လို့ ခေါ်ပါတယ်။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: await သုံးပြီးမှသာ နောက်တစ်ဆင့် (Refresh/Redirect) ကို သွားရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- Challenge 5 -->
+        <div class="glass-card p-6 rounded-3xl mb-8 border-orange-500/20">
+            <h3 class="text-xl font-bold mb-4 text-white">Challenge 5: The Vercel 404 Refresh Bug</h3>
+            <p class="text-gray-400 text-sm mb-4">"Website ကို Vercel တင်လိုက်ပါတယ်။ Dashboard Page ရောက်နေတုန်း Refresh နှိပ်လိုက်ရင် 404 Not Found ဖြစ်သွားပါတယ်။ ဘာကြောင့်လဲ?"</p>
+            <div class="code-box">
+                <span class="bug-label">BUGGY CODE</span>
+                <code class="text-pink-400">
+                    // local မှာ အလုပ်လုပ်ပေမယ့် deploy လုပ်ရင် Error တက်သည် <br>
+                    // Solution missing: vercel.json
+                </code>
+            </div>
+            <details class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                <summary class="text-sm font-bold text-orange-400">အဖြေမှန်ကို ကြည့်မည်</summary>
+                <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                    React Router ဟာ Client-side routing ဖြစ်ပါတယ်။ Vercel က Refresh လုပ်တဲ့အခါ server ဆီမှာ အဲ့ဒီဖိုင်ကို တိုက်ရိုက်သွားရှာလို့ မတွေ့တာပါ။ <br>
+                    <span class="text-green-400 font-bold">✅ ပြင်ဆင်ရန်: <code>vercel.json</code> ဖိုင်ဆောက်ပြီး request အားလုံးကို <code>index.html</code> ဆီ rewrite လုပ်ပေးရပါမယ်။</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- အမှတ်ပေးစနစ် -->
+        <div class="mt-20 p-10 glass-card border-2 border-dashed border-orange-500 rounded-3xl text-center">
+            <h2 class="text-3xl font-bold mb-4">သင်ဟာ Real-time Master ဖြစ်သွားပါပြီ!</h2>
+            <p class="text-gray-400 mb-6 italic">"Cloud အမှားတွေကို ပြင်နိုင်ပြီဆိုရင် သင်ဟာ လုပ်ငန်းခွင်ဝင်ဖို့ အသင့်ဖြစ်နေတဲ့ Developer တစ်ယောက်ပါ။"</p>
+            <button onclick="addGraduationXP(200)" class="bg-orange-600 hover:bg-orange-700 px-10 py-4 rounded-2xl font-bold shadow-xl shadow-orange-500/20 transition transform hover:scale-105">
+                အကုန်ပြင်ပြီးပြီ! Final XP 200 ရယူမည်
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function addGraduationXP(amt) {
+            let xp = parseInt(localStorage.getItem('user_xp')) || 0;
+            localStorage.setItem('user_xp', xp + amt);
+            localStorage.setItem('module6_complete', 'true');
+            alert("ဂုဏ်ယူပါတယ်! သင်ဟာ 'The Learning Universe' ရဲ့ React Course တစ်ခုလုံးကို အောင်မြင်စွာ ပြီးဆုံးသွားပါပြီ။ 🎓🚀");
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

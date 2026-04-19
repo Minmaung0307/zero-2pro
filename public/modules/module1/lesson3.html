@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1.3 - Props & Data Flow</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="p-6 pt-24 bg-[#0f172a]">
+    <!-- ၁။ Loading Screen -->
+    <div
+      id="lesson-loader"
+      class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center"
+    >
+      <div class="text-center">
+        <div
+          class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"
+        ></div>
+        <p class="text-gray-400 text-sm italic font-pyidaungsu">
+          စစ်ဆေးနေပါသည်... ခဏစောင့်ပါ...
+        </p>
+      </div>
+    </div>
+    <nav
+      class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
+    >
+      <a
+        href="/lesson2.html"
+        class="text-indigo-400 font-bold hover:text-white transition"
+        >← ယခင်သင်ခန်းစာ</a
+      >
+      <div class="text-sm text-indigo-300">Module 1 • Lesson 1.3</div>
+    </nav>
+
+    <main
+      id="lesson-content"
+      style="display: none"
+      class="max-w-4xl mx-auto space-y-12"
+    >
+      <section>
+        <h1 class="text-4xl font-extrabold mb-6">
+          Props: Component တွေဆီ ဒေတာပို့နည်း 📦
+        </h1>
+        <div class="glass-card p-8 rounded-3xl leading-relaxed space-y-6">
+          <p>
+            Component တစ်ခုကို ရေးထားပြီး ပုံစံတူ ဒေတာမတူအောင် ဖန်တီးချင်ရင်
+            <span class="text-indigo-400 font-bold">Props</span> ကို သုံးရပါတယ်။
+            ဥပမာ - ကျောင်းသားကတ် (Student Card) ဆိုတဲ့ Component တစ်ခုကို
+            ရေးထားမယ်။ အဲ့ဒီထဲကို နာမည်တွေ၊ အတန်းတွေကို လှမ်းပို့ပေးတာပါ။
+          </p>
+
+          <h3 class="text-xl font-bold text-white italic">ဥပမာ:</h3>
+          <div
+            class="bg-gray-900 p-6 rounded-2xl border border-gray-700 font-mono text-sm leading-8"
+          >
+            <span class="text-gray-500">// Parent Component (App.jsx)</span
+            ><br />
+            &lt;StudentCard name="မောင်မောင်" class="Grade 10" /&gt;<br />
+            &lt;StudentCard name="မမောင်" class="Grade 11" /&gt;<br /><br />
+            <span class="text-gray-500"
+              >// Child Component (StudentCard.jsx)</span
+            ><br />
+            function StudentCard(props) {<br />
+            &nbsp;&nbsp;return &lt;h1&gt;နာမည်: {props.name}&lt;/h1&gt;;<br />
+            }
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-indigo-600/10 border border-indigo-500/30 p-10 rounded-3xl text-center"
+      >
+        <h2 class="text-3xl font-bold mb-6">🎓 Module 1 Final Project</h2>
+        <p class="text-gray-300 mb-8">
+          ဒီ Module မှာ သင်ယူခဲ့တဲ့ Component နဲ့ Props ကို သုံးပြီး
+          <span class="text-white font-bold">Student Portfolio Portal</span>
+          တစ်ခုကို React နဲ့ တည်ဆောက်ကြည့်ပါ။ ကျောင်းသား ၃ ယောက်ရဲ့ Card လေးတွေ
+          ပေါ်လာအောင် လုပ်ဆောင်ရမှာ ဖြစ်ပါတယ်။
+        </p>
+        <button
+          onclick="finishModule()"
+          class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-indigo-500/20"
+        >
+          Module 1 ကို အောင်မြင်စွာ ပြီးဆုံးကြောင်း အတည်ပြုမည်
+        </button>
+      </section>
+
+      <footer class="py-10 text-center text-gray-500 text-xs italic">
+        "Foundation strong ဖြစ်ရင် ဘယ်လို Project မျိုးမဆို ဆောက်လို့ရပြီ။"
+      </footer>
+
+      <!-- Note Taking Section -->
+      <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
+        <h3
+          class="text-xl font-bold mb-4 text-indigo-400 flex items-center gap-2"
+        >
+          <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+        </h3>
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-indigo-500 outline-none transition mb-4"
+          placeholder="သင်ခန်းစာထဲက အရေးကြီးတာတွေကို ဒီမှာ မှတ်ထားပါ..."
+        ></textarea>
+
+        <div class="flex justify-between items-center">
+          <p class="text-xs text-gray-500 italic">
+            မှတ်စုရေးဖို့ မမေ့နဲ့ဦးနော်...
+          </p>
+          <button
+            onclick="saveLessonNote()"
+            class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition"
+          >
+            မှတ်စုသိမ်းမည်
+          </button>
+        </div>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l2"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

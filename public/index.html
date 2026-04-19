@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Learning Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="leading-relaxed">
+    <nav
+      class="fixed top-0 w-full z-50 glass border-b border-gray-800 px-6 py-4 flex justify-between items-center"
+    >
+      <div class="text-2xl font-bold gradient-text">
+        <i class="fas fa-rocket"></i> LU.
+      </div>
+      <div class="flex items-center gap-4">
+        <div
+          class="text-xs bg-purple-900/50 px-3 py-1.5 rounded-full border border-purple-500 font-bold"
+        >
+          <span id="xp-count">0</span> XP
+        </div>
+        <div id="navAuthBtn">
+          <button
+            onclick="toggleModal()"
+            class="bg-purple-600 px-4 py-2 rounded-lg text-sm font-bold"
+          >
+            စာရင်းသွင်းရန်
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-40 pb-20 text-center px-6">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+        Master <span class="gradient-text">React JS</span>
+      </h1>
+      <p class="text-gray-400 max-w-2xl mx-auto mb-10">
+        Module (၆) ခုဖြင့် အခြေခံမှသည် Professional အဆင့်ထိ စနစ်တကျ လေ့လာပါ။
+      </p>
+      <button
+        id="heroBtn"
+        onclick="handleStartClick()"
+        class="bg-purple-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg"
+      >
+        သင်ခန်းစာစတင်မည်
+      </button>
+    </header>
+
+    <!-- Roadmap Container -->
+    <section
+      id="roadmap-container"
+      class="lock-overlay max-w-7xl mx-auto px-6 py-20"
+    >
+      <!-- Lock Message -->
+      <div id="lock-msg" class="lock-message hidden">
+        <div
+          class="glass p-10 rounded-3xl border border-purple-500/50 shadow-2xl"
+        >
+          <i class="fas fa-lock text-5xl text-purple-500 mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">
+            သင်ခန်းစာများကို Lock ချထားပါသည်
+          </h3>
+          <p class="text-sm text-gray-400 mb-8">
+            လေ့လာရန် အရင်ဆုံး စာရင်းသွင်းပေးပါ။
+          </p>
+          <button
+            onclick="toggleModal()"
+            class="bg-purple-600 px-8 py-3 rounded-xl font-bold w-full"
+          >
+            စာရင်းသွင်းရန်
+          </button>
+        </div>
+      </div>
+
+      <div id="roadmap-content" class="content-locked">
+        <h2 class="text-3xl font-bold mb-12 text-center italic text-indigo-400">
+          Course Roadmap
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Module 1 -->
+
+          <div
+            class="roadmap-card glass p-8 rounded-3xl border border-gray-800"
+          >
+            <div class="text-purple-500 mb-4 text-4xl font-bold">၀၁</div>
+            <h3 class="text-xl font-bold mb-3">The Awakening</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              Setup, JSX နှင့် Components အခြေခံများ။
+            </p>
+            <div class="space-y-3 mb-6">
+              <a
+                href="/modules/module1/lesson1.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၁.၁ - Setup &
+                Environment</a
+              >
+              <a
+                href="/modules/module1/lesson1_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၁.၁ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module1/lesson2.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၁.၂ - JSX &
+                Components</a
+              >
+              <a
+                href="/modules/module1/lesson2_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၁.၂ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module1/lesson3.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၁.၃ - Props & Data
+                Flow</a
+              >
+              <a
+                href="/modules/module1/lesson3_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၁.၃ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="modules/module1/lesson4.html"
+                class="flex items-center text-xs text-red-400 hover:text-white transition font-bold"
+                ><i class="fas fa-bug mr-2"></i> ၁.၄ - Challenge: Bug Hunter
+                🛠</a
+              >
+            </div>
+            <a
+              href="/modules/module1/lesson1.html"
+              class="block text-center bg-indigo-600 hover:bg-indigo-700 py-2 rounded-xl text-xs font-bold transition"
+              >ဆက်လက်သင်ယူမည်</a
+            >
+          </div>
+
+          <!-- Module 2 -->
+          <div
+            class="roadmap-card glass p-8 rounded-3xl border border-gray-800"
+          >
+            <div class="text-indigo-500 mb-4 text-4xl font-bold">၀၂</div>
+            <h3 class="text-xl font-bold mb-3">State & Logic</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              App ကို useState Hook ဖြင့် အသက်သွင်းခြင်း။
+            </p>
+            <div class="space-y-3 mb-6">
+              <a
+                href="/modules/module2/lesson1.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၂.၁ - useState Hook</a
+              >
+              <a
+                href="/modules/module2/lesson1_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၂.၁ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module2/lesson2.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၂.၂ - Events &
+                Inputs</a
+              >
+              <a
+                href="/modules/module2/lesson2_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၂.၂ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module2/lesson3.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၂.၃ - Lists & Keys</a
+              >
+              <a
+                href="/modules/module2/lesson3_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၂.၃ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="modules/module2/lesson4.html"
+                class="flex items-center text-xs text-red-400 hover:text-white transition font-bold"
+                ><i class="fas fa-bug mr-2"></i> ၂.၄ - Challenge: Logic Fixer
+                🛠</a
+              >
+            </div>
+            <a
+              href="/modules/module2/lesson1.html"
+              class="block text-center bg-indigo-600 hover:bg-indigo-700 py-2 rounded-xl text-xs font-bold transition"
+              >စတင်သင်ယူမည်</a
+            >
+          </div>
+
+          <!-- Module 3 -->
+          <div
+            class="roadmap-card glass p-8 rounded-3xl border border-gray-800"
+          >
+            <div class="text-pink-500 mb-4 text-4xl font-bold">၀၃</div>
+            <h3 class="text-xl font-bold mb-3">React Router</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              Page များစွာပါဝင်သော Multi-page App တည်ဆောက်ခြင်း။
+            </p>
+            <div class="space-y-3 mb-6">
+              <a
+                href="/modules/module3/lesson1.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၃.၁ - Routing Basics</a
+              >
+              <a
+                href="/modules/module3/lesson1_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၃.၁ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module3/lesson2.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၃.၂ - Dynamic Routes</a
+              >
+              <a
+                href="/modules/module3/lesson2_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၃.၂ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module3/lesson3.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၃.၃ - useNavigate &
+                Security</a
+              >
+              <a
+                href="/modules/module3/lesson3_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၃.၃ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="modules/module3/lesson4.html"
+                class="flex items-center text-xs text-red-400 hover:text-white transition font-bold"
+                ><i class="fas fa-bug mr-2"></i> ၃.၄ - Challenge: Navigation
+                Fixer (Router) 🛠</a
+              >
+            </div>
+            <a
+              href="/modules/module3/lesson1.html"
+              class="block text-center bg-indigo-600 hover:bg-indigo-700 py-2 rounded-xl text-xs font-bold transition"
+              >စတင်သင်ယူမည်</a
+            >
+          </div>
+
+          <!-- Module 4 -->
+          <div
+            class="roadmap-card glass p-8 rounded-3xl border border-gray-800"
+          >
+            <div class="text-blue-500 mb-4 text-4xl font-bold">၀၄</div>
+            <h3 class="text-xl font-bold mb-3">Connectivity</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              useEffect နှင့် API Fetching (Live Data)။
+            </p>
+            <div class="space-y-3 mb-6">
+              <a
+                href="/modules/module4/lesson1.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၄.၁ - useEffect Hook</a
+              >
+              <a
+                href="/modules/module4/lesson1_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၄.၁ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module4/lesson2.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၄.၂ - Fetching API</a
+              >
+              <a
+                href="/modules/module4/lesson2_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၄.၂ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module4/lesson3.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၄.၃ - Loading &
+                Errors</a
+              >
+              <a
+                href="/modules/module4/lesson3_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၄.၃ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module4/lesson4.html"
+                class="flex items-center text-xs text-red-400 hover:text-white transition font-bold"
+                ><i class="fas fa-bug mr-2"></i> ၄.၄ - Challenge: Data Doctor
+                (API) 🛠</a
+              >
+            </div>
+            <a
+              href="/modules/module4/lesson1.html"
+              class="block text-center bg-indigo-600 hover:bg-indigo-700 py-2 rounded-xl text-xs font-bold transition"
+              >စတင်သင်ယူမည်</a
+            >
+          </div>
+
+          <!-- Module 5 -->
+          <div
+            class="roadmap-card glass p-8 rounded-3xl border border-gray-800"
+          >
+            <div class="text-emerald-500 mb-4 text-4xl font-bold">၀၅</div>
+            <h3 class="text-xl font-bold mb-3">The Brain</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              Context API နှင့် Global State Management။
+            </p>
+            <div class="space-y-3 mb-6">
+              <a
+                href="/modules/module5/lesson1.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၅.၁ - Context API
+                Intro</a
+              >
+              <a
+                href="/modules/module5/lesson1_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၅.၁ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module5/lesson2.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၅.၂ - Context Usage</a
+              >
+              <a
+                href="/modules/module5/lesson2_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၅.၂ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module5/lesson3.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၅.၃ - State Project</a
+              >
+              <a
+                href="/modules/module5/lesson3_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၅.၃ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="modules/module5/lesson4.html"
+                class="flex items-center text-xs text-red-400 hover:text-white transition font-bold"
+                ><i class="fas fa-bug mr-2"></i> ၅.၄ - Challenge: Mind Reader
+                (Context API) 🛠</a
+              >
+            </div>
+            <a
+              href="/modules/module5/lesson1.html"
+              class="block text-center bg-indigo-600 hover:bg-indigo-700 py-2 rounded-xl text-xs font-bold transition"
+              >စတင်သင်ယူမည်</a
+            >
+          </div>
+
+          <!-- Module 6 -->
+          <div
+            class="roadmap-card glass p-8 rounded-3xl border border-orange-500/30"
+          >
+            <div class="text-orange-500 mb-4 text-4xl font-bold">၀၆</div>
+            <h3 class="text-xl font-bold mb-3">Real-time Master</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              Firebase Database နှင့် Final Deployment။
+            </p>
+            <div class="space-y-3 mb-6">
+              <a
+                href="/modules/module6/lesson1.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၆.၁ - Firebase Login</a
+              >
+              <a
+                href="/modules/module6/lesson1_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၆.၁ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module6/lesson2.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၆.၂ - Firestore &
+                Chat</a
+              >
+              <a
+                href="/modules/module6/lesson2_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၆.၂ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="/modules/module6/lesson3.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၆.၃ - Final Launch</a
+              >
+              <a
+                href="/modules/module6/lesson3_detail.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> ၆.၃ - Deep Dive into
+                Tools</a
+              >
+
+              <a
+                href="modules/module6/lesson4.html"
+                class="flex items-center text-xs text-red-400 hover:text-white transition font-bold"
+                ><i class="fas fa-bug mr-2"></i> ၆.၄ - Challenge: Cloud Repair
+                (Firebase/Deployment) 🛠</a
+              >
+            </div>
+            <a
+              href="/modules/module6/lesson3.html" id="launch-btn" 
+              class="block text-center bg-orange-600 hover:bg-orange-700 py-2 rounded-xl text-xs font-bold transition"
+              >Congrats! </a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div
+      id="authModal"
+      class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+    >
+      <div
+        class="glass p-8 rounded-3xl w-full max-w-md border border-purple-500/30 text-center relative shadow-2xl"
+      >
+        <button
+          onclick="toggleModal()"
+          class="absolute top-4 right-4 text-gray-400 text-xl"
+        >
+          &times;
+        </button>
+
+        <div id="regForm">
+          <h2 class="text-3xl font-bold gradient-text mb-6">
+            Join the Universe
+          </h2>
+          <form onsubmit="handleRegister(event)" class="space-y-4 text-left">
+            <div>
+              <label
+                class="block text-[10px] uppercase font-bold text-purple-400 mb-1"
+                >Full Name</label
+              >
+              <input
+                type="text"
+                id="stdName"
+                required
+                class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-purple-500"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-[10px] uppercase font-bold text-purple-400 mb-1"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="stdEmail"
+                required
+                class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-purple-500"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-purple-600 py-4 rounded-xl font-bold shadow-lg mt-4"
+            >
+              စာရင်းသွင်းမှု အတည်ပြုမည်
+            </button>
+          </form>
+          <div class="py-4 text-gray-600">OR</div>
+          <button
+            onclick="loginWithGoogle()"
+            class="w-full bg-white text-black py-3 rounded-xl font-bold flex items-center justify-center gap-2"
+          >
+            <img
+              src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
+              width="18"
+            />
+            Gmail ဖြင့် ဝင်မည်
+          </button>
+        </div>
+
+        <div id="regSuccess" class="hidden py-10">
+          <i class="fas fa-check-circle text-6xl text-green-500 mb-6"></i>
+          <h3 class="text-2xl font-bold mb-2">အောင်မြင်ပါသည်!</h3>
+          <p id="welcomeUser" class="text-sm text-gray-400 italic"></p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/script.js"></script>
+
+    <!-- <script>
+    function resetData() {
+        if(confirm("သင်ယူမှုမှတ်တမ်းအားလုံးကို ဖျက်ပစ်မှာ သေချာပါသလား?")) {
+            localStorage.clear();
+            location.reload();
+        }
+    }
+    </script> -->
+
+    <!-- Footer Section -->
+    <footer class="mt-32 pb-16 border-t border-gray-800/50 pt-12">
+      <div
+        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"
+      >
+        <!-- Copyright Side -->
+        <div class="text-gray-500 text-sm text-center md:text-left">
+          <p class="font-medium">
+            Built with <i class="fas fa-heart text-pink-500"></i> for
+            <span class="gradient-text font-bold">React Learners</span>
+          </p>
+          <p class="text-xs mt-1 text-gray-600">
+            &copy; 2026 The Learning Universe. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Social Icons (Optional) -->
+        <div class="flex gap-6 text-gray-600 text-xl">
+          <a href="#" class="hover:text-purple-400 transition"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a href="#" class="hover:text-purple-400 transition"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="#" class="hover:text-purple-400 transition"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
+
+        <!-- Danger Zone (Reset Button) -->
+        <div class="flex flex-col items-center md:items-end gap-2">
+          <span
+            class="text-[10px] uppercase tracking-widest text-gray-600 font-bold"
+            >Danger Zone</span
+          >
+          <button
+            onclick="resetEverything()"
+            class="group flex items-center gap-2 px-5 py-2.5 rounded-xl border border-red-500/20 bg-red-500/5 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 hover:border-red-500/40 transition-all duration-300 text-xs font-bold shadow-lg shadow-red-500/5"
+          >
+            <i class="fas fa-trash-alt group-hover:animate-bounce"></i>
+            Reset My Progress (မှတ်တမ်းများဖျက်ရန်)
+          </button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

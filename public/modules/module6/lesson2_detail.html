@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Deep Dive: Firestore & CRUD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="p-6 md:p-12 bg-[#0f172a] text-white">
+
+    <!-- ✅ ၁။ Loader ထည့်ပါ -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm">စစ်ဆေးနေပါသည်...</p>
+        </div>
+    </div>
+
+    <!-- ✅ ၂။ Content တစ်ခုလုံးကို id="lesson-content" ဖြင့် ပတ်ပါ -->
+    <main id="lesson-content" style="display: none;">
+        <div class="max-w-4xl mx-auto">
+      <a
+        href="/index.html"
+        class="text-indigo-400 hover:text-white transition text-sm font-bold flex items-center gap-2 mb-10"
+      >
+        <i class="fas fa-arrow-left"></i> Dashboard သို့ ပြန်သွားရန်
+      </a>
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-extrabold mb-8 text-orange-500 italic">
+          Real-time Data: ဖိုင်တွဲများအား စီမံခန့်ခွဲခြင်း 📁
+        </h1>
+        <div class="glass-card space-y-8 text-gray-300">
+          <section>
+            <h3 class="text-2xl font-bold text-yellow-400 mb-4">
+              🏠 သာဓက: မှော်ဝင် ဖိုင်တွဲစင်ကြီး
+            </h3>
+            <p class="leading-relaxed">
+              သင့်မှာ ဖိုင်တွဲစင်ကြီး တစ်ခုရှိတယ် ဆိုပါစို့။ <br /><br />
+              ၁။ **Create:** ဖိုင်အသစ်တစ်ခု ထည့်တာ။ <br />
+              ၂။ **Read:** ဖိုင်ကို ထုတ်ဖတ်တာ။ <br />
+              ၃။ **Update:** ဖိုင်ထဲက စာတွေကို ပြင်တာ။ <br />
+              ၄။ **Delete:** မလိုတဲ့ဖိုင်ကို ဖျက်ပစ်တာ။ <br /><br />
+              <strong>Firestore</strong> ရဲ့ ထူးခြားချက်က သူက "မှော်ဝင်" တာပါ။
+              ရွာတစ်ဖက်မှာရှိတဲ့ ဆရာက ဖိုင်ထဲက စာကို ပြင်လိုက်တာနဲ့
+              မင်းရှေ့မှာရှိတဲ့ ဖိုင်ထဲကစာက အလိုအလျောက်
+              လိုက်ပြောင်းသွားတာဖြစ်လို့ Chatting လိုမျိုး အလုပ်တွေမှာ
+              အရမ်းကောင်းပါတယ်။
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ ၃။ မှတ်စုရေးသည့် နေရာ (TextArea) ထည့်ပါ -->
+          <section class="glass-card p-8 rounded-3xl border border-indigo-500/20 mb-12">
+              <h3 class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2">
+                  <i class="fas fa-sticky-note"></i> Deep Dive Note
+              </h3>
+              <textarea id="lessonNote" class="w-full h-40 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white" placeholder="မှတ်သားစရာများကို ဒီမှာ ရေးပါ..."></textarea>
+              <button onclick="saveLessonNote()" class="mt-4 bg-indigo-600 px-6 py-2 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+          </section>
+
+          <!-- Navigation -->
+          <div id="dynamic-nav" class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10">
+              <!-- JS က ဖြည့်ပေးမည် -->
+          </div>
+        </div>
+    </main>
+
+    <!-- FIREBASE LOGIC -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l1_d"; // ✨ Detail Page ဖြစ်လို့ ID ခွဲပေးထားပါသည်
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          
+          // အရေးကြီး - Element ရှိမှ Error မတက်အောင် စစ်ဆေးပြီး ပွင့်စေခြင်း
+          const loader = document.getElementById("lesson-loader");
+          const content = document.getElementById("lesson-content");
+          const noteBox = document.getElementById("lessonNote");
+
+          if (loader) loader.style.display = "none";
+          if (content) content.style.display = "block";
+
+          // မှတ်စု ပြန်ဖတ်ခြင်း
+          if (noteBox) {
+              noteBox.value = localStorage.getItem("note_" + LESSON_ID) || "";
+          }
+          
+          // ✨ Navigation ခလုတ် ဖော်ပြခြင်း
+          if (typeof window.setupDynamicNav === 'function') {
+              window.setupDynamicNav();
+          }
+
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global)
+      window.saveLessonNote = async () => {
+        const noteBox = document.getElementById("lessonNote");
+        if(!noteBox) return;
+
+        const noteText = noteBox.value;
+        const user = auth.currentUser;
+
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        if (user) {
+          try {
+            await setDoc(doc(db, "notes", `${user.uid}_${LESSON_ID}`), {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              }, { merge: true });
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>

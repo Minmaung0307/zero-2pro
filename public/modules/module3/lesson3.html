@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 3.3 - Advanced Routing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      .glass-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body class="p-6 pt-24">
+    <nav
+      class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10"
+    >
+      <a href="lesson2.html" class="text-indigo-400 font-bold"
+        >← ယခင်သင်ခန်းစာ</a
+      >
+      <div class="text-sm text-indigo-300">Module 3 • Lesson 3.3</div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto space-y-12">
+      <section>
+        <h1 class="text-4xl font-extrabold mb-6">Redirecting & Security 🛡️</h1>
+        <div class="glass-card p-8 rounded-3xl space-y-8 leading-relaxed">
+          <div>
+            <h3 class="text-xl font-bold text-indigo-400 mb-2">useNavigate:</h3>
+            <p class="text-sm text-gray-300">
+              Link ကို မနှိပ်ဘဲ Code အနေနဲ့ Page တစ်ခုကို သွားခိုင်းတာပါ။ ဥပမာ -
+              Login အောင်မြင်သွားရင် Dashboard ကို အလိုအလျောက် ပို့ပေးချင်တဲ့အခါ
+              သုံးပါတယ်။
+            </p>
+            <code
+              class="block mt-4 p-4 bg-black rounded-xl text-pink-400 text-xs italic"
+              >navigate('/dashboard');</code
+            >
+          </div>
+
+          <hr class="border-gray-800" />
+
+          <div>
+            <h3 class="text-xl font-bold text-red-400 mb-2">
+              Protected Routes:
+            </h3>
+            <p class="text-sm text-gray-300">
+              တချို့စာမျက်နှာတွေ (ဥပမာ- Grade စစ်တဲ့ Page) ကို Login
+              ဝင်ထားတဲ့သူပဲ ကြည့်လို့ရအောင် ကာကွယ်ထားတဲ့ နည်းလမ်းဖြစ်ပါတယ်။ ဒါဟာ
+              Real-world Web App တွေရဲ့ လုံခြုံရေးအတွက် အရေးကြီးဆုံး အပိုင်းပါ။
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-indigo-600/10 border border-indigo-500/30 p-10 rounded-3xl text-center"
+      >
+        <h2 class="text-3xl font-bold mb-6 underline italic">
+          🚀 Module 3 Final: The Portal Expansion
+        </h2>
+        <p class="text-gray-300 mb-8">
+          ယခုသင်ယူခဲ့တဲ့ Routing စနစ်ကို သုံးပြီး သင့်ရဲ့ Student Portal မှာ
+          <span class="text-white font-bold"
+            >Dashboard, All Lessons, Settings</span
+          >
+          ဆိုပြီး Page တွေခွဲထုတ်ပါ။ Navbar တစ်ခုတည်ဆောက်ပြီး Page တစ်ခုနဲ့တစ်ခု
+          ကူးပြောင်းကြည့်ပါ။
+        </p>
+        <button
+          onclick="finishModule3()"
+          class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-indigo-500/20"
+        >
+          Module 3 ကို အောင်မြင်စွာ ပြီးဆုံးကြောင်း အတည်ပြုမည် (XP +200)
+        </button>
+      </section>
+
+      <div class="flex justify-center space-x-6 mt-10">
+        <aside class="glass-card p-6 rounded-2xl flex-1 border-yellow-500/20">
+          <h4 class="font-bold text-yellow-500 mb-3">
+            <i class="fas fa-sticky-note mr-2"></i> ကျောင်းသားမှတ်စု
+          </h4>
+          <textarea
+            id="note3"
+            class="w-full h-32 bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs focus:outline-none"
+            placeholder="Routing အကြောင်း ဘာတွေသိလိုက်ရလဲ..."
+          ></textarea>
+        </aside>
+      </div>
+      <!-- Note Taking Section -->
+      <section class="mt-12 glass p-8 rounded-3xl border border-indigo-500/20">
+        <h3
+          class="text-xl font-bold mb-4 text-indigo-400 flex items-center gap-2"
+        >
+          <i class="fas fa-sticky-note"></i> ဤသင်ခန်းစာအတွက် ကိုယ်ပိုင်မှတ်စု
+        </h3>
+        <textarea
+          id="lessonNote"
+          class="w-full h-40 bg-gray-900/50 border border-gray-700 rounded-2xl p-4 text-sm focus:border-indigo-500 outline-none transition mb-4"
+          placeholder="သင်ခန်းစာထဲက အရေးကြီးတာတွေကို ဒီမှာ မှတ်ထားပါ..."
+        ></textarea>
+
+        <div class="flex justify-between items-center">
+          <p class="text-xs text-gray-500 italic">
+            မှတ်စုရေးဖို့ မမေ့နဲ့ဦးနော်...
+          </p>
+          <button
+            onclick="saveLessonNote()"
+            class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition"
+          >
+            မှတ်စုသိမ်းမည်
+          </button>
+        </div>
+      </section>
+
+      <!-- Navigation Buttons Placeholder -->
+      <div
+        id="dynamic-nav"
+        class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"
+      >
+        <!-- ဒီနေရာကို JS ကနေ အလိုအလျောက် ဖြည့်ပေးပါလိမ့်မယ် -->
+      </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script type="module">
+      import { auth, db } from "/script.js";
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const LESSON_ID = "m1_l1"; // ဒီသင်ခန်းစာရဲ့ ID
+
+      onAuthStateChanged(auth, async (user) => {
+        const isReg = localStorage.getItem("isRegistered") === "true";
+        if (user || isReg) {
+          // ၁။ UI ပွင့်အောင်လုပ်ခြင်း
+          document.getElementById("lesson-loader").style.display = "none";
+          document.getElementById("lesson-content").style.display = "block";
+
+          // ၂။ သိမ်းထားတဲ့ မှတ်စုရှိရင် ပြန်ဆွဲထုတ်ပြခြင်း
+          const savedNote = localStorage.getItem("note_" + LESSON_ID);
+          if (savedNote) {
+            document.getElementById("lessonNote").value = savedNote;
+            window.setupDynamicNav();
+          }
+        } else {
+          window.location.href = "/index.html";
+        }
+      });
+
+      // မှတ်စုသိမ်းသည့် Function (Global အနေနဲ့ သတ်မှတ်ရမည်)
+      window.saveLessonNote = async () => {
+        const noteText = document.getElementById("lessonNote").value;
+        const user = auth.currentUser;
+
+        // Local မှာ အရင်သိမ်းမယ်
+        localStorage.setItem("note_" + LESSON_ID, noteText);
+
+        // Login ဝင်ထားရင် Cloud မှာပါ သိမ်းမယ်
+        if (user) {
+          try {
+            await setDoc(
+              doc(db, "notes", `${user.uid}_${LESSON_ID}`),
+              {
+                userId: user.uid,
+                lessonId: LESSON_ID,
+                text: noteText,
+                updatedAt: new Date(),
+              },
+              { merge: true },
+            );
+            alert("မှတ်စုကို Cloud မှာပါ သိမ်းပြီးပါပြီ။ ✅");
+          } catch (e) {
+            console.error(e);
+            alert("Local မှာတော့ သိမ်းပြီးပါပြီ။");
+          }
+        } else {
+          alert("မှတ်စုကို သိမ်းပြီးပါပြီ။ (Local) ✅");
+        }
+      };
+    </script>
+  </body>
+</html>
