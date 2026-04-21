@@ -9,6 +9,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://api.iconify.design/logos:react.svg"
+    />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body class="leading-relaxed">
@@ -30,6 +36,13 @@
             class="bg-purple-600 px-4 py-2 rounded-lg text-sm font-bold"
           >
             စာရင်းသွင်းရန်
+          </button>
+          <!-- Nav Auth Btn ဘေးနားမှာ ဒါလေး ထည့်ပါ -->
+          <button
+            id="installApp"
+            class="hidden flex items-center gap-2 bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-indigo-600 hover:text-white transition"
+          >
+            <i class="fas fa-download"></i> App တင်မည်
           </button>
         </div>
       </div>
@@ -95,15 +108,22 @@
               <a
                 href="/modules/prework/git-github.html"
                 class="flex items-center text-xs text-indigo-400 hover:text-white transition"
-                ><i class="fas fa-play-circle mr-2"></i> Git နဲ့ GitHub ချိတ်ဆက်ပုံ</a
+                ><i class="fas fa-play-circle mr-2"></i> Git နဲ့ GitHub
+                ချိတ်ဆက်ပုံ</a
               >
               <a
                 href="/modules/prework/git-setup.html"
                 class="flex items-center text-xs text-indigo-400 hover:text-white transition"
-                ><i class="fas fa-play-circle mr-2"></i> Pre-work: Git & GitHub</a
+                ><i class="fas fa-play-circle mr-2"></i> Pre-work: Git &
+                GitHub</a
+              >
+              <a
+                href="/modules/prework/ssh-setup.html"
+                class="flex items-center text-xs text-indigo-400 hover:text-white transition"
+                ><i class="fas fa-play-circle mr-2"></i> SSH Setup</a
               >
             </div>
-            
+
             <a
               href="/modules/module1/lesson1.html"
               class="block text-center bg-indigo-600 hover:bg-indigo-700 py-2 rounded-xl text-xs font-bold transition"

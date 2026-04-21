@@ -181,6 +181,9 @@ window.setupDynamicNav = () => {
       nextPath = "/modules/prework/git-setup.html";
       nextText = "နောက်သင်ခန်းစာ (Git Setup) သို့";
     } else if (path.includes("git-setup.html")) {
+        nextPath = "/modules/prework/ssh-setup.html"; // ✨ ဤနေရာတွင် လမ်းကြောင်းအသစ်ထည့်ပါ
+        nextText = "နောက်သင်ခန်းစာ (SSH Setup) သို့";
+    } else if (path.includes("ssh-setup.html")) {
       nextPath = "/modules/module1/lesson1.html";
       nextText = "Module 1 ကို စတင်မည်";
     }
@@ -314,3 +317,46 @@ window.graduate = async () => {
   );
   window.location.href = "/index.html";
 };
+
+// --- 📱 PWA Install Logic ---
+let deferredPrompt;
+const installBtn = document.getElementById('installApp');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Browser ရဲ့ မူလ Prompt ကို တားဆီးထားမယ်
+    e.preventDefault();
+    // ပွဲ (Event) ကို သိမ်းထားမယ်
+    deferredPrompt = e;
+    // Install ခလုတ်ကို ဖော်ပြမယ်
+    if (installBtn) installBtn.classList.remove('hidden');
+});
+
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            // Install လုပ်မလားလို့ မေးမယ်
+            deferredPrompt.prompt();
+            // User ဘာနှိပ်လဲ စောင့်ကြည့်မယ်
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User choice: ${outcome}`);
+            // တစ်ကြိမ်သုံးပြီးရင် ပြန်ဖျောက်ထားမယ်
+            deferredPrompt = null;
+            installBtn.classList.add('hidden');
+        }
+    });
+}
+
+// Browser က Install လုပ်ပြီးသွားရင် ခလုတ်ကို ဖျောက်မယ်
+window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    if (installBtn) installBtn.classList.add('hidden');
+});
+
+// --- Service Worker Register (PWA အတွက် မဖြစ်မနေ လိုအပ်သည်) ---
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+            console.log('SW Registered!', reg);
+        }).catch(err => console.log('SW Reg Error', err));
+    });
+}

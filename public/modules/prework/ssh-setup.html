@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Key Setup | Learning Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="p-6 pt-24 bg-[#0f172a] text-white">
+
+    <!-- Loading Screen -->
+    <div id="lesson-loader" class="fixed inset-0 z-[100] bg-[#0f172a] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm italic">လုံခြုံရေးသော့များကို ပြင်ဆင်နေသည်...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-4 glass-card z-50 flex justify-between items-center px-10 border-b border-gray-800">
+        <a href="/index.html" class="text-indigo-400 font-bold hover:text-white transition">← Dashboard</a>
+        <div class="bg-indigo-900/40 text-indigo-300 px-4 py-1 rounded-full border border-indigo-500/30 text-xs font-bold">အကြိုသင်ခန်းစာ • SSH Setup</div>
+    </nav>
+
+    <main id="lesson-content" style="display: none;" class="max-w-5xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-10 gradient-text italic text-center">SSH Key: GitHub အတွက် မှော်သော့တစ်ချောင်း 🔑</h1>
+
+        <!-- Section 1: Concept -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">၁။ SSH ဆိုတာ ဘာလဲ? ဘာလို့ သုံးရတာလဲ?</h2>
+            <div class="glass-card p-8 rounded-3xl space-y-6">
+                <p class="text-gray-300 leading-relaxed text-justify italic">
+                    "မင်း GitHub ပေါ် ကုဒ်တွေ တင်လိုက်တိုင်း Password ဒါမှမဟုတ် Token တွေ ခဏခဏ ရိုက်နေရလို့ စိတ်ညစ်နေပြီလား?"
+                </p>
+                <p class="text-gray-300 text-justify leading-relaxed">
+                    <strong>SSH (Secure Shell)</strong> ဆိုတာ သင့်ကွန်ပျူတာနဲ့ GitHub ကြားမှာ တည်ဆောက်လိုက်တဲ့ "လျှို့ဝှက်ဥမင်လမ်း" တစ်ခုလိုပါပဲ။ သူက သော့နှစ်ချောင်း သုံးပါတယ်။
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-indigo-900/20 p-6 rounded-2xl border border-indigo-500/30">
+                        <h4 class="text-indigo-400 font-bold mb-2">Public Key (သော့ခလောက်)</h4>
+                        <p class="text-xs text-gray-400">ဒါကို GitHub ပေါ်မှာ သွားတင်ထားရပါမယ်။ လူတိုင်း မြင်လို့ရပါတယ်။</p>
+                    </div>
+                    <div class="bg-pink-900/20 p-6 rounded-2xl border border-pink-500/30">
+                        <h4 class="text-pink-400 font-bold mb-2">Private Key (သော့အစစ်)</h4>
+                        <p class="text-xs text-gray-400">ဒါက သင့်စက်ထဲမှာပဲ ရှိနေရပါမယ်။ ဘယ်သူ့ကိုမှ ပေးမသိရပါဘူး။</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                    <strong>ဘာကြောင့်သုံးရလဲ:</strong> Password ခဏခဏ ရိုက်စရာမလိုတော့တဲ့အပြင်၊ Hacker တွေက သင့် Password ကို သိသွားရင်တောင် သင့်စက်ထဲက "Private Key" မရှိရင် GitHub ထဲ ဝင်လို့မရတဲ့အတွက် အရမ်းလုံခြုံပါတယ်။
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Step-by-Step -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-emerald-500 pl-4">၂။ SSH Key ပြုလုပ်ပုံ အဆင့်ဆင့်</h2>
+            <div class="space-y-8">
+                
+                <!-- Step A -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-lg font-bold text-emerald-400 mb-4">အဆင့် (က) သော့အသစ် ထုတ်လုပ်ခြင်း</h3>
+                    <p class="text-sm text-gray-400 mb-4">Terminal ကိုဖွင့်ပြီး အောက်ပါကုဒ်ကို ရိုက်ထည့်ပါ။ (Email နေရာမှာ သင့် GitHub email ကို အစားထိုးပါ)</p>
+                    <div class="bg-black p-6 rounded-2xl border border-gray-700 font-mono text-sm text-white">
+                        ssh-keygen -t ed25519 -C "your_email@example.com"
+                    </div>
+                    <p class="text-xs text-yellow-500 mt-4 italic">မှတ်ချက်: Enter ၃ ခါ ဆက်တိုက်နှိပ်ပေးလိုက်ပါ။</p>
+                </div>
+
+                <!-- Step B -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-lg font-bold text-emerald-400 mb-4">အဆင့် (ခ) သော့ကို ကော်ပီကူးခြင်း (Public Key)</h3>
+                    <p class="text-sm text-gray-400 mb-4">ထုတ်လိုက်တဲ့သော့ထဲက "Public Key" ကို GitHub ကို ပေးဖို့အတွက် Copy ကူးရပါမယ်။</p>
+                    <div class="bg-black p-6 rounded-2xl border border-gray-700 font-mono text-sm text-white space-y-4">
+                        <p class="text-gray-500"># Windows အတွက် (CMD/PowerShell)</p>
+                        <p class="text-blue-400">clip < ~/.ssh/id_ed25519.pub</p>
+                        <p class="text-gray-500"># Mac အတွက်</p>
+                        <p class="text-pink-400">pbcopy < ~/.ssh/id_ed25519.pub</p>
+                    </div>
+                </div>
+
+                <!-- Step C -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-lg font-bold text-emerald-400 mb-4">အဆင့် (ဂ) GitHub ပေါ်သို့ တင်ခြင်း</h3>
+                    <ol class="text-sm text-gray-400 list-decimal list-inside space-y-3">
+                        <li>GitHub.com သို့သွားပြီး Login ဝင်ပါ။</li>
+                        <li>ညာဘက်အပေါ်က သင့်ပုံလေးကိုနှိပ်ပြီး <strong>Settings</strong> ကိုသွားပါ။</li>
+                        <li>ဘယ်ဘက် Menu ထဲက <strong>SSH and GPG keys</strong> ကိုနှိပ်ပါ။</li>
+                        <li><strong>New SSH Key</strong> ဆိုတဲ့ ခလုတ်အစိမ်းလေးကို နှိပ်ပါ။</li>
+                        <li>Title မှာ "My PC" လို့ပေးပြီး၊ Key နေရာမှာ ခုနက Copy ကူးလာတာကို <strong>Paste</strong> လုပ်လိုက်ပါ။</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Testing -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">၃။ အလုပ်လုပ်မလုပ် စမ်းသပ်ခြင်း</h2>
+            <div class="glass-card p-8 rounded-3xl">
+                <p class="text-sm text-gray-300 mb-4">အကုန်ပြီးသွားရင် Terminal မှာ ဒါလေးရိုက်ပြီး စစ်ကြည့်ပါ။</p>
+                <div class="bg-black p-6 rounded-2xl border border-gray-700 font-mono text-sm text-emerald-400">
+                    ssh -T git@github.com
+                </div>
+                <p class="text-xs text-gray-400 mt-4 leading-relaxed">
+                    "Hi [YourName]! You've successfully authenticated..." ဆိုတဲ့ စာတန်းလေး ပေါ်လာရင်တော့ သင်အောင်မြင်သွားပါပြီ။ အခုကစပြီး GitHub သုံးရင် Password ရိုက်စရာ မလိုတော့ပါဘူး။
+                </p>
+            </div>
+        </section>
+
+        <!-- Video Lessons Section -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-white mb-6 border-l-4 border-red-500 pl-4">📺 SSH Key ချိတ်ဆက်ပုံ ဗွီဒီယို</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-black/40 rounded-3xl border border-white/10 overflow-hidden">
+                    <div class="aspect-video bg-gray-800 flex items-center justify-center relative group">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/mAFoROnOfHs?si=yASya-qra1_vixZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="text-sm font-bold text-gray-200">How to Setup SSH Keys for GitHub</h4>
+                        <p class="text-[10px] text-gray-500 mt-1">Password မလိုဘဲ သုံးနိုင်အောင် အစအဆုံး ပြုလုပ်ပုံ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Problems -->
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold text-red-500 mb-6 border-l-4 border-red-500 pl-4">အဖြစ်များသော အမှားများ (Troubleshooting)</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-red-900/10 p-6 rounded-2xl border border-red-500/20">
+                    <h4 class="text-red-400 font-bold mb-2">"Permission denied (publickey)"</h4>
+                    <p class="text-xs text-gray-300">အဖြေ: GitHub ပေါ်မှာ SSH Key တင်ဖို့ ကျန်နေတာ သို့မဟုတ် Copy ကူးတာ မှားနေလို့ပါ။ Key အသစ်ပြန်ထုတ်ပြီး ပြန်တင်ကြည့်ပါ။</p>
+                </div>
+                <div class="bg-red-900/10 p-6 rounded-2xl border border-red-500/20">
+                    <h4 class="text-red-400 font-bold mb-2">"Could not resolve hostname"</h4>
+                    <p class="text-xs text-gray-300">အဖြေ: အင်တာနက် လိုင်းမကောင်းတာ သို့မဟုတ် `git@github.com` ဆိုတဲ့ စာလုံးပေါင်း မှားနေတာပါ။</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Note Section -->
+        <section class="glass-card p-8 rounded-3xl border border-indigo-500/20 mb-20">
+            <h3 class="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2"><i class="fas fa-sticky-note"></i> SSH မှတ်စု</h3>
+            <textarea id="lessonNote" class="w-full h-40 bg-gray-900 border border-gray-700 rounded-2xl p-4 text-sm focus:border-purple-500 outline-none text-white" placeholder="SSH လုပ်ပုံအဆင့်ဆင့်ကို ကိုယ်တိုင် ပြန်ရေးကြည့်ပါ..."></textarea>
+            <button onclick="saveLessonNote()" class="mt-4 bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl text-xs font-bold transition">မှတ်စုသိမ်းမည်</button>
+        </section>
+
+        <!-- Dynamic Nav -->
+        <div id="dynamic-nav" class="mt-12 mb-20 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-800 pt-10"></div>
+    </main>
+
+    <script type="module">
+        import { auth, db } from "/script.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // ✨ Lesson ID: pw_l3 (Pre-work Lesson 3)
+        const LESSON_ID = "pw_l3"; 
+
+        onAuthStateChanged(auth, async (user) => {
+            const isReg = localStorage.getItem("isRegistered") === "true";
+            if (user || isReg) {
+                // UI handling
+                document.getElementById("lesson-loader").style.display = "none";
+                document.getElementById("lesson-content").style.display = "block";
+                
+                // Load Note
+                const savedNote = localStorage.getItem("note_" + LESSON_ID);
+                if (savedNote) document.getElementById("lessonNote").value = savedNote;
+
+                // Setup Navigation
+                if (typeof window.setupDynamicNav === "function") {
+                    window.setupDynamicNav();
+                }
+            } else {
+                window.location.href = "/index.html";
+            }
+        });
+
+        window.saveLessonNote = async () => {
+            const noteText = document.getElementById("lessonNote").value;
+            localStorage.setItem("note_" + LESSON_ID, noteText);
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    await setDoc(doc(db, "notes", `${user.uid}_${LESSON_ID}`), {
+                        userId: user.uid, lessonId: LESSON_ID, text: noteText, updatedAt: new Date()
+                    }, { merge: true });
+                    alert("SSH မှတ်စုကို Cloud တွင် သိမ်းဆည်းပြီးပါပြီ။ ✅");
+                } catch (e) { alert("Local တွင် သိမ်းဆည်းပြီးပါပြီ။"); }
+            } else { alert("သိမ်းဆည်းပြီးပါပြီ။"); }
+        };
+    </script>
+</body>
+</html>
